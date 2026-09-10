@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_donor_statement" model="ir.actions.report">
+        <field name="name">Contribution Statement</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_reports.donor_statement</field>
+        <field name="report_file">nonprofit_reports.donor_statement</field>
+        <field name="print_report_name">
+            'Contribution Statement - %s' % (object.name)
+        </field>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="donor_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lines" t-value="gifts.get(o.id, [])" />
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Contribution Statement</h2>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <strong>Donor</strong><br />
+                                <span t-field="o.name" /><br />
+                                <span t-field="o.street" /><br t-if="o.street" />
+                                <span t-field="o.city" />
+                                <span t-field="o.state_id.code" />
+                                <span t-field="o.zip" />
+                            </div>
+                            <div class="col-6 text-end">
+                                <strong>Period</strong><br />
+                                <span t-esc="date_from" /> &#8211;
+                                <span t-esc="date_to" /><br />
+                                <strong>Issued by</strong><br />
+                                <span t-field="company.name" />
+                                <span t-if="company.vat"><br />EIN <span t-field="company.vat" /></span>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm mt-4">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th class="text-end">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="lines" t-as="line">
+                                    <td><span t-field="line.date" /></td>
+                                    <td>
+                                        <span t-esc="line.move_id.name" />
+                                        <t t-if="line.name"> - <span t-esc="line.name" /></t>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-esc="-line.balance"
+                                              t-options="{'widget': 'monetary', 'display_currency': company.currency_id}" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" class="text-end">Total contributions</th>
+                                    <th class="text-end">
+                                        <span t-esc="totals.get(o.id, 0.0)"
+                                              t-options="{'widget': 'monetary', 'display_currency': company.currency_id}" />
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <p class="mt-4" style="font-size: 10px;">
+                            No goods or services were provided in exchange for the
+                            contributions listed above, except as noted. This
+                            statement is your written acknowledgement for tax
+                            purposes under Internal Revenue Code section 170(f)(8)
+                            for any single contribution of $250 or more. Please
+                            retain it with your tax records.
+                            <t t-if="company.name">
+                                <span t-field="company.name" /> is a tax-exempt
+                                organization; contributions are deductible to the
+                                extent allowed by law.
+                            </t>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

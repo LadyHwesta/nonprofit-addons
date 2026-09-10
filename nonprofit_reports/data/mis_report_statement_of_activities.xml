@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="mis_report_soa" model="mis.report">
+        <field name="name">Statement of Activities (Non-Profit)</field>
+        <field name="description">Revenue by source, expense by function, and
+            change in net assets - keyed off the nonprofit_base account tags.</field>
+    </record>
+
+    <!-- Revenue detail -->
+    <record id="mis_soa_kpi_contrib_unrestricted" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">contrib_unrestricted</field>
+        <field name="description">Contributions - Without Donor Restrictions</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_contrib_unrestricted').ids))]</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="mis_soa_kpi_contrib_restricted" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">contrib_restricted</field>
+        <field name="description">Contributions - With Donor Restrictions</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_contrib_restricted').ids))]</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="mis_soa_kpi_grants" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">grants</field>
+        <field name="description">Government and Foundation Grants</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_grants').ids))]</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="mis_soa_kpi_special_events" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">special_events</field>
+        <field name="description">Fundraising Events (net)</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_special_events').ids))]</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="mis_soa_kpi_inkind" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">inkind</field>
+        <field name="description">In-Kind Contributions</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_inkind').ids))]</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="mis_soa_kpi_membership" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">membership</field>
+        <field name="description">Membership Dues</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_membership').ids))]</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="mis_soa_kpi_program_service" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">program_service</field>
+        <field name="description">Program Service Revenue</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_program_service').ids))]</field>
+        <field name="sequence">70</field>
+    </record>
+    <record id="mis_soa_kpi_investment" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">investment</field>
+        <field name="description">Investment Income</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_investment').ids))]</field>
+        <field name="sequence">80</field>
+    </record>
+    <record id="mis_soa_kpi_other_rev" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">other_rev</field>
+        <field name="description">Other Revenue</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_rev_other').ids))]</field>
+        <field name="sequence">90</field>
+    </record>
+    <record id="mis_soa_kpi_total_revenue" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">total_revenue</field>
+        <field name="description">Total Revenue and Support</field>
+        <field name="expression">-balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_soa_revenue').ids))]</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <!-- Expense by function (informational; primary allocation is the
+         Function analytic plan / the 990 pivot) -->
+    <record id="mis_soa_kpi_exp_program" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">exp_program</field>
+        <field name="description">Program Services</field>
+        <field name="expression">balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_function_program').ids))]</field>
+        <field name="sequence">110</field>
+    </record>
+    <record id="mis_soa_kpi_exp_mgmt" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">exp_mgmt</field>
+        <field name="description">Management &amp; General</field>
+        <field name="expression">balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_function_mgmt_general').ids))]</field>
+        <field name="sequence">120</field>
+    </record>
+    <record id="mis_soa_kpi_exp_fundraising" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">exp_fundraising</field>
+        <field name="description">Fundraising</field>
+        <field name="expression">balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_function_fundraising').ids))]</field>
+        <field name="sequence">130</field>
+    </record>
+    <record id="mis_soa_kpi_total_expense" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">total_expense</field>
+        <field name="description">Total Expenses</field>
+        <field name="expression">balp[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_soa_expense').ids))]</field>
+        <field name="sequence">140</field>
+    </record>
+
+    <record id="mis_soa_kpi_change_net_assets" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_soa" />
+        <field name="name">change_net_assets</field>
+        <field name="description">Change in Net Assets</field>
+        <field name="expression">total_revenue - total_expense</field>
+        <field name="sequence">150</field>
+    </record>
+
+</odoo>

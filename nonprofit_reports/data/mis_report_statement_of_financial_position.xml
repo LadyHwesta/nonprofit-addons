@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="mis_report_sofp" model="mis.report">
+        <field name="name">Statement of Financial Position (Non-Profit)</field>
+        <field name="description">Assets, liabilities and net assets by
+            donor-restriction class.</field>
+    </record>
+
+    <record id="mis_sofp_kpi_assets" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_sofp" />
+        <field name="name">total_assets</field>
+        <field name="description">Total Assets</field>
+        <field name="expression">bale[('account_type', '=like', 'asset%')]</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="mis_sofp_kpi_liabilities" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_sofp" />
+        <field name="name">total_liabilities</field>
+        <field name="description">Total Liabilities</field>
+        <field name="expression">-bale[('account_type', '=like', 'liability%')]</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="mis_sofp_kpi_net_assets" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_sofp" />
+        <field name="name">net_assets</field>
+        <field name="description">Total Net Assets</field>
+        <field name="expression">total_assets - total_liabilities</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="mis_sofp_kpi_net_assets_wo" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_sofp" />
+        <field name="name">net_assets_without_restrictions</field>
+        <field name="description">Net Assets Without Donor Restrictions</field>
+        <field name="expression">-bale[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_net_assets_unrestricted').ids))]</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="mis_sofp_kpi_net_assets_w" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_sofp" />
+        <field name="name">net_assets_with_restrictions</field>
+        <field name="description">Net Assets With Donor Restrictions</field>
+        <field name="expression">-bale[('tag_ids', 'in', tuple(ref('nonprofit_base.tag_net_assets_restricted').ids))]</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="mis_sofp_kpi_unposted" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_sofp" />
+        <field name="name">current_earnings</field>
+        <field name="description">Current-Year Surplus Not Yet in Net Assets</field>
+        <field name="expression">net_assets - net_assets_without_restrictions - net_assets_with_restrictions</field>
+        <field name="sequence">60</field>
+    </record>
+
+</odoo>

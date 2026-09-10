@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_nonprofit_donor_readonly,report.nonprofit.donor readonly,model_report_nonprofit_donor,account.group_account_readonly,1,0,0,0
+access_report_nonprofit_donor_user,report.nonprofit.donor user,model_report_nonprofit_donor,account.group_account_invoice,1,0,0,0
+access_nonprofit_donor_statement_wizard,nonprofit.donor.statement.wizard user,model_nonprofit_donor_statement_wizard,account.group_account_invoice,1,1,1,1

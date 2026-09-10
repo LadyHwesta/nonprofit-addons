@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="nonprofit_donor_report_view_list" model="ir.ui.view">
+        <field name="name">report.nonprofit.donor.list</field>
+        <field name="model">report.nonprofit.donor</field>
+        <field name="arch" type="xml">
+            <list string="Donor Analytics" create="false" edit="false">
+                <field name="partner_id" />
+                <field name="gift_count" />
+                <field name="first_gift_date" />
+                <field name="last_gift_date" />
+                <field name="largest_gift" />
+                <field name="this_year_total" />
+                <field name="last_year_total" />
+                <field name="prior_years_total" optional="show" />
+                <field name="gift_total" sum="Lifetime" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="company_id" groups="base.group_multi_company"
+                       optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="nonprofit_donor_report_view_pivot" model="ir.ui.view">
+        <field name="name">report.nonprofit.donor.pivot</field>
+        <field name="model">report.nonprofit.donor</field>
+        <field name="arch" type="xml">
+            <pivot string="Donor Analytics">
+                <field name="partner_id" type="row" />
+                <field name="gift_total" type="measure" />
+                <field name="this_year_total" type="measure" />
+                <field name="last_year_total" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="nonprofit_donor_report_view_graph" model="ir.ui.view">
+        <field name="name">report.nonprofit.donor.graph</field>
+        <field name="model">report.nonprofit.donor</field>
+        <field name="arch" type="xml">
+            <graph string="Donor Analytics" type="bar">
+                <field name="partner_id" />
+                <field name="gift_total" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="nonprofit_donor_report_view_search" model="ir.ui.view">
+        <field name="name">report.nonprofit.donor.search</field>
+        <field name="model">report.nonprofit.donor</field>
+        <field name="arch" type="xml">
+            <search string="Donor Analytics">
+                <field name="partner_id" />
+                <filter name="gave_this_year" string="Gave This Year"
+                        domain="[('this_year_total', '>', 0)]" />
+                <separator />
+                <filter name="lybunt" string="LYBUNT"
+                        domain="[('this_year_total', '&lt;=', 0), ('last_year_total', '>', 0)]"
+                        help="Gave Last Year, But Unfortunately Not This year" />
+                <filter name="sybunt" string="SYBUNT"
+                        domain="[('this_year_total', '&lt;=', 0), ('gift_total', '>', 0)]"
+                        help="Gave Some Year, But Unfortunately Not This year" />
+                <separator />
+                <filter name="major_donor" string="Lifetime &gt;= 1,000"
+                        domain="[('gift_total', '>=', 1000)]" />
+                <separator />
+                <filter name="group_company" string="Company"
+                        context="{'group_by': 'company_id'}"
+                        groups="base.group_multi_company" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_donor_report" model="ir.actions.act_window">
+        <field name="name">Donor Analytics</field>
+        <field name="res_model">report.nonprofit.donor</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{'search_default_gave_this_year': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No donor activity yet</p>
+            <p>Once contributions are posted to the tagged income accounts,
+               each donor shows up here with their lifetime and by-year giving.
+               Use the LYBUNT / SYBUNT filters for lapsed-donor appeals.</p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="mis_instance_soa_current_year" model="mis.report.instance">
+        <field name="name">Statement of Activities - Current Year</field>
+        <field name="report_id" ref="mis_report_soa" />
+    </record>
+    <record id="mis_instance_soa_current_year_period" model="mis.report.instance.period">
+        <field name="name">Current Year</field>
+        <field name="report_instance_id" ref="mis_instance_soa_current_year" />
+        <field name="source">actuals</field>
+        <field name="mode">relative</field>
+        <field name="type">y</field>
+        <field name="offset">0</field>
+        <field name="duration">1</field>
+    </record>
+
+    <record id="mis_instance_sofp_current_year" model="mis.report.instance">
+        <field name="name">Statement of Financial Position - Year End</field>
+        <field name="report_id" ref="mis_report_sofp" />
+    </record>
+    <record id="mis_instance_sofp_current_year_period" model="mis.report.instance.period">
+        <field name="name">As of Year End</field>
+        <field name="report_instance_id" ref="mis_instance_sofp_current_year" />
+        <field name="source">actuals</field>
+        <field name="mode">relative</field>
+        <field name="type">y</field>
+        <field name="offset">0</field>
+        <field name="duration">1</field>
+    </record>
+
+</odoo>

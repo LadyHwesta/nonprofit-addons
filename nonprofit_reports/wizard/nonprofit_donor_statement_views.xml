@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="nonprofit_donor_statement_wizard_form" model="ir.ui.view">
+        <field name="name">nonprofit.donor.statement.wizard.form</field>
+        <field name="model">nonprofit.donor.statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Year-End Contribution Statements">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Year-End Contribution Statements</h1>
+                    </div>
+                    <p>
+                        Generates one IRS written-acknowledgement statement per
+                        donor for the period, listing every gift and the total.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="company_id"
+                                   groups="base.group_multi_company" />
+                            <field name="date_from" />
+                            <field name="date_to" />
+                            <field name="min_amount" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="partner_ids" widget="many2many_tags"
+                                   placeholder="All donors with a gift in the period" />
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_print" type="object"
+                            string="Print Statements" class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_donor_statement_wizard" model="ir.actions.act_window">
+        <field name="name">Year-End Contribution Statements</field>
+        <field name="res_model">nonprofit.donor.statement.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -22,6 +22,11 @@ layers onto an existing localization.
   *Restriction Releases* workflow that posts the balanced net-assets-released
   entry between two clearing accounts; and a per-fund net-asset roll-forward
   report.
+- [`nonprofit_reports/`](nonprofit_reports/) — donor analytics
+  (`report.nonprofit.donor` with LYBUNT / SYBUNT filters), a Form 990
+  functional-expense pivot, a year-end contribution-statement wizard + QWeb PDF,
+  and MIS Builder *Statement of Activities* / *Statement of Financial Position*
+  templates. Needs `mis_builder` on the addons path.
 - `donation_base/`, `donation/` — OCA's donation stack (donations with lines,
   tax receipts, in-kind gifts, campaigns, bank-statement matching, thank-you
   letters), **forward-ported 18.0 → 19.0** and vendored here. See
@@ -29,9 +34,7 @@ layers onto an existing localization.
 
 _Planned (see the project plan): `volunteer_shift` (shifts, check-in/out, hours,
 recurring shifts, coordinator dashboard), `volunteer_profile` (skills,
-background checks, waivers, onboarding), `nonprofit_reports` (MIS Builder
-Statement of Activities / Financial Position, donor analytics, IRS year-end
-statements)._
+background checks, waivers, onboarding)._
 
 ## Third-party
 
@@ -41,7 +44,10 @@ on the addons path shadows Bootstrap's `scss/vendor/` and breaks
 `web.assets_web`). Each keeps its own upstream licence.
 
 External OCA modules that _do_ have a 19.0 branch and are just added to the
-addons path (not vendored): `mis-builder`, `account-budgeting`.
+addons path (not vendored): `mis-builder` (needs OCA `reporting-engine` +
+`server-ux` too) — required by `nonprofit_reports`; `account-budgeting`.
+`testing/start.sh` picks these up from `~/dev/<repo>` (override with the
+`OCA_*` env vars).
 
 ## Testing
 

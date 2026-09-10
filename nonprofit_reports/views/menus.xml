@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_nonprofit_reports" name="Non-Profit"
+              parent="account.menu_finance_reports" sequence="90"
+              groups="account.group_account_readonly" />
+
+    <menuitem id="menu_nonprofit_donor_report"
+              name="Donor Analytics"
+              parent="menu_nonprofit_reports"
+              action="action_nonprofit_donor_report"
+              sequence="10" />
+
+    <menuitem id="menu_nonprofit_functional_expense"
+              name="Functional Expenses (990 Part IX)"
+              parent="menu_nonprofit_reports"
+              action="action_functional_expense"
+              sequence="20" />
+
+    <menuitem id="menu_nonprofit_donor_statement"
+              name="Year-End Contribution Statements"
+              parent="menu_nonprofit_reports"
+              action="action_nonprofit_donor_statement_wizard"
+              sequence="30" />
+
+</odoo>

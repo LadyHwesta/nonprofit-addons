@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="functional_expense_view_pivot" model="ir.ui.view">
+        <field name="name">nonprofit.functional.expense.pivot</field>
+        <field name="model">account.analytic.line</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <pivot string="Functional Expenses (Form 990 Part IX)">
+                <field name="general_account_id" type="row" />
+                <field name="auto_account_id" type="col" />
+                <field name="amount" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_functional_expense" model="ir.actions.act_window">
+        <field name="name">Functional Expenses (990 Part IX)</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">pivot,list</field>
+        <field name="view_id" ref="functional_expense_view_pivot" />
+        <field name="domain">[
+            ('auto_account_id', '!=', False),
+            ('general_account_id.account_type', 'in',
+             ['expense', 'expense_depreciation', 'expense_direct_cost'])
+        ]</field>
+        <field name="context">{
+            'analytic_plan_id': %(nonprofit_base.analytic_plan_function)d
+        }</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- ================================================================
+         Fund - the net-asset class money belongs to.  Fund accounting
+         enforcement (mandatory applicability, the income/expense
+         constraint, restriction releases) lives in
+         nonprofit_fund_accounting.
+    ================================================================= -->
+    <record id="analytic_plan_fund" model="account.analytic.plan">
+        <field name="name">Fund</field>
+        <field name="description">Net-asset class each transaction belongs to
+            (donor-restricted or not).</field>
+    </record>
+    <record id="analytic_account_fund_unrestricted" model="account.analytic.account">
+        <field name="name">Unrestricted</field>
+        <field name="code">F-UR</field>
+        <field name="plan_id" ref="analytic_plan_fund" />
+    </record>
+    <record id="analytic_account_fund_restricted_purpose" model="account.analytic.account">
+        <field name="name">With Donor Restrictions - Purpose</field>
+        <field name="code">F-DRP</field>
+        <field name="plan_id" ref="analytic_plan_fund" />
+    </record>
+    <record id="analytic_account_fund_restricted_time" model="account.analytic.account">
+        <field name="name">With Donor Restrictions - Time</field>
+        <field name="code">F-DRT</field>
+        <field name="plan_id" ref="analytic_plan_fund" />
+    </record>
+    <record id="analytic_account_fund_perpetual" model="account.analytic.account">
+        <field name="name">Perpetual (Endowment)</field>
+        <field name="code">F-PERP</field>
+        <field name="plan_id" ref="analytic_plan_fund" />
+    </record>
+
+    <!-- ================================================================
+         Function - Form 990 Part IX functional-expense columns.
+    ================================================================= -->
+    <record id="analytic_plan_function" model="account.analytic.plan">
+        <field name="name">Function</field>
+        <field name="description">Functional-expense classification for Form
+            990 Part IX (program / management &amp; general / fundraising).</field>
+    </record>
+    <record id="analytic_account_function_program" model="account.analytic.account">
+        <field name="name">Program Services</field>
+        <field name="code">FN-PROG</field>
+        <field name="plan_id" ref="analytic_plan_function" />
+    </record>
+    <record id="analytic_account_function_mgmt_general" model="account.analytic.account">
+        <field name="name">Management &amp; General</field>
+        <field name="code">FN-MG</field>
+        <field name="plan_id" ref="analytic_plan_function" />
+    </record>
+    <record id="analytic_account_function_fundraising" model="account.analytic.account">
+        <field name="name">Fundraising</field>
+        <field name="code">FN-FR</field>
+        <field name="plan_id" ref="analytic_plan_function" />
+    </record>
+
+    <!-- ================================================================
+         Program - the mission activity / department.  Orgs add their own;
+         one starter row so reports have something to group by.
+    ================================================================= -->
+    <record id="analytic_plan_program" model="account.analytic.plan">
+        <field name="name">Program</field>
+        <field name="description">Mission activity or department a
+            transaction supports.</field>
+    </record>
+    <record id="analytic_account_program_general" model="account.analytic.account">
+        <field name="name">General Program</field>
+        <field name="code">PG-GEN</field>
+        <field name="plan_id" ref="analytic_plan_program" />
+    </record>
+
+    <!-- ================================================================
+         Grant - one analytic account per awarded grant, added by the org.
+    ================================================================= -->
+    <record id="analytic_plan_grant" model="account.analytic.plan">
+        <field name="name">Grant</field>
+        <field name="description">Specific grant award a transaction is
+            charged to, for grant reporting and drawdowns.</field>
+    </record>
+
+</odoo>

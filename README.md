@@ -12,6 +12,11 @@ layers onto an existing localization.
   club-specific. Also used by the club suite in
   [`LadyHwesta/odoo-addons`](https://github.com/LadyHwesta/odoo-addons); this
   repo is its home.
+- [`nonprofit_base/`](nonprofit_base/) — partner org/donor/consent fields and
+  households; the Fund/Program/Function/Grant `account.analytic.plan` records;
+  and a wizard (*Accounting → Configuration → Add Non-Profit Accounts*) that
+  layers a UCOA-derived, Form-990-tagged chart of accounts onto an existing
+  localisation chart — idempotent, prefix-able, never replaces.
 - `donation_base/`, `donation/` — OCA's donation stack (donations with lines,
   tax receipts, in-kind gifts, campaigns, bank-statement matching, thank-you
   letters), **forward-ported 18.0 → 19.0** and vendored here. See
@@ -19,11 +24,10 @@ layers onto an existing localization.
 
 _Planned (see the project plan): `volunteer_shift` (shifts, check-in/out, hours,
 recurring shifts, coordinator dashboard), `volunteer_profile` (skills,
-background checks, waivers, onboarding), `nonprofit_base` (partner fields, the
-Fund/Program/Function/Grant analytic plans, an add-on chart-of-accounts import
-wizard), `nonprofit_fund_accounting` (restriction enforcement + releases,
-net-asset roll-forward), `nonprofit_reports` (MIS Builder Statement of
-Activities / Financial Position, donor analytics, IRS year-end statements)._
+background checks, waivers, onboarding), `nonprofit_fund_accounting` (restriction
+enforcement + releases, net-asset roll-forward), `nonprofit_reports` (MIS Builder
+Statement of Activities / Financial Position, donor analytics, IRS year-end
+statements)._
 
 ## Third-party
 

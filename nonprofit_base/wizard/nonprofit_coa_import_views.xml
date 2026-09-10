@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="nonprofit_coa_import_wizard_form" model="ir.ui.view">
+        <field name="name">nonprofit.coa.import.wizard.form</field>
+        <field name="model">nonprofit.coa.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Non-Profit Accounts">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Add Non-Profit Accounts</h1>
+                    </div>
+                    <p>
+                        This adds a starter non-profit account set - contributions,
+                        grants, fundraising events, in-kind, functional expense
+                        pools, net-asset classes and restriction-release clearing -
+                        <b>on top of</b> the chart your localisation already
+                        installed. It never changes existing accounts and is safe
+                        to run again.
+                    </p>
+                    <group>
+                        <field name="company_id"
+                               options="{'no_create': True}"
+                               groups="base.group_multi_company" />
+                        <field name="code_prefix" placeholder="e.g. 9" />
+                        <field name="skip_existing" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_import" type="object" string="Add Accounts"
+                            class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="nonprofit_coa_import_wizard_result_form" model="ir.ui.view">
+        <field name="name">nonprofit.coa.import.wizard.result.form</field>
+        <field name="model">nonprofit.coa.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Non-Profit Accounts Added">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Done</h1>
+                    </div>
+                    <field name="result_summary" readonly="1" nolabel="1" />
+                </sheet>
+                <footer>
+                    <button name="action_open_accounts" type="object"
+                            string="View Chart of Accounts" class="btn-primary" />
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_coa_import_wizard" model="ir.actions.act_window">
+        <field name="name">Add Non-Profit Accounts</field>
+        <field name="res_model">nonprofit.coa.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,36 @@
+code,name,account_type,reconcile,tag_xmlids
+1100,Cash - Donor Restricted,asset_current,0,tag_net_assets_restricted
+1200,Contributions and Grants Receivable,asset_current,1,tag_rev_contrib_restricted
+3000,Net Assets Without Donor Restrictions,equity,0,tag_net_assets_unrestricted
+3010,Net Assets With Donor Restrictions,equity,0,tag_net_assets_restricted
+3020,Net Assets - Board Designated,equity,0,tag_net_assets_unrestricted
+4000,Contributions - Without Donor Restrictions,income,0,tag_rev_contrib_unrestricted|tag_soa_revenue
+4010,Contributions - With Donor Restrictions,income,0,tag_rev_contrib_restricted|tag_soa_revenue
+4020,Government and Foundation Grants,income,0,tag_rev_grants|tag_soa_revenue
+4030,Fundraising Events - Gross Revenue,income,0,tag_rev_special_events|tag_soa_revenue
+4035,Fundraising Events - Direct Benefit to Donor,expense,0,tag_rev_special_events|tag_soa_revenue
+4040,In-Kind Contributions,income,0,tag_rev_inkind|tag_soa_revenue
+4050,Membership Dues,income,0,tag_rev_membership|tag_soa_revenue
+4060,Program Service Fees,income,0,tag_rev_program_service|tag_soa_revenue
+4070,Investment Income,income_other,0,tag_rev_investment|tag_soa_revenue
+4080,Other Revenue,income_other,0,tag_rev_other|tag_soa_revenue
+4900,Net Assets Released - With Donor Restrictions,income,0,tag_release_from_restriction|tag_soa_revenue
+4910,Net Assets Released - Without Donor Restrictions,income,0,tag_release_from_restriction|tag_soa_revenue
+5000,Grants and Assistance to Organizations,expense,0,tag_function_program|tag_soa_expense
+5010,Grants and Assistance to Individuals,expense,0,tag_function_program|tag_soa_expense
+5100,Salaries and Wages,expense,0,tag_soa_expense
+5110,Employee Benefits,expense,0,tag_soa_expense
+5120,Payroll Taxes,expense,0,tag_soa_expense
+5200,Accounting Fees,expense,0,tag_function_mgmt_general|tag_soa_expense
+5210,Legal Fees,expense,0,tag_function_mgmt_general|tag_soa_expense
+5220,Other Professional Fees,expense,0,tag_soa_expense
+5300,Advertising and Promotion,expense,0,tag_function_fundraising|tag_soa_expense
+5310,Office Expenses,expense,0,tag_soa_expense
+5320,Information Technology,expense,0,tag_soa_expense
+5330,"Occupancy - Rent, Utilities, Maintenance",expense,0,tag_soa_expense
+5340,Travel,expense,0,tag_soa_expense
+5350,"Conferences, Conventions, and Meetings",expense,0,tag_soa_expense
+5360,Depreciation and Amortization,expense_depreciation,0,tag_soa_expense
+5370,Insurance,expense,0,tag_soa_expense
+5400,In-Kind Expense,expense,0,tag_rev_inkind|tag_soa_expense
+5900,Other Expenses,expense,0,tag_soa_expense

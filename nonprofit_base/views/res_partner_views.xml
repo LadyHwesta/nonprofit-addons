@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_partner_form_nonprofit" model="ir.ui.view">
+        <field name="name">res.partner.form.nonprofit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <page name="internal_notes" position="after">
+                <page name="nonprofit" string="Non-Profit">
+                    <group>
+                        <group string="Organisation" name="nonprofit_org"
+                               invisible="not is_company">
+                            <field name="is_nonprofit_org" />
+                            <field name="nonprofit_org_type"
+                                   invisible="not is_nonprofit_org"
+                                   required="is_nonprofit_org" />
+                            <field name="tax_exempt_id"
+                                   invisible="not is_nonprofit_org" />
+                        </group>
+                        <group string="Donor" name="nonprofit_donor">
+                            <field name="donor_type" />
+                            <field name="household_id"
+                                   invisible="is_company" />
+                            <field name="household_member_count" invisible="1" />
+                        </group>
+                        <group string="Contact Preferences" name="nonprofit_consent">
+                            <field name="no_solicit" />
+                            <field name="no_mail" />
+                            <field name="no_email" />
+                        </group>
+                    </group>
+                    <group string="Household Members" name="nonprofit_household"
+                           invisible="household_member_count == 0">
+                        <field name="household_member_ids" nolabel="1" colspan="2">
+                            <list>
+                                <field name="name" />
+                                <field name="email" />
+                                <field name="phone" />
+                                <field name="donor_type" />
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_nonprofit" model="ir.ui.view">
+        <field name="name">res.partner.select.nonprofit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <separator />
+                <filter name="nonprofit_orgs" string="Non-Profit Orgs"
+                        domain="[('is_nonprofit_org', '=', True)]" />
+                <filter name="do_not_solicit" string="Do Not Solicit"
+                        domain="[('no_solicit', '=', True)]" />
+            </filter>
+        </field>
+    </record>
+
+</odoo>

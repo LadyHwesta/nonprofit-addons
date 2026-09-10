@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_nonprofit_coa_import"
+              name="Add Non-Profit Accounts"
+              parent="account.menu_finance_configuration"
+              action="action_nonprofit_coa_import_wizard"
+              sequence="99"
+              groups="account.group_account_manager" />
+
+</odoo>

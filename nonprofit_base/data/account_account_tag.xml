@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <!-- Statement of Activities sections (nonprofit_reports keys off these) -->
+    <record id="tag_soa_revenue" model="account.account.tag">
+        <field name="name">NFP: Statement of Activities - Revenue</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_soa_expense" model="account.account.tag">
+        <field name="name">NFP: Statement of Activities - Expense</field>
+        <field name="applicability">accounts</field>
+    </record>
+
+    <!-- Form 990 Part VIII revenue lines -->
+    <record id="tag_rev_contrib_unrestricted" model="account.account.tag">
+        <field name="name">NFP 990: Contributions - Without Donor Restrictions</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_contrib_restricted" model="account.account.tag">
+        <field name="name">NFP 990: Contributions - With Donor Restrictions</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_grants" model="account.account.tag">
+        <field name="name">NFP 990: Government / Foundation Grants</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_special_events" model="account.account.tag">
+        <field name="name">NFP 990: Fundraising Events</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_inkind" model="account.account.tag">
+        <field name="name">NFP 990: In-Kind Contributions</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_membership" model="account.account.tag">
+        <field name="name">NFP 990: Membership Dues</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_program_service" model="account.account.tag">
+        <field name="name">NFP 990: Program Service Revenue</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_investment" model="account.account.tag">
+        <field name="name">NFP 990: Investment Income</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_rev_other" model="account.account.tag">
+        <field name="name">NFP 990: Other Revenue</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_release_from_restriction" model="account.account.tag">
+        <field name="name">NFP: Net Assets Released from Restriction</field>
+        <field name="applicability">accounts</field>
+    </record>
+
+    <!-- Functional-expense classification (Form 990 Part IX columns).
+         Primary allocation is the Function analytic plan; these tags let
+         a report fall back to a natural-account grouping. -->
+    <record id="tag_function_program" model="account.account.tag">
+        <field name="name">NFP Function: Program Services</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_function_mgmt_general" model="account.account.tag">
+        <field name="name">NFP Function: Management &amp; General</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_function_fundraising" model="account.account.tag">
+        <field name="name">NFP Function: Fundraising</field>
+        <field name="applicability">accounts</field>
+    </record>
+
+    <!-- Balance sheet - net asset classes -->
+    <record id="tag_net_assets_unrestricted" model="account.account.tag">
+        <field name="name">NFP: Net Assets Without Donor Restrictions</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_net_assets_restricted" model="account.account.tag">
+        <field name="name">NFP: Net Assets With Donor Restrictions</field>
+        <field name="applicability">accounts</field>
+    </record>
+
+</odoo>

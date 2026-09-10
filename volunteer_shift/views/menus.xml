@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_volunteer_shifts"
+              name="Volunteer Shifts"
+              parent="event.event_main_menu"
+              action="action_volunteer_shift"
+              sequence="6"
+              groups="event.group_event_user" />
+
+    <menuitem id="menu_volunteer_shift_swaps"
+              name="Shift Swaps"
+              parent="event.event_main_menu"
+              action="action_volunteer_shift_swap"
+              sequence="7"
+              groups="event.group_event_user" />
+
+    <menuitem id="menu_volunteer_shift_reporting"
+              name="Volunteer Reporting"
+              parent="event.event_main_menu"
+              sequence="20"
+              groups="event.group_event_user" />
+
+    <menuitem id="menu_volunteer_hours_report"
+              name="Volunteer Hours"
+              parent="menu_volunteer_shift_reporting"
+              action="action_report_volunteer_hours"
+              sequence="10" />
+
+    <menuitem id="menu_volunteer_shift_understaffed"
+              name="Understaffed Shifts"
+              parent="menu_volunteer_shift_reporting"
+              action="action_volunteer_shift_understaffed"
+              sequence="20" />
+
+    <menuitem id="menu_volunteer_hours_certificate"
+              name="Hours Certificates"
+              parent="menu_volunteer_shift_reporting"
+              action="action_volunteer_hours_certificate_wizard"
+              sequence="30" />
+
+</odoo>

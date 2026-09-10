@@ -27,14 +27,18 @@ layers onto an existing localization.
   functional-expense pivot, a year-end contribution-statement wizard + QWeb PDF,
   and MIS Builder *Statement of Activities* / *Statement of Financial Position*
   templates. Needs `mis_builder` on the addons path.
+- [`volunteer_shift/`](volunteer_shift/) — extends `event_volunteer`: a role can
+  be run as timed **shifts** with check-in/out and computed hours, recurring
+  shift generation from an event type, a `/my/shifts` portal with self
+  check-in and shift swaps, an hours pivot report and a per-volunteer annual
+  hours-certificate PDF.
 - `donation_base/`, `donation/` — OCA's donation stack (donations with lines,
   tax receipts, in-kind gifts, campaigns, bank-statement matching, thank-you
   letters), **forward-ported 18.0 → 19.0** and vendored here. See
   [`VENDORED.md`](VENDORED.md).
 
-_Planned (see the project plan): `volunteer_shift` (shifts, check-in/out, hours,
-recurring shifts, coordinator dashboard), `volunteer_profile` (skills,
-background checks, waivers, onboarding)._
+_Planned (see the project plan): `volunteer_profile` (skills, background checks,
+waivers, minor/guardian, onboarding, skill-match)._
 
 ## Third-party
 

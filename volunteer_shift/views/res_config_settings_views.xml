@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_volunteer_shift" model="ir.ui.view">
+        <field name="name">res.config.settings.form.volunteer.shift</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="event.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="registration_setting_container" position="inside">
+                <setting id="volunteer_shift_setting" string="Volunteer shifts"
+                         help="Defaults for shift-based volunteer roles.">
+                    <div class="content-group">
+                        <div class="row mt16">
+                            <label for="volunteer_shift_default_hours"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_shift_default_hours" />
+                        </div>
+                        <div class="row">
+                            <label for="volunteer_checkin_grace_mins"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_checkin_grace_mins" />
+                        </div>
+                        <div class="row">
+                            <label for="volunteer_shift_horizon_weeks"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_shift_horizon_weeks" />
+                        </div>
+                    </div>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

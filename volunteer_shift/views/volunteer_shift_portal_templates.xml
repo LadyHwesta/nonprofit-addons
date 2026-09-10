@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="portal_my_home_shifts" name="Portal home: Volunteer Shifts"
+              customize_show="True" inherit_id="portal.portal_my_home"
+              priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_service_category_enable" t-value="True" />
+        </xpath>
+        <div id="portal_service_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/web/static/img/folder.svg'" />
+                <t t-set="title">Volunteer Shifts</t>
+                <t t-set="url" t-value="'/my/shifts'" />
+                <t t-set="text">Your shifts, hours and check-in</t>
+                <t t-set="placeholder_count" t-value="'volunteer_shift_count'" />
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_my_shifts" name="My Volunteer Shifts">
+        <t t-call="portal.portal_layout">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0">My Volunteer Shifts</h3>
+                <span class="badge text-bg-primary">
+                    <t t-esc="'%.1f' % lifetime_hours" /> lifetime hours
+                </span>
+            </div>
+
+            <t t-set="msg" t-value="request.params.get('shift_msg')" />
+            <div t-if="msg" role="alert"
+                 t-attf-class="alert alert-#{'success' if request.params.get('shift_ok') == '1' else 'warning'}">
+                <span t-esc="msg" />
+            </div>
+
+            <h5 class="mt-3">Upcoming</h5>
+            <p t-if="not upcoming" class="text-muted">Nothing coming up.</p>
+            <div t-foreach="upcoming" t-as="a"
+                 class="border rounded p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <strong t-esc="a.shift_id.display_name" />
+                        - <span t-esc="a.event_id.name" />
+                        <div class="text-muted small">
+                            <span t-field="a.shift_start" /> &#8594;
+                            <span t-field="a.shift_stop" />
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <span t-if="a.check_out" class="badge text-bg-success">
+                            <t t-esc="'%.2f' % a.hours" />h logged
+                        </span>
+                        <form t-elif="a.check_in"
+                              t-attf-action="/my/shift/#{a.id}/checkout"
+                              method="post" class="d-inline">
+                            <input type="hidden" name="csrf_token"
+                                   t-att-value="request.csrf_token()" />
+                            <button class="btn btn-sm btn-primary">Check out</button>
+                        </form>
+                        <form t-elif="a._portal_can_check()"
+                              t-attf-action="/my/shift/#{a.id}/checkin"
+                              method="post" class="d-inline">
+                            <input type="hidden" name="csrf_token"
+                                   t-att-value="request.csrf_token()" />
+                            <button class="btn btn-sm btn-primary">Check in</button>
+                        </form>
+                    </div>
+                </div>
+                <form t-if="not a.check_in"
+                      t-attf-action="/my/shift/#{a.id}/offer-swap"
+                      method="post" class="mt-2">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()" />
+                    <button class="btn btn-sm btn-outline-secondary">
+                        Offer this shift for swap
+                    </button>
+                </form>
+            </div>
+
+            <h5 class="mt-4" t-if="open_swaps">Shifts other volunteers are giving up</h5>
+            <div t-foreach="open_swaps" t-as="sw" class="border rounded p-3 mb-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong t-esc="sw.shift_id.display_name" />
+                        - <span t-esc="sw.event_id.name" />
+                        <div class="text-muted small">
+                            <span t-field="sw.shift_id.start" /> &#8594;
+                            <span t-field="sw.shift_id.stop" />
+                        </div>
+                    </div>
+                    <form t-attf-action="/my/shift/swap/#{sw.id}/claim"
+                          method="post">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()" />
+                        <button class="btn btn-sm btn-primary">Take it</button>
+                    </form>
+                </div>
+            </div>
+
+            <h5 class="mt-4">Past</h5>
+            <p t-if="not past" class="text-muted">No past shifts yet.</p>
+            <table t-if="past" class="table table-sm">
+                <thead>
+                    <tr><th>Shift</th><th>Event</th><th>When</th>
+                        <th class="text-end">Hours</th></tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="past" t-as="a">
+                        <td t-esc="a.shift_id.display_name" />
+                        <td t-esc="a.event_id.name" />
+                        <td><span t-field="a.shift_start" /></td>
+                        <td class="text-end">
+                            <t t-if="a.no_show">no-show</t>
+                            <t t-else="" t-esc="'%.2f' % a.hours" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+    </template>
+
+</odoo>

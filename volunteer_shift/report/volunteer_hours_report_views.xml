@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_volunteer_hours_view_pivot" model="ir.ui.view">
+        <field name="name">report.volunteer.hours.pivot</field>
+        <field name="model">report.volunteer.hours</field>
+        <field name="arch" type="xml">
+            <pivot string="Volunteer Hours">
+                <field name="partner_id" type="row" />
+                <field name="event_type_id" type="col" />
+                <field name="hours" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <record id="report_volunteer_hours_view_graph" model="ir.ui.view">
+        <field name="name">report.volunteer.hours.graph</field>
+        <field name="model">report.volunteer.hours</field>
+        <field name="arch" type="xml">
+            <graph string="Volunteer Hours" type="bar">
+                <field name="partner_id" />
+                <field name="hours" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="report_volunteer_hours_view_list" model="ir.ui.view">
+        <field name="name">report.volunteer.hours.list</field>
+        <field name="model">report.volunteer.hours</field>
+        <field name="arch" type="xml">
+            <list string="Volunteer Hours" create="false" edit="false">
+                <field name="date" />
+                <field name="partner_id" />
+                <field name="event_id" />
+                <field name="event_type_id" />
+                <field name="role_id" />
+                <field name="hours" sum="Hours" />
+            </list>
+        </field>
+    </record>
+
+    <record id="report_volunteer_hours_view_search" model="ir.ui.view">
+        <field name="name">report.volunteer.hours.search</field>
+        <field name="model">report.volunteer.hours</field>
+        <field name="arch" type="xml">
+            <search string="Volunteer Hours">
+                <field name="partner_id" />
+                <field name="event_id" />
+                <field name="event_type_id" />
+                <filter name="this_year" string="This Year"
+                        domain="[('date', '&gt;=', time.strftime('%Y-01-01'))]" />
+                <filter name="group_volunteer" string="Volunteer"
+                        context="{'group_by': 'partner_id'}" />
+                <filter name="group_program" string="Program"
+                        context="{'group_by': 'event_type_id'}" />
+                <filter name="group_event" string="Event"
+                        context="{'group_by': 'event_id'}" />
+                <filter name="group_date" string="Month"
+                        context="{'group_by': 'date:month'}" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_report_volunteer_hours" model="ir.actions.act_window">
+        <field name="name">Volunteer Hours</field>
+        <field name="res_model">report.volunteer.hours</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="context">{'search_default_group_volunteer': 1}</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="volunteer_shift_swap_view_list" model="ir.ui.view">
+        <field name="model">volunteer.shift.swap</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="shift_id" />
+                <field name="event_id" />
+                <field name="offered_by_id" />
+                <field name="claimed_by_id" />
+                <field name="state" widget="badge"
+                       decoration-info="state == 'open'"
+                       decoration-warning="state == 'claimed'"
+                       decoration-success="state == 'approved'"
+                       decoration-muted="state in ('rejected', 'cancelled')" />
+            </list>
+        </field>
+    </record>
+
+    <record id="volunteer_shift_swap_view_form" model="ir.ui.view">
+        <field name="model">volunteer.shift.swap</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_approve" type="object" string="Approve"
+                            class="btn-primary" invisible="state != 'claimed'" />
+                    <button name="action_reject" type="object" string="Reject"
+                            invisible="state not in ('open', 'claimed')" />
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('approved', 'cancelled')" />
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="open,claimed,approved" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="assignment_id" />
+                            <field name="shift_id" readonly="1" />
+                            <field name="event_id" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="offered_by_id" readonly="1" />
+                            <field name="claimed_by_id" />
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Reason / details..." />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_volunteer_shift_swap" model="ir.actions.act_window">
+        <field name="name">Shift Swaps</field>
+        <field name="res_model">volunteer.shift.swap</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

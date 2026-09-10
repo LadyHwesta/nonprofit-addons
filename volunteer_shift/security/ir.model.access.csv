@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_volunteer_shift_manager,volunteer.shift manager,model_volunteer_shift,event.group_event_manager,1,1,1,1
+access_volunteer_shift_user,volunteer.shift user,model_volunteer_shift,event.group_event_user,1,1,1,1
+access_volunteer_shift_portal,volunteer.shift portal,model_volunteer_shift,base.group_portal,1,0,0,0
+access_volunteer_shift_public,volunteer.shift public,model_volunteer_shift,base.group_public,1,0,0,0
+access_volunteer_shift_template_manager,volunteer.shift.template manager,model_volunteer_shift_template,event.group_event_manager,1,1,1,1
+access_volunteer_shift_template_user,volunteer.shift.template user,model_volunteer_shift_template,event.group_event_user,1,0,0,0
+access_volunteer_shift_swap_user,volunteer.shift.swap user,model_volunteer_shift_swap,event.group_event_user,1,1,1,1
+access_volunteer_shift_swap_portal,volunteer.shift.swap portal,model_volunteer_shift_swap,base.group_portal,1,0,0,0
+access_report_volunteer_hours_user,report.volunteer.hours user,model_report_volunteer_hours,event.group_event_user,1,0,0,0
+access_volunteer_hours_certificate_wizard,volunteer.hours.certificate.wizard,model_volunteer_hours_certificate_wizard,event.group_event_user,1,1,1,1

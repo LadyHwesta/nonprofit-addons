@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="volunteer_shift_view_list" model="ir.ui.view">
+        <field name="model">volunteer.shift</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="start" />
+                <field name="stop" />
+                <field name="event_id" />
+                <field name="role_id" />
+                <field name="name" />
+                <field name="duration_hours" />
+                <field name="slot_count" />
+                <field name="filled_count" string="Signed up" />
+                <field name="seats_available" string="Still needed" />
+                <field name="fill_state" widget="badge"
+                       decoration-danger="fill_state == 'empty'"
+                       decoration-warning="fill_state == 'partial'"
+                       decoration-success="fill_state == 'full'"
+                       decoration-info="fill_state == 'over'" />
+                <field name="time_state" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <record id="volunteer_shift_view_form" model="ir.ui.view">
+        <field name="model">volunteer.shift</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Shift name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="role_id" />
+                            <field name="event_id" readonly="1" />
+                            <field name="start" />
+                            <field name="stop" />
+                            <field name="duration_hours" />
+                        </group>
+                        <group>
+                            <field name="slot_count" />
+                            <field name="filled_count" />
+                            <field name="confirmed_count" />
+                            <field name="seats_available" />
+                            <field name="fill_state" />
+                            <field name="time_state" />
+                            <field name="template_id" readonly="1"
+                                   invisible="not template_id" />
+                        </group>
+                    </group>
+                    <field name="assignment_ids"
+                           context="{'default_role_id': role_id, 'default_shift_id': id}">
+                        <list editable="bottom">
+                            <field name="partner_id" />
+                            <field name="state" />
+                            <field name="check_in" />
+                            <field name="check_out" />
+                            <field name="hours" />
+                            <field name="no_show" />
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="volunteer_shift_view_calendar" model="ir.ui.view">
+        <field name="model">volunteer.shift</field>
+        <field name="arch" type="xml">
+            <calendar string="Shifts" date_start="start" date_stop="stop"
+                      color="role_id" mode="week">
+                <field name="name" />
+                <field name="event_id" />
+                <field name="fill_state" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="volunteer_shift_view_search" model="ir.ui.view">
+        <field name="model">volunteer.shift</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="event_id" />
+                <field name="role_id" />
+                <filter name="upcoming" string="Upcoming"
+                        domain="[('stop', '&gt;=', context_today().strftime('%Y-%m-%d'))]" />
+                <filter name="understaffed" string="Understaffed"
+                        domain="[('fill_state', 'in', ('empty', 'partial'))]" />
+                <filter name="this_week" string="Next 7 days"
+                        domain="[('start', '&gt;=', context_today().strftime('%Y-%m-%d')), ('start', '&lt;=', (context_today() + relativedelta(days=7)).strftime('%Y-%m-%d'))]" />
+                <separator />
+                <filter name="group_event" string="Event"
+                        context="{'group_by': 'event_id'}" />
+                <filter name="group_role" string="Role"
+                        context="{'group_by': 'role_id'}" />
+                <filter name="group_start" string="Start"
+                        context="{'group_by': 'start:day'}" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_volunteer_shift" model="ir.actions.act_window">
+        <field name="name">Volunteer Shifts</field>
+        <field name="res_model">volunteer.shift</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="context">{'search_default_upcoming': 1}</field>
+    </record>
+
+    <record id="action_volunteer_shift_understaffed" model="ir.actions.act_window">
+        <field name="name">Understaffed Shifts</field>
+        <field name="res_model">volunteer.shift</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="context">{'search_default_upcoming': 1, 'search_default_understaffed': 1}</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- ============ Role: shifts ============ -->
+    <record id="event_volunteer_role_view_form_shift" model="ir.ui.view">
+        <field name="model">event.volunteer.role</field>
+        <field name="inherit_id"
+               ref="event_volunteer.event_volunteer_role_view_form" />
+        <field name="arch" type="xml">
+            <field name="slot_count" position="after">
+                <field name="use_shifts" />
+            </field>
+            <field name="description" position="after">
+                <field name="shift_ids" invisible="not use_shifts"
+                       context="{'default_role_id': id}">
+                    <list editable="bottom">
+                        <field name="name" />
+                        <field name="start" />
+                        <field name="stop" />
+                        <field name="slot_count" />
+                        <field name="filled_count" string="Signed up" />
+                        <field name="seats_available" string="Still needed" />
+                        <field name="fill_state" widget="badge"
+                               decoration-danger="fill_state == 'empty'"
+                               decoration-warning="fill_state == 'partial'"
+                               decoration-success="fill_state == 'full'"
+                               decoration-info="fill_state == 'over'" />
+                    </list>
+                </field>
+            </field>
+        </field>
+    </record>
+
+    <record id="event_volunteer_role_view_list_shift" model="ir.ui.view">
+        <field name="model">event.volunteer.role</field>
+        <field name="inherit_id"
+               ref="event_volunteer.event_volunteer_role_view_list" />
+        <field name="arch" type="xml">
+            <field name="slot_count" position="after">
+                <field name="use_shifts" optional="show" />
+                <field name="shift_count" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <!-- ============ Assignment: shift + check-in/out ============ -->
+    <record id="event_volunteer_assignment_view_form_shift" model="ir.ui.view">
+        <field name="model">event.volunteer.assignment</field>
+        <field name="inherit_id"
+               ref="event_volunteer.event_volunteer_assignment_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="before">
+                <header>
+                    <button name="action_check_in" type="object"
+                            string="Check In" class="btn-primary"
+                            invisible="not shift_id or check_in or state != 'confirmed'" />
+                    <button name="action_check_out" type="object"
+                            string="Check Out" class="btn-primary"
+                            invisible="not check_in or check_out" />
+                    <button name="action_mark_no_show" type="object"
+                            string="No-show"
+                            invisible="not shift_id or check_in or no_show" />
+                </header>
+            </xpath>
+            <field name="role_id" position="after">
+                <field name="shift_id"
+                       domain="[('role_id', '=', role_id)]" />
+            </field>
+            <field name="reminder_sent" position="after">
+                <field name="check_in" invisible="not shift_id" />
+                <field name="check_out" invisible="not shift_id" />
+                <field name="hours" invisible="not shift_id" />
+                <field name="no_show" invisible="not shift_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="event_volunteer_assignment_view_list_shift" model="ir.ui.view">
+        <field name="model">event.volunteer.assignment</field>
+        <field name="inherit_id"
+               ref="event_volunteer.event_volunteer_assignment_view_list" />
+        <field name="arch" type="xml">
+            <field name="role_id" position="after">
+                <field name="shift_id" optional="show" />
+            </field>
+            <field name="state" position="after">
+                <field name="hours" optional="show" sum="Hours" />
+                <field name="no_show" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+    <record id="event_volunteer_assignment_view_search_shift" model="ir.ui.view">
+        <field name="model">event.volunteer.assignment</field>
+        <field name="inherit_id"
+               ref="event_volunteer.event_volunteer_assignment_view_search" />
+        <field name="arch" type="xml">
+            <filter name="cancelled" position="after">
+                <separator />
+                <filter name="no_show" string="No-shows"
+                        domain="[('no_show', '=', True)]" />
+                <filter name="has_hours" string="Hours logged"
+                        domain="[('hours', '>', 0)]" />
+            </filter>
+        </field>
+    </record>
+
+    <!-- ============ Event form: generate + view shifts ============ -->
+    <record id="view_event_form_volunteer_shift" model="ir.ui.view">
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event_volunteer.view_event_form_volunteer" />
+        <field name="arch" type="xml">
+            <button name="action_open_volunteer_assignments" position="after">
+                <button name="action_open_volunteer_shifts" type="object"
+                        class="oe_stat_button" icon="fa-clock-o"
+                        invisible="volunteer_shift_count == 0">
+                    <field name="volunteer_shift_count" widget="statinfo"
+                           string="Shifts" />
+                </button>
+            </button>
+            <page name="volunteers" position="inside">
+                <button name="action_generate_volunteer_shifts" type="object"
+                        string="Generate shifts from event type" class="btn-link"
+                        icon="fa-refresh" />
+            </page>
+        </field>
+    </record>
+
+    <!-- ============ Event type: recurring shift templates ============ -->
+    <record id="view_event_type_form_shift" model="ir.ui.view">
+        <field name="model">event.type</field>
+        <field name="inherit_id" ref="event.view_event_type_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <separator string="Recurring Volunteer Shifts" />
+                <field name="volunteer_shift_template_ids">
+                    <list editable="bottom">
+                        <field name="name" />
+                        <field name="weekday" />
+                        <field name="start_time" widget="float_time" />
+                        <field name="duration_hours" />
+                        <field name="slot_count" />
+                    </list>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

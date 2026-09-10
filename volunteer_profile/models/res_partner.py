@@ -11,7 +11,7 @@ class ResPartner(models.Model):
 
     # --- Skills -------------------------------------------------------
     volunteer_skill_ids = fields.Many2many(
-        "volunteer.skill", "res_partner_volunteer_skill_rel",
+        "volunteer.skill", "volunteer_profile_partner_skill_rel",
         "partner_id", "skill_id", string="Volunteer Skills")
 
     # --- Background check -------------------------------------------

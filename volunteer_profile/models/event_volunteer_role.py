@@ -14,7 +14,7 @@ class EventVolunteerRole(models.Model):
         string="Requires Waiver",
         help="A volunteer must have a current signed liability waiver.")
     required_skill_ids = fields.Many2many(
-        "volunteer.skill", "event_volunteer_role_skill_rel",
+        "volunteer.skill", "volunteer_profile_role_skill_rel",
         "role_id", "skill_id", string="Required Skills")
 
     def action_portal_volunteer(self, partner):

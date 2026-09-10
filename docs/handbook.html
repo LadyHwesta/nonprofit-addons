@@ -1,0 +1,786 @@
+<title>Nonprofit &amp; Volunteer Handbook</title>
+<meta name="description" content="A non-technical, step-by-step guide to the fund accounting, donations, board reporting, and volunteer-shift features." />
+
+<!--
+  Meskis Works: this whole file is one self-contained block.
+  To put it on the Odoo 19 website:
+    Website editor  →  drag a "Content ▸ Embed Code" block onto a blank page
+    →  paste everything in this file  →  Save  →  Publish.
+  Every style is scoped to .npvh-guide so it won't touch the rest of your site.
+  If your site header covers the sticky menu, raise --npvh-header-offset below.
+-->
+
+<div class="npvh-guide">
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+  .npvh-guide {
+    /* --- tokens (scoped; prefixed so they can't clash with a theme) --- */
+    --npvh-ground: #f7f6f1;
+    --npvh-surface: #ffffff;
+    --npvh-sunken: #f1efe6;
+    --npvh-ink: #1c2b27;
+    --npvh-ink-muted: #566b63;
+    --npvh-ink-faint: #8a968f;
+    --npvh-accent: #1e6e5a;
+    --npvh-accent-ink: #144f3f;
+    --npvh-border: #e3e1d5;
+    --npvh-border-strong: #cfccbd;
+    --npvh-note-bg: #edf4f1;
+    --npvh-good: #2e7d4f;
+    --npvh-warn: #90590f;
+    --npvh-warn-bg: #f5ecdb;
+    --npvh-crit: #97392c;
+    --npvh-crit-bg: #f3e5e1;
+    --npvh-code-bg: #edeae0;
+    --npvh-shadow: 0 1px 2px rgba(28, 43, 39, .06), 0 10px 26px -14px rgba(28, 43, 39, .16);
+
+    --npvh-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --npvh-sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+    --npvh-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    /* raise this if a fixed site header overlaps the sticky contents menu */
+    --npvh-header-offset: 1.25rem;
+
+    background: var(--npvh-ground);
+    color: var(--npvh-ink);
+    font-family: var(--npvh-serif);
+    font-size: 1.0625rem;
+    line-height: 1.72;
+    -webkit-text-size-adjust: 100%;
+    font-optical-sizing: auto;
+  }
+
+  .npvh-guide *,
+  .npvh-guide *::before,
+  .npvh-guide *::after { box-sizing: border-box; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .npvh-guide { scroll-behavior: smooth; }
+  }
+
+  .npvh-guide .npvh-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+  }
+
+  /* ---------- Masthead ---------- */
+  .npvh-guide .npvh-masthead {
+    padding: clamp(2.5rem, 7vw, 4.5rem) 0 clamp(1.75rem, 4vw, 2.5rem);
+    border-bottom: 1px solid var(--npvh-border);
+  }
+  .npvh-guide .npvh-kicker {
+    font-family: var(--npvh-mono);
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--npvh-accent-ink);
+    margin: 0 0 1rem;
+  }
+  .npvh-guide h1 {
+    font-family: var(--npvh-sans);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    text-wrap: balance;
+    color: var(--npvh-ink);
+    margin: 0 0 .9rem;
+  }
+  .npvh-guide .npvh-dek {
+    font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+    color: var(--npvh-ink-muted);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .npvh-guide .npvh-how {
+    margin: 1.6rem 0 0;
+    font-size: .95rem;
+    color: var(--npvh-ink-muted);
+    max-width: 62ch;
+  }
+  .npvh-guide .npvh-how strong { color: var(--npvh-ink); font-weight: 600; font-family: var(--npvh-sans); }
+
+  /* ---------- Layout ---------- */
+  .npvh-guide .npvh-layout {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 70ch);
+    gap: clamp(2rem, 6vw, 5rem);
+    justify-content: center;
+    align-items: start;
+    padding: clamp(2rem, 5vw, 3.5rem) 0 5rem;
+  }
+
+  /* ---------- Sidebar nav ---------- */
+  .npvh-guide .npvh-toc {
+    position: sticky;
+    top: var(--npvh-header-offset);
+    align-self: start;
+    max-height: calc(100vh - var(--npvh-header-offset) - 1rem);
+    overflow-y: auto;
+    padding: clamp(1.25rem, 5vw, 3rem) .25rem 2rem 0;
+    font-family: var(--npvh-sans);
+  }
+  .npvh-guide .npvh-toc-title {
+    font-size: .7rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--npvh-ink-faint);
+    margin: 0 0 .85rem;
+  }
+  .npvh-guide .npvh-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: npvhtoc; }
+  .npvh-guide .npvh-toc li { counter-increment: npvhtoc; margin: 0; }
+  .npvh-guide .npvh-toc a {
+    display: grid;
+    grid-template-columns: 1.6em 1fr;
+    gap: .5em;
+    padding: .34rem .5rem .34rem .7rem;
+    font-size: .875rem;
+    line-height: 1.35;
+    color: var(--npvh-ink-muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .npvh-guide .npvh-toc a::before {
+    content: counter(npvhtoc, decimal-leading-zero);
+    font-family: var(--npvh-mono);
+    font-size: .72rem;
+    color: var(--npvh-ink-faint);
+    padding-top: .15em;
+  }
+  .npvh-guide .npvh-toc a:hover { color: var(--npvh-ink); }
+  .npvh-guide .npvh-toc a.npvh-active {
+    color: var(--npvh-accent-ink);
+    border-left-color: var(--npvh-accent);
+    font-weight: 600;
+  }
+  .npvh-guide .npvh-toc a.npvh-active::before { color: var(--npvh-accent); }
+  .npvh-guide .npvh-toc a.npvh-plain { grid-template-columns: 1fr; padding-left: 1.05rem; }
+  .npvh-guide .npvh-toc a.npvh-plain::before { content: none; }
+
+  /* ---------- Content ---------- */
+  .npvh-guide main { min-width: 0; }
+
+  .npvh-guide .npvh-part {
+    padding-top: 2.25rem;
+    margin-top: 2.25rem;
+    border-top: 1px solid var(--npvh-border);
+    scroll-margin-top: calc(var(--npvh-header-offset) + 1.5rem);
+  }
+  .npvh-guide .npvh-part:first-of-type { border-top: 0; margin-top: 0; padding-top: .5rem; }
+
+  .npvh-guide .npvh-eyebrow {
+    font-family: var(--npvh-mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--npvh-accent-ink);
+    display: flex;
+    align-items: center;
+    gap: .7em;
+    margin: 0 0 .7rem;
+  }
+  .npvh-guide .npvh-eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--npvh-border-strong);
+  }
+
+  .npvh-guide h2 {
+    font-family: var(--npvh-sans);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3.4vw, 1.72rem);
+    line-height: 1.18;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+    color: var(--npvh-ink);
+    margin: 0 0 .35rem;
+  }
+  .npvh-guide .npvh-lead {
+    color: var(--npvh-ink-muted);
+    font-size: 1.02rem;
+    margin: .2rem 0 1.4rem;
+    max-width: 68ch;
+  }
+  .npvh-guide h3 {
+    font-family: var(--npvh-sans);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -.005em;
+    color: var(--npvh-ink);
+    margin: 2rem 0 .5rem;
+  }
+
+  .npvh-guide p { margin: 0 0 1rem; }
+  .npvh-guide main :where(p, li) { max-width: 68ch; }
+  .npvh-guide a {
+    color: var(--npvh-accent-ink);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .npvh-guide strong { font-weight: 600; }
+  .npvh-guide em { font-style: italic; }
+  .npvh-guide .npvh-role { font-family: var(--npvh-sans); font-weight: 600; color: var(--npvh-ink); white-space: nowrap; }
+
+  /* Menu-path chips + field names */
+  .npvh-guide code.npvh-path {
+    font-family: var(--npvh-sans);
+    font-weight: 500;
+    font-size: .84em;
+    background: var(--npvh-code-bg);
+    border: 1px solid var(--npvh-border);
+    border-radius: 5px;
+    padding: .12em .5em;
+    color: var(--npvh-ink);
+  }
+  .npvh-guide code.npvh-path .npvh-sep { color: var(--npvh-ink-faint); margin: 0 .15em; font-weight: 400; }
+  .npvh-guide code.npvh-field {
+    font-family: var(--npvh-mono);
+    font-size: .82em;
+    background: var(--npvh-code-bg);
+    border-radius: 4px;
+    padding: .08em .38em;
+    color: var(--npvh-ink);
+  }
+
+  /* Step lists */
+  .npvh-guide ol.npvh-steps {
+    list-style: none;
+    counter-reset: npvhstep;
+    margin: 1.1rem 0 1.4rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .95rem;
+  }
+  .npvh-guide ol.npvh-steps > li {
+    counter-increment: npvhstep;
+    display: grid;
+    grid-template-columns: 1.9rem 1fr;
+    gap: .85rem;
+    align-items: start;
+    max-width: none;
+  }
+  .npvh-guide ol.npvh-steps > li::before {
+    content: counter(npvhstep);
+    font-family: var(--npvh-mono);
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--npvh-accent-ink);
+    background: var(--npvh-sunken);
+    border: 1px solid var(--npvh-border);
+    border-radius: 50%;
+    width: 1.9rem;
+    height: 1.9rem;
+    display: grid;
+    place-items: center;
+    margin-top: -.1rem;
+  }
+  .npvh-guide ol.npvh-steps > li > :first-child { margin-top: 0; }
+  .npvh-guide ol.npvh-steps > li > :last-child { margin-bottom: 0; }
+  .npvh-guide ol.npvh-steps > li > p:only-child { margin: 0; }
+
+  .npvh-guide ul.npvh-list { margin: 1rem 0; padding-left: 1.2rem; }
+  .npvh-guide ul.npvh-list li { margin: .4rem 0; }
+
+  /* Callouts */
+  .npvh-guide .npvh-note {
+    border-left: 3px solid var(--npvh-accent);
+    background: var(--npvh-note-bg);
+    border-radius: 0 8px 8px 0;
+    padding: .85rem 1.1rem;
+    margin: 1.2rem 0;
+    font-size: .96rem;
+  }
+  .npvh-guide .npvh-note > :last-child { margin-bottom: 0; }
+  .npvh-guide .npvh-note .npvh-tag {
+    font-family: var(--npvh-sans);
+    font-weight: 600;
+    font-size: .74rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: .25rem;
+    color: var(--npvh-accent-ink);
+  }
+  .npvh-guide .npvh-note.npvh-watch { border-left-color: var(--npvh-warn); background: var(--npvh-warn-bg); }
+  .npvh-guide .npvh-note.npvh-watch .npvh-tag { color: var(--npvh-warn); }
+  .npvh-guide .npvh-note.npvh-rule { border-left-color: var(--npvh-crit); background: var(--npvh-crit-bg); }
+  .npvh-guide .npvh-note.npvh-rule .npvh-tag { color: var(--npvh-crit); }
+
+  /* Tables */
+  .npvh-guide .npvh-table-wrap {
+    overflow-x: auto;
+    margin: 1.2rem 0 1.5rem;
+    border: 1px solid var(--npvh-border);
+    border-radius: 10px;
+  }
+  .npvh-guide table { border-collapse: collapse; width: 100%; font-size: .93rem; color: var(--npvh-ink); }
+  .npvh-guide th,
+  .npvh-guide td { text-align: left; padding: .7rem .9rem; vertical-align: top; border-bottom: 1px solid var(--npvh-border); }
+  .npvh-guide thead th {
+    font-family: var(--npvh-sans);
+    font-weight: 600;
+    font-size: .74rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--npvh-ink-muted);
+    background: var(--npvh-sunken);
+    white-space: nowrap;
+  }
+  .npvh-guide tbody tr:last-child td { border-bottom: 0; }
+
+  /* Glossary */
+  .npvh-guide dl.npvh-glossary { margin: 1.2rem 0 0; display: grid; gap: 1rem; }
+  .npvh-guide dl.npvh-glossary > div { display: grid; grid-template-columns: minmax(0, 13rem) 1fr; gap: .3rem 1.4rem; }
+  .npvh-guide dl.npvh-glossary dt { font-family: var(--npvh-sans); font-weight: 600; color: var(--npvh-ink); }
+  .npvh-guide dl.npvh-glossary dd { margin: 0; color: var(--npvh-ink-muted); font-size: .96rem; }
+
+  .npvh-guide .npvh-colophon {
+    margin: 3rem 0 0;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--npvh-border);
+    font-size: .86rem;
+    color: var(--npvh-ink-faint);
+    font-family: var(--npvh-sans);
+  }
+
+  .npvh-guide a:focus-visible,
+  .npvh-guide summary:focus-visible {
+    outline: 2px solid var(--npvh-accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Mobile */
+  .npvh-guide .npvh-toc-mobile { display: none; }
+  @media (max-width: 900px) {
+    .npvh-guide .npvh-layout { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 1.5rem; }
+    .npvh-guide .npvh-toc.npvh-desktop { display: none; }
+    .npvh-guide .npvh-toc-mobile {
+      display: block;
+      margin: 1.5rem 0 0;
+      border: 1px solid var(--npvh-border);
+      border-radius: 10px;
+      background: var(--npvh-surface);
+      font-family: var(--npvh-sans);
+    }
+    .npvh-guide .npvh-toc-mobile summary {
+      cursor: pointer;
+      padding: .85rem 1.1rem;
+      font-weight: 600;
+      font-size: .9rem;
+      list-style: none;
+      color: var(--npvh-ink);
+    }
+    .npvh-guide .npvh-toc-mobile summary::-webkit-details-marker { display: none; }
+    .npvh-guide .npvh-toc-mobile summary::after { content: " \25BE"; color: var(--npvh-ink-faint); }
+    .npvh-guide .npvh-toc-mobile[open] summary::after { content: " \25B4"; }
+    .npvh-guide .npvh-toc-mobile ol { list-style: none; margin: 0; padding: 0 0 .6rem; counter-reset: npvhtm; }
+    .npvh-guide .npvh-toc-mobile li { counter-increment: npvhtm; }
+    .npvh-guide .npvh-toc-mobile a { display: block; padding: .4rem 1.1rem; font-size: .88rem; color: var(--npvh-ink-muted); text-decoration: none; }
+    .npvh-guide .npvh-toc-mobile a::before { content: counter(npvhtm, decimal-leading-zero) "  "; font-family: var(--npvh-mono); font-size: .74rem; color: var(--npvh-ink-faint); }
+    .npvh-guide .npvh-toc-mobile a.npvh-plain::before { content: none; }
+  }
+  @media (max-width: 540px) {
+    .npvh-guide dl.npvh-glossary > div { grid-template-columns: 1fr; gap: .1rem; }
+    .npvh-guide ol.npvh-steps > li { grid-template-columns: 1.6rem 1fr; gap: .65rem; }
+  }
+</style>
+
+<div class="npvh-wrap">
+  <header class="npvh-masthead">
+    <p class="npvh-kicker">Staff &amp; Volunteer Guide</p>
+    <h1>Nonprofit &amp; Volunteer Handbook</h1>
+    <p class="npvh-dek">How to run the day-to-day work in the system &mdash; recording gifts, keeping funds straight, producing board and IRS reports, and scheduling volunteers.</p>
+    <p class="npvh-how">Written for people who don't think of themselves as &ldquo;the software person.&rdquo; Work through <strong>Part&nbsp;1</strong> once when you set up. After that, jump to whatever you're doing today. Anything in a <code class="npvh-path">grey pill</code> is a menu path &mdash; click each word in turn along the top or left of the screen.</p>
+  </header>
+
+  <div class="npvh-layout">
+    <nav class="npvh-toc npvh-desktop" aria-label="Contents">
+      <p class="npvh-toc-title">Contents</p>
+      <ol>
+        <li><a href="#npvh-setup">One-time setup</a></li>
+        <li><a href="#npvh-funds">Funds, programs &amp; functions</a></li>
+        <li><a href="#npvh-recording">Recording money</a></li>
+        <li><a href="#npvh-releases">Releasing restricted funds</a></li>
+        <li><a href="#npvh-reporting">Board &amp; IRS reporting</a></li>
+        <li><a href="#npvh-roles">Volunteer roles &amp; shifts</a></li>
+        <li><a href="#npvh-screening">Screening volunteers</a></li>
+        <li><a href="#npvh-portal">The volunteer's own view</a></li>
+        <li><a href="#npvh-rhythm">The routine rhythm</a></li>
+      </ol>
+      <p class="npvh-toc-title" style="margin-top:1.6rem">Reference</p>
+      <ol>
+        <li><a class="npvh-plain" href="#npvh-who">Who does what</a></li>
+        <li><a class="npvh-plain" href="#npvh-glossary">Glossary</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <details class="npvh-toc-mobile">
+        <summary>Contents</summary>
+        <ol>
+          <li><a href="#npvh-setup">One-time setup</a></li>
+          <li><a href="#npvh-funds">Funds, programs &amp; functions</a></li>
+          <li><a href="#npvh-recording">Recording money</a></li>
+          <li><a href="#npvh-releases">Releasing restricted funds</a></li>
+          <li><a href="#npvh-reporting">Board &amp; IRS reporting</a></li>
+          <li><a href="#npvh-roles">Volunteer roles &amp; shifts</a></li>
+          <li><a href="#npvh-screening">Screening volunteers</a></li>
+          <li><a href="#npvh-portal">The volunteer's own view</a></li>
+          <li><a href="#npvh-rhythm">The routine rhythm</a></li>
+          <li><a class="npvh-plain" href="#npvh-who">Who does what</a></li>
+          <li><a class="npvh-plain" href="#npvh-glossary">Glossary</a></li>
+        </ol>
+      </details>
+
+      <section id="npvh-who" class="npvh-part">
+        <p class="npvh-eyebrow">Reference</p>
+        <h2>Who does what</h2>
+        <p class="npvh-lead">Most organizations spread these across two or three people. The labels matter less than knowing whose job a task is.</p>
+        <div class="npvh-table-wrap">
+          <table>
+            <thead>
+              <tr><th>Role</th><th>Owns</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="npvh-role">Treasurer / Bookkeeper</span></td><td>Chart of accounts, fund settings, entering gifts and bills with the right fund, restriction releases, the board reports.</td></tr>
+              <tr><td><span class="npvh-role">Development</span></td><td>Donor records and consent flags, year-end contribution statements, the lapsed-donor lists.</td></tr>
+              <tr><td><span class="npvh-role">Volunteer Coordinator</span></td><td>Events, volunteer roles and shifts, recurring-shift templates, background-check follow-up, approving shift swaps.</td></tr>
+              <tr><td><span class="npvh-role">Front Desk</span></td><td>Checking volunteers in and out on the day, marking no-shows.</td></tr>
+              <tr><td><span class="npvh-role">Volunteer</span></td><td>Their own page &mdash; signing up for shifts, checking in, offering a shift for swap.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="npvh-setup" class="npvh-part">
+        <p class="npvh-eyebrow">Part 1</p>
+        <h2>One-time setup</h2>
+        <p class="npvh-lead">Do this once, in order, before the first real transaction. Mostly the treasurer's job. It assumes a U.S. chart of accounts is already loaded and you can sign in as an administrator.</p>
+
+        <h3>Turn on analytic accounting</h3>
+        <ol class="npvh-steps">
+          <li><p>Go to <code class="npvh-path">Settings <span class="npvh-sep">&rsaquo;</span> Accounting</code> and switch on <strong>Analytic Accounting</strong>. This is what lets you tag a transaction with a fund. Everything else here depends on it.</p></li>
+        </ol>
+
+        <h3>Add the nonprofit chart of accounts</h3>
+        <ol class="npvh-steps">
+          <li><p>Open <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Configuration <span class="npvh-sep">&rsaquo;</span> Add Non-Profit Accounts</code>.</p></li>
+          <li><p>Leave <strong>Code Prefix</strong> blank unless the new account numbers (4000&ndash;5900 range) collide with numbers your localization already uses. If they do, enter something like <code class="npvh-field">9</code> so the accounts land at 94000, 95000, and so on.</p></li>
+          <li><p>Keep <strong>Skip Codes That Already Exist</strong> ticked and click <strong>Add Accounts</strong>. It adds contribution, grant, special-events, in-kind, functional-expense, and net-asset accounts <em>on top of</em> your existing chart &mdash; it never changes or removes anything.</p></li>
+        </ol>
+        <div class="npvh-note">
+          <span class="npvh-tag">Safe to re-run</span>
+          <p>If you're not sure whether it ran, run it again. Accounts that already exist are skipped, so a second run adds nothing.</p>
+        </div>
+
+        <h3>Set the fund-accounting options</h3>
+        <ol class="npvh-steps">
+          <li><p>Go to <code class="npvh-path">Settings <span class="npvh-sep">&rsaquo;</span> Accounting <span class="npvh-sep">&rsaquo;</span> Fund Accounting (Non-Profit)</code>.</p></li>
+          <li><p>Under <strong>Net Assets Released accounts</strong>, click <strong>Detect from chart</strong>. It fills the two clearing accounts the restriction-release entry uses.</p></li>
+          <li><p>Pick a <strong>Default Program</strong> and <strong>Default Function</strong> &mdash; these pre-fill on a release so you're not choosing them every time.</p></li>
+          <li><p>Leave <strong>Require a Fund on income &amp; expense</strong> <em>off</em> for now.</p></li>
+        </ol>
+        <div class="npvh-note npvh-rule">
+          <span class="npvh-tag">Do this last</span>
+          <p>Enter your opening balances and any historical entries <em>first</em>. Only then turn on <strong>Require a Fund on income &amp; expense</strong>. Once it's on, the system won't let you post an income or expense line that isn't 100% assigned to a fund &mdash; which is exactly what you want going forward, but it would block your opening entries.</p>
+        </div>
+
+        <h3>Set the donation options</h3>
+        <ol class="npvh-steps">
+          <li><p>In <code class="npvh-path">Settings <span class="npvh-sep">&rsaquo;</span> Accounting</code>, find the <strong>Donation</strong> section and set the bank account donations land in and the product used for bank-transfer gifts.</p></li>
+        </ol>
+
+        <h3>Set the volunteer options</h3>
+        <ol class="npvh-steps">
+          <li><p>Go to <code class="npvh-path">Settings <span class="npvh-sep">&rsaquo;</span> Events</code>.</p></li>
+          <li><p>Set the <strong>volunteer reminder lead time</strong> (days before an event that confirmed volunteers get an email).</p></li>
+          <li><p>Under <strong>Volunteer shifts</strong>: default shift length, the <strong>check-in grace window</strong> (how many minutes before a shift starts a volunteer may check in from their phone), and the <strong>recurring-shift horizon</strong> (how many weeks ahead the nightly job builds repeating shifts).</p></li>
+          <li><p>Under <strong>Volunteer screening</strong>: choose the <strong>Volunteer Coordinator</strong> (they get the reminder when a background check is about to lapse), and how long a background check and a signed waiver stay valid.</p></li>
+        </ol>
+      </section>
+
+      <section id="npvh-funds" class="npvh-part">
+        <p class="npvh-eyebrow">Part 2</p>
+        <h2>Funds, programs &amp; functions</h2>
+        <p class="npvh-lead">Three questions get asked of most transactions. Answering them consistently is the whole game &mdash; the reports build themselves from these answers.</p>
+
+        <h3>Fund &mdash; whose money is it?</h3>
+        <p>Every dollar belongs to a <strong>net-asset class</strong>. The starter funds are:</p>
+        <ul class="npvh-list">
+          <li><strong>Unrestricted</strong> &mdash; the donor put no strings on it. Most gifts.</li>
+          <li><strong>With Donor Restrictions &ndash; Purpose</strong> &mdash; must be spent on a specific program or thing.</li>
+          <li><strong>With Donor Restrictions &ndash; Time</strong> &mdash; can't be spent until a future period.</li>
+          <li><strong>Perpetual (Endowment)</strong> &mdash; the principal is never spent.</li>
+        </ul>
+
+        <h3>Program &mdash; which mission activity?</h3>
+        <p>Your actual programs: a food pantry, an after-school club, a clinic day. Add one <strong>Program</strong> per activity. Grant and board reporting slice by this.</p>
+
+        <h3>Function &mdash; what kind of work?</h3>
+        <p>The three Form 990 columns: <strong>Program Services</strong>, <strong>Management &amp; General</strong>, <strong>Fundraising</strong>. Every expense is one of these.</p>
+
+        <h3>Grant &mdash; which award?</h3>
+        <p>Add one <strong>Grant</strong> per award you receive, so you can report drawdowns and spending against that funder.</p>
+
+        <div class="npvh-note">
+          <span class="npvh-tag">Where you enter it</span>
+          <p>On an invoice, bill, or journal-entry line there's an <strong>Analytic Distribution</strong> field. Click it and set the fund to 100% (split across two funds if a gift is genuinely shared). Add the Program and Function the same way. That one field feeds every report in Part&nbsp;5.</p>
+        </div>
+      </section>
+
+      <section id="npvh-recording" class="npvh-part">
+        <p class="npvh-eyebrow">Part 3</p>
+        <h2>Recording money</h2>
+        <p class="npvh-lead">The bookkeeper's weekly work. The pattern is always the same: record the transaction, then set the fund (and Program / Function) on the income or expense line.</p>
+
+        <h3>A cash or check donation</h3>
+        <ol class="npvh-steps">
+          <li><p>Open <code class="npvh-path">Donations <span class="npvh-sep">&rsaquo;</span> Donations <span class="npvh-sep">&rsaquo;</span> New</code>.</p></li>
+          <li><p>Choose the donor, the date, and the payment method. Add a line for what was given &mdash; the contribution account is picked for you.</p></li>
+          <li><p>On that line, set <strong>Analytic Distribution</strong>: <em>Unrestricted</em> fund for an ordinary gift.</p></li>
+          <li><p><strong>Validate</strong>. The system posts the journal entry and can produce a <strong>tax receipt</strong> for the donor.</p></li>
+        </ol>
+        <p>No donation module? Record it as a bank entry or customer invoice against a <em>Contributions</em> account instead &mdash; the donor reports and year-end statements still pick it up as long as the account carries its contribution tag.</p>
+
+        <h3>A restricted gift</h3>
+        <ol class="npvh-steps">
+          <li><p>Record it the same way, but choose <em>Contributions &ndash; With Donor Restrictions</em> as the account and set the fund to <em>With Donor Restrictions &ndash; Purpose</em> (or <em>&ndash; Time</em>).</p></li>
+          <li><p>Note the restriction &mdash; what it's for, or when it frees up &mdash; on the record so whoever releases it later knows the terms.</p></li>
+        </ol>
+
+        <h3>An in-kind gift (goods or services)</h3>
+        <ol class="npvh-steps">
+          <li><p>Record a journal entry: debit the asset or expense it represents, credit <em>In-Kind Contributions</em>, at fair value.</p></li>
+          <li><p>Set the fund on both lines. Keep the donor's description and how you valued it with the entry.</p></li>
+        </ol>
+
+        <h3>A vendor bill</h3>
+        <ol class="npvh-steps">
+          <li><p>Enter the bill as normal under <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Vendors <span class="npvh-sep">&rsaquo;</span> Bills</code>.</p></li>
+          <li><p>On each expense line set <strong>Analytic Distribution</strong>: the <strong>Fund</strong> it's paid from, the <strong>Program</strong> it serves, and the <strong>Function</strong> (Program Services / Management &amp; General / Fundraising). Split a line if it's shared &mdash; e.g. 70% Program, 30% Management &amp; General.</p></li>
+        </ol>
+
+        <h3>A fundraising event</h3>
+        <p>Put ticket and sponsorship income to <em>Fundraising Events &ndash; Gross Revenue</em>. Put the cost of what donors received in return (the dinner, the band) to <em>Fundraising Events &ndash; Direct Benefit to Donor</em>. The Statement of Activities nets them, which is what the 990 expects.</p>
+      </section>
+
+      <section id="npvh-releases" class="npvh-part">
+        <p class="npvh-eyebrow">Part 4</p>
+        <h2>Releasing restricted funds</h2>
+        <p class="npvh-lead">When a donor's purpose has been met or a time restriction has passed, you move that money from the restricted class to unrestricted. You don't hand-write the journal entry &mdash; the release wizard does.</p>
+
+        <ol class="npvh-steps">
+          <li><p>Open <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Non-Profit <span class="npvh-sep">&rsaquo;</span> Restriction Releases <span class="npvh-sep">&rsaquo;</span> New</code>.</p></li>
+          <li><p><strong>Released From</strong>: the restricted fund. <strong>Released To</strong>: normally <em>Unrestricted</em>.</p></li>
+          <li><p>Enter the <strong>amount</strong> now free, the <strong>date</strong>, and optionally the <strong>Program</strong> and <strong>Function</strong> it relates to.</p></li>
+          <li><p>Add a note &mdash; which grant, which board vote &mdash; then click <strong>Post</strong>.</p></li>
+        </ol>
+        <p>Posting creates one balanced journal entry between the two <em>Net Assets Released</em> accounts, carrying both funds. On the Statement of Activities it shows as <em>net assets released from restrictions</em>: a reduction in the restricted column, an equal increase in the unrestricted column, zero to the bottom line.</p>
+        <div class="npvh-note npvh-watch">
+          <span class="npvh-tag">Made a mistake?</span>
+          <p>Open the release and click <strong>Cancel</strong>. It reverses the journal entry for you. Don't delete the entry by hand.</p>
+        </div>
+        <div class="npvh-note">
+          <span class="npvh-tag">Checking your work</span>
+          <p><code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Non-Profit <span class="npvh-sep">&rsaquo;</span> Net-Asset Roll-Forward</code> shows, per fund: opening balance, revenue, expense, releases in and out, closing balance &mdash; for any date range.</p>
+        </div>
+      </section>
+
+      <section id="npvh-reporting" class="npvh-part">
+        <p class="npvh-eyebrow">Part 5</p>
+        <h2>Board &amp; IRS reporting</h2>
+        <p class="npvh-lead">Because every transaction carries its fund, program, and function, these come out without extra bookkeeping.</p>
+
+        <h3>For the board</h3>
+        <ul class="npvh-list">
+          <li><strong>Statement of Activities</strong> &mdash; revenue by source, expense by function, and the change in net assets. Find it under <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Reporting <span class="npvh-sep">&rsaquo;</span> MIS Reports</code>; open the <em>Current Year</em> instance.</li>
+          <li><strong>Statement of Financial Position</strong> &mdash; assets, liabilities, and net assets split into <em>with</em> and <em>without donor restrictions</em>.</li>
+        </ul>
+        <p>To show these <em>by fund</em> as separate columns, add fund-filtered periods to the report instance.</p>
+
+        <h3>For the Form 990 preparer</h3>
+        <ul class="npvh-list">
+          <li><strong>Functional Expenses (990 Part IX)</strong> &mdash; <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Reporting <span class="npvh-sep">&rsaquo;</span> Non-Profit <span class="npvh-sep">&rsaquo;</span> Functional Expenses</code>. A grid of every natural expense account against Program / Management &amp; General / Fundraising.</li>
+        </ul>
+
+        <h3>For fundraising</h3>
+        <ul class="npvh-list">
+          <li><strong>Donor Analytics</strong> &mdash; <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Reporting <span class="npvh-sep">&rsaquo;</span> Non-Profit <span class="npvh-sep">&rsaquo;</span> Donor Analytics</code>. One row per donor: lifetime giving, this year, last year, first / last / largest gift. Use the <strong>LYBUNT</strong> filter (gave <em>L</em>ast <em>Y</em>ear <em>B</em>ut <em>U</em>nfortunately <em>N</em>ot <em>T</em>his) to build a lapsed-donor appeal, and <strong>SYBUNT</strong> (<em>S</em>ome <em>Y</em>ear&hellip;) for a deeper reactivation list.</li>
+          <li><strong>Year-End Contribution Statements</strong> &mdash; <code class="npvh-path">Accounting <span class="npvh-sep">&rsaquo;</span> Reporting <span class="npvh-sep">&rsaquo;</span> Non-Profit <span class="npvh-sep">&rsaquo;</span> Year-End Contribution Statements</code>. Choose the year and a minimum total (defaults to $250), leave the donor list blank for everyone, and print. Each donor gets one PDF listing every gift and the total, with the IRS written-acknowledgement and quid-pro-quo language.</li>
+        </ul>
+      </section>
+
+      <section id="npvh-roles" class="npvh-part">
+        <p class="npvh-eyebrow">Part 6</p>
+        <h2>Volunteer roles &amp; shifts</h2>
+        <p class="npvh-lead">The coordinator's setup for each event. A role can be filled as one block for the whole event, or broken into timed shifts.</p>
+
+        <h3>Add roles to an event</h3>
+        <ol class="npvh-steps">
+          <li><p>Open the event, go to its <strong>Volunteers</strong> tab.</p></li>
+          <li><p>Add a role &mdash; a name (&ldquo;Setup Crew&rdquo;, &ldquo;Greeter&rdquo;, &ldquo;Net Control&rdquo;), how many people it needs, and a short description volunteers will see on the website.</p></li>
+        </ol>
+
+        <h3>Run a role as shifts</h3>
+        <ol class="npvh-steps">
+          <li><p>On the role, tick <strong>Run as Shifts</strong>.</p></li>
+          <li><p>Add shifts &mdash; each is a time window and a slot count. Or use the <strong>Shifts</strong> stat button on the event to see them on a calendar.</p></li>
+        </ol>
+
+        <h3>Recurring shifts (a weekly program)</h3>
+        <ol class="npvh-steps">
+          <li><p>On an <strong>Event Type</strong> (<code class="npvh-path">Events <span class="npvh-sep">&rsaquo;</span> Configuration <span class="npvh-sep">&rsaquo;</span> Event Types</code>), add <strong>Recurring Volunteer Shift</strong> lines: role name, weekday, start time, length, slots.</p></li>
+          <li><p>Give your recurring event that type. A nightly job creates the matching shifts for as far ahead as the horizon in settings, and won't duplicate ones it already made.</p></li>
+          <li><p>Need them sooner? Open the event and click <strong>Generate shifts from event type</strong>.</p></li>
+        </ol>
+
+        <h3>On the day</h3>
+        <ul class="npvh-list">
+          <li>Front desk opens the shift and clicks <strong>Check In</strong> as each volunteer arrives, <strong>Check Out</strong> when they leave. Hours are calculated automatically.</li>
+          <li>Someone didn't show? <strong>No-show</strong> on their assignment &mdash; it's kept for the record but left out of hours reports.</li>
+        </ul>
+
+        <h3>Shift swaps</h3>
+        <p>A volunteer can offer a shift for swap from their own page. Another volunteer claims it. The coordinator approves it under <code class="npvh-path">Events <span class="npvh-sep">&rsaquo;</span> Shift Swaps</code>, which reassigns the shift.</p>
+
+        <h3>Reporting</h3>
+        <ul class="npvh-list">
+          <li><strong>Volunteer Hours</strong> (<code class="npvh-path">Events <span class="npvh-sep">&rsaquo;</span> Volunteer Reporting <span class="npvh-sep">&rsaquo;</span> Volunteer Hours</code>) &mdash; a pivot by volunteer, program, event, or month.</li>
+          <li><strong>Hours Certificates</strong> &mdash; a per-volunteer PDF for a chosen year, listing every shift and the total. Good for students and court-ordered service.</li>
+          <li><strong>Understaffed Shifts</strong> &mdash; upcoming shifts still short of people.</li>
+        </ul>
+      </section>
+
+      <section id="npvh-screening" class="npvh-part">
+        <p class="npvh-eyebrow">Part 7</p>
+        <h2>Screening volunteers</h2>
+        <p class="npvh-lead">For roles that need a cleared, trained, or specifically-skilled person. Set up on the volunteer's contact record, under the <strong>Volunteer</strong> tab.</p>
+
+        <h3>Skills</h3>
+        <p>Tag volunteers with skills (First Aid, Spanish, Licensed Driver&hellip;). Manage the list under <code class="npvh-path">Events <span class="npvh-sep">&rsaquo;</span> Configuration <span class="npvh-sep">&rsaquo;</span> Volunteer Skills</code>.</p>
+
+        <h3>Background checks</h3>
+        <ol class="npvh-steps">
+          <li><p>When you start a check, set the state to <strong>Requested</strong>.</p></li>
+          <li><p>When it clears, click <strong>Mark Cleared</strong> &mdash; it stamps today's date and sets the re-check due date from the validity in settings.</p></li>
+          <li><p>A nightly job flips lapsed checks to <strong>Expired</strong> and, ahead of expiry, raises a to-do for the Volunteer Coordinator. You don't have to watch the calendar.</p></li>
+        </ol>
+
+        <h3>Liability waiver</h3>
+        <ul class="npvh-list">
+          <li>Print the waiver from the contact's <strong>Print</strong> menu (it adapts for minors). Collect the signed copy.</li>
+          <li>Click <strong>Record Waiver Accepted</strong> to stamp the date. It counts as current for the validity period in settings.</li>
+        </ul>
+
+        <h3>Minors &amp; emergency contact</h3>
+        <p>Tick <strong>Under 18</strong> and record the parent or guardian; add an emergency contact name and phone. The waiver PDF picks up the guardian automatically.</p>
+
+        <h3>Make a role require it</h3>
+        <ol class="npvh-steps">
+          <li><p>On the volunteer role, tick <strong>Requires Background Check</strong> and/or <strong>Requires Waiver</strong>, and add any <strong>Required Skills</strong>.</p></li>
+          <li><p>Now a sign-up &mdash; on the website or in the back office &mdash; from a volunteer who isn't cleared, hasn't a current waiver, or lacks a skill is refused, with a message saying exactly what's missing.</p></li>
+        </ol>
+        <div class="npvh-note">
+          <span class="npvh-tag">Finding the right people</span>
+          <p>On a shift, click <strong>Suggest Volunteers</strong>. You get the people who have every required skill, are cleared and waivered as the role needs, and aren't already booked on an overlapping shift.</p>
+        </div>
+      </section>
+
+      <section id="npvh-portal" class="npvh-part">
+        <p class="npvh-eyebrow">Part 8</p>
+        <h2>The volunteer's own view</h2>
+        <p class="npvh-lead">What a volunteer sees when they sign in. Worth walking a new volunteer through once.</p>
+        <ol class="npvh-steps">
+          <li><p>Sign in and open <strong>My Volunteer Shifts</strong> from the account menu, or go straight to <code class="npvh-field">/my/shifts</code>.</p></li>
+          <li><p><strong>Upcoming</strong> and <strong>Past</strong> shifts are listed, with a running total of lifetime hours.</p></li>
+          <li><p>When a shift is about to start (within the grace window) a <strong>Check in</strong> button appears; a <strong>Check out</strong> button appears once checked in.</p></li>
+          <li><p>Can't make a shift? Click <strong>Offer this shift for swap</strong>. If another volunteer has given one up, it shows under &ldquo;shifts other volunteers are giving up&rdquo; with a <strong>Take it</strong> button.</p></li>
+        </ol>
+        <p>Sign-ups and swaps still respect the screening rules &mdash; a volunteer can't take a role they're not cleared for.</p>
+      </section>
+
+      <section id="npvh-rhythm" class="npvh-part">
+        <p class="npvh-eyebrow">Part 9</p>
+        <h2>The routine rhythm</h2>
+        <p class="npvh-lead">A rough cadence once you're up and running.</p>
+        <div class="npvh-table-wrap">
+          <table>
+            <thead>
+              <tr><th>When</th><th>Who</th><th>Do this</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Each shift day</td><td><span class="npvh-role">Front desk</span></td><td>Check volunteers in and out; mark no-shows.</td></tr>
+              <tr><td>Weekly</td><td><span class="npvh-role">Coordinator</span></td><td>Review understaffed upcoming shifts; approve shift swaps.</td></tr>
+              <tr><td>Weekly</td><td><span class="npvh-role">Bookkeeper</span></td><td>Enter donations and bills, each with its fund, program, and function.</td></tr>
+              <tr><td>Monthly</td><td><span class="npvh-role">Bookkeeper</span></td><td>Post restriction releases for purposes met; reconcile the bank; glance at the net-asset roll-forward.</td></tr>
+              <tr><td>Monthly</td><td><span class="npvh-role">Coordinator</span></td><td>Clear the background-check to-dos the nightly job raised.</td></tr>
+              <tr><td>Quarterly</td><td><span class="npvh-role">Treasurer</span></td><td>Pull the Statement of Activities and Financial Position for the board.</td></tr>
+              <tr><td>Year-end</td><td><span class="npvh-role">Development</span></td><td>Run year-end contribution statements; work the LYBUNT / SYBUNT lists before the appeal.</td></tr>
+              <tr><td>Year-end</td><td><span class="npvh-role">Treasurer</span></td><td>Export the functional-expenses grid for the 990 preparer.</td></tr>
+              <tr><td>Annually</td><td><span class="npvh-role">Coordinator</span></td><td>Issue volunteer hours certificates; re-collect waivers past their validity.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="npvh-glossary" class="npvh-part">
+        <p class="npvh-eyebrow">Reference</p>
+        <h2>Glossary</h2>
+        <dl class="npvh-glossary">
+          <div><dt>Net assets</dt><dd>A nonprofit's version of equity &mdash; what's left after liabilities. Reported in two classes: <em>with</em> and <em>without</em> donor restrictions.</dd></div>
+          <div><dt>Fund</dt><dd>The net-asset class a transaction belongs to. Tracked here as an analytic account you put on each income and expense line.</dd></div>
+          <div><dt>Purpose restriction</dt><dd>A donor condition that the gift be spent on a specific program or item.</dd></div>
+          <div><dt>Time restriction</dt><dd>A donor condition that the gift not be spent until a future period.</dd></div>
+          <div><dt>Endowment</dt><dd>A gift whose principal is kept permanently; only the earnings are available.</dd></div>
+          <div><dt>Release from restriction</dt><dd>Moving money from a restricted class to unrestricted once the donor's condition is met. Recorded with the release wizard.</dd></div>
+          <div><dt>Program</dt><dd>A mission activity &mdash; the pantry, the clinic, the after-school club.</dd></div>
+          <div><dt>Function</dt><dd>The Form 990 expense category: Program Services, Management &amp; General, or Fundraising.</dd></div>
+          <div><dt>Analytic distribution</dt><dd>The field on a transaction line where you set the fund, program, and function &mdash; usually as percentages totalling 100%.</dd></div>
+          <div><dt>In-kind gift</dt><dd>A donation of goods or services rather than cash, recorded at fair value.</dd></div>
+          <div><dt>Quid pro quo</dt><dd>A payment that's part gift, part purchase (a gala ticket). Only the gift portion is deductible; the statement must say so.</dd></div>
+          <div><dt>LYBUNT / SYBUNT</dt><dd>Donors who gave <em>Last Year</em> / <em>Some Year</em> <em>But Unfortunately Not This</em> year &mdash; the lapsed-donor lists for reactivation appeals.</dd></div>
+          <div><dt>Shift</dt><dd>A volunteer role broken into a specific time window with its own slot count.</dd></div>
+          <div><dt>Grace window</dt><dd>How many minutes before a shift starts a volunteer is allowed to check in from their phone.</dd></div>
+          <div><dt>No-show</dt><dd>A confirmed volunteer who didn't turn up. Kept on the record, excluded from hours.</dd></div>
+        </dl>
+
+        <p class="npvh-colophon">Keep this open in a tab. When something on screen doesn't match what's written here, trust the screen and tell whoever maintains the system &mdash; the menus move as the software updates.</p>
+      </section>
+    </main>
+  </div>
+</div>
+</div>
+
+<script>
+  (function () {
+    var root = document.querySelector('.npvh-guide');
+    if (!root) return;
+    var links = Array.prototype.slice.call(
+      root.querySelectorAll('.npvh-toc.npvh-desktop a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+
+    var current = null;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var link = byId[e.target.id];
+        if (!link || link === current) return;
+        if (current) current.classList.remove('npvh-active');
+        link.classList.add('npvh-active');
+        current = link;
+      });
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+    root.querySelectorAll('main section[id]').forEach(function (s) {
+      obs.observe(s);
+    });
+  })();
+</script>

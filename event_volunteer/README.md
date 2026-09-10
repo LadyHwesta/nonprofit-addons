@@ -1,7 +1,7 @@
 # Event Volunteer Roles
 
-Core Events lets people register to *attend*. This adds the other half a
-club needs: signing up to *help run* an event.
+Core Events lets people register to *attend*. This adds the other half an
+organization needs: signing up to *help run* an event.
 
 ## What it adds
 

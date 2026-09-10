@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_partner_form_volunteer_profile" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <page name="internal_notes" position="after">
+                <page name="volunteer_profile" string="Volunteer"
+                      invisible="is_company">
+                    <group>
+                        <group string="Screening" name="vp_screening">
+                            <label for="background_check_state" />
+                            <div class="o_row">
+                                <field name="background_check_state"
+                                       class="oe_inline" />
+                                <field name="background_check_valid"
+                                       invisible="1" />
+                                <span class="badge text-bg-success ms-2"
+                                      invisible="not background_check_valid">OK</span>
+                                <span class="badge text-bg-warning ms-2"
+                                      invisible="not background_check_expiring_soon or not background_check_valid">
+                                    expiring
+                                </span>
+                            </div>
+                            <field name="background_check_date" />
+                            <field name="background_check_expiry" />
+                            <field name="background_check_expiring_soon"
+                                   invisible="1" />
+                            <button name="action_request_background_check"
+                                    type="object" string="Mark Requested"
+                                    class="btn-link"
+                                    invisible="background_check_state != 'none'" />
+                            <button name="action_mark_background_cleared"
+                                    type="object" string="Mark Cleared"
+                                    class="btn-link"
+                                    invisible="background_check_state == 'cleared'" />
+                        </group>
+                        <group string="Waiver" name="vp_waiver">
+                            <field name="waiver_signed" />
+                            <field name="waiver_date"
+                                   invisible="not waiver_signed" />
+                            <field name="waiver_current" />
+                            <button name="action_sign_waiver" type="object"
+                                    string="Record Waiver Accepted"
+                                    class="btn-link"
+                                    invisible="waiver_current" />
+                        </group>
+                        <group string="Details" name="vp_details">
+                            <field name="is_minor" />
+                            <field name="guardian_id"
+                                   invisible="not is_minor"
+                                   required="is_minor" />
+                            <field name="emergency_contact_name" />
+                            <field name="emergency_contact_phone" />
+                            <field name="tshirt_size" />
+                            <field name="volunteer_orientation_done" />
+                            <field name="volunteer_orientation_date"
+                                   invisible="not volunteer_orientation_done" />
+                        </group>
+                        <group string="Skills" name="vp_skills">
+                            <field name="volunteer_skill_ids"
+                                   widget="many2many_tags" nolabel="1"
+                                   colspan="2" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_volunteer_profile" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <separator />
+                <filter name="bgcheck_ok" string="Background Check OK"
+                        domain="[('background_check_valid', '=', True)]" />
+                <filter name="bgcheck_expired" string="Background Check Expired"
+                        domain="[('background_check_state', '=', 'expired')]" />
+                <filter name="waiver_current" string="Waiver Current"
+                        domain="[('waiver_current', '=', True)]" />
+            </filter>
+        </field>
+    </record>
+
+</odoo>

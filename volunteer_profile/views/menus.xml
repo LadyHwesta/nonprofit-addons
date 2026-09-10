@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_volunteer_skill"
+              name="Volunteer Skills"
+              parent="event.menu_event_configuration"
+              action="action_volunteer_skill"
+              sequence="25"
+              groups="event.group_event_manager" />
+</odoo>

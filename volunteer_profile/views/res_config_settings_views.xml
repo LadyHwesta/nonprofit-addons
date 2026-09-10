@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_volunteer_profile" model="ir.ui.view">
+        <field name="name">res.config.settings.form.volunteer.profile</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="event.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="registration_setting_container" position="inside">
+                <setting id="volunteer_profile_setting"
+                         string="Volunteer screening"
+                         help="Background check and waiver validity, and who is reminded before a check lapses.">
+                    <div class="content-group">
+                        <div class="row mt16">
+                            <label for="volunteer_coordinator_id"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_coordinator_id" />
+                        </div>
+                        <div class="row">
+                            <label for="volunteer_bgcheck_validity_months"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_bgcheck_validity_months" />
+                        </div>
+                        <div class="row">
+                            <label for="volunteer_bgcheck_warn_days"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_bgcheck_warn_days" />
+                        </div>
+                        <div class="row">
+                            <label for="volunteer_waiver_validity_months"
+                                   class="col-lg-6 o_light_label" />
+                            <field name="volunteer_waiver_validity_months" />
+                        </div>
+                    </div>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

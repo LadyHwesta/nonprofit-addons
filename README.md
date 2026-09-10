@@ -32,13 +32,18 @@ layers onto an existing localization.
   shift generation from an event type, a `/my/shifts` portal with self
   check-in and shift swaps, an hours pivot report and a per-volunteer annual
   hours-certificate PDF.
+- [`volunteer_profile/`](volunteer_profile/) — volunteer **skills** taxonomy,
+  **background-check** tracking with an expiry cron + coordinator To-Do, a
+  printable **liability waiver**, minor/guardian and emergency-contact fields,
+  and sign-up **screening guards** (a role/shift that requires a background
+  check, waiver or skills refuses an unqualified volunteer) plus a
+  shift *Suggest Volunteers* skill-match.
 - `donation_base/`, `donation/` — OCA's donation stack (donations with lines,
   tax receipts, in-kind gifts, campaigns, bank-statement matching, thank-you
   letters), **forward-ported 18.0 → 19.0** and vendored here. See
   [`VENDORED.md`](VENDORED.md).
 
-_Planned (see the project plan): `volunteer_profile` (skills, background checks,
-waivers, minor/guardian, onboarding, skill-match)._
+All seven planned modules are in place; see the module READMEs for detail.
 
 ## Third-party
 

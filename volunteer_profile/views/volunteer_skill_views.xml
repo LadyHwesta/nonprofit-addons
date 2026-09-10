@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="volunteer_skill_view_list" model="ir.ui.view">
+        <field name="model">volunteer.skill</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name" />
+                <field name="category" />
+                <field name="partner_count" string="Volunteers" />
+            </list>
+        </field>
+    </record>
+
+    <record id="volunteer_skill_view_form" model="ir.ui.view">
+        <field name="model">volunteer.skill</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_volunteers" type="object"
+                                class="oe_stat_button" icon="fa-users">
+                            <field name="partner_count" widget="statinfo"
+                                   string="Volunteers" />
+                        </button>
+                    </div>
+                    <group>
+                        <field name="name" />
+                        <field name="category" />
+                        <field name="active" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="volunteer_skill_view_search" model="ir.ui.view">
+        <field name="model">volunteer.skill</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <filter name="group_category" string="Category"
+                        context="{'group_by': 'category'}" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_volunteer_skill" model="ir.actions.act_window">
+        <field name="name">Volunteer Skills</field>
+        <field name="res_model">volunteer.skill</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

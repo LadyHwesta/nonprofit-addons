@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="skill_first_aid" model="volunteer.skill">
+        <field name="name">First Aid / CPR</field>
+        <field name="category">medical</field>
+    </record>
+    <record id="skill_food_handler" model="volunteer.skill">
+        <field name="name">Food Handler Certified</field>
+        <field name="category">general</field>
+    </record>
+    <record id="skill_driving" model="volunteer.skill">
+        <field name="name">Licensed Driver</field>
+        <field name="category">driving</field>
+    </record>
+    <record id="skill_cdl" model="volunteer.skill">
+        <field name="name">CDL (Commercial Driver)</field>
+        <field name="category">driving</field>
+    </record>
+    <record id="skill_spanish" model="volunteer.skill">
+        <field name="name">Spanish</field>
+        <field name="category">language</field>
+    </record>
+    <record id="skill_asl" model="volunteer.skill">
+        <field name="name">American Sign Language</field>
+        <field name="category">language</field>
+    </record>
+    <record id="skill_forklift" model="volunteer.skill">
+        <field name="name">Forklift Operation</field>
+        <field name="category">trade</field>
+    </record>
+    <record id="skill_bookkeeping" model="volunteer.skill">
+        <field name="name">Bookkeeping</field>
+        <field name="category">admin</field>
+    </record>
+</odoo>

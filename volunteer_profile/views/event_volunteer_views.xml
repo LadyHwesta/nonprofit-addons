@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_volunteer_role_view_form_profile" model="ir.ui.view">
+        <field name="model">event.volunteer.role</field>
+        <field name="inherit_id"
+               ref="event_volunteer.event_volunteer_role_view_form" />
+        <field name="arch" type="xml">
+            <field name="fill_state" position="after">
+                <field name="requires_background_check" />
+                <field name="requires_waiver" />
+            </field>
+            <field name="description" position="before">
+                <field name="required_skill_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

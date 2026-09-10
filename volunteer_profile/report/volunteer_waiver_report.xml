@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_volunteer_waiver" model="ir.actions.report">
+        <field name="name">Volunteer Liability Waiver</field>
+        <field name="model">res.partner</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">volunteer_profile.volunteer_waiver</field>
+        <field name="report_file">volunteer_profile.volunteer_waiver</field>
+        <field name="print_report_name">'Volunteer Waiver - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="base.model_res_partner" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="volunteer_waiver">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Volunteer Liability Waiver &amp; Release</h2>
+                        <p class="mt-3">
+                            Volunteer: <strong><span t-field="o.name" /></strong>
+                            <t t-if="o.is_minor">
+                                <br />Parent / Guardian:
+                                <strong><span t-esc="o.guardian_id.name or '________________'" /></strong>
+                            </t>
+                        </p>
+
+                        <p class="mt-3">
+                            In consideration of being permitted to volunteer with
+                            <span t-field="o.company_id.name" />
+                            (&quot;the Organization&quot;), I acknowledge and agree
+                            that:
+                        </p>
+                        <ol>
+                            <li>I am volunteering of my own free will and receive
+                                no wages or compensation.</li>
+                            <li>Volunteer activities may involve risk of injury. I
+                                assume all such risks, known and unknown.</li>
+                            <li>I release and hold harmless the Organization, its
+                                directors, employees and agents from any claim
+                                arising out of my volunteer service, except for
+                                gross negligence or willful misconduct.</li>
+                            <li>I authorize the Organization to seek emergency
+                                medical treatment on my behalf if I am unable to
+                                consent, and I am responsible for related
+                                costs.</li>
+                            <li>I grant permission for photographs and recordings
+                                taken during volunteer activities to be used for
+                                the Organization's non-commercial purposes.</li>
+                        </ol>
+
+                        <p class="mt-4">
+                            <span style="font-size:16px;">&#9744;</span>
+                            I have read and accept this waiver.
+                        </p>
+
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <p>_____________________________</p>
+                                <p>Signature<t t-if="o.is_minor"> of Parent / Guardian</t></p>
+                            </div>
+                            <div class="col-6">
+                                <p>_____________________________</p>
+                                <p>Date</p>
+                            </div>
+                        </div>
+
+                        <p class="mt-4 small text-muted" t-if="o.waiver_signed">
+                            Accepted in the system on
+                            <span t-field="o.waiver_date" />.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="volunteer_shift_view_form_profile" model="ir.ui.view">
+        <field name="model">volunteer.shift</field>
+        <field name="inherit_id" ref="volunteer_shift.volunteer_shift_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="before">
+                <header>
+                    <button name="action_suggest_volunteers" type="object"
+                            string="Suggest Volunteers" class="btn-secondary" />
+                </header>
+            </xpath>
+            <field name="time_state" position="after">
+                <field name="requires_background_check" />
+                <field name="requires_waiver" />
+                <field name="required_skill_ids" widget="many2many_tags"
+                       invisible="not required_skill_ids" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

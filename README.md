@@ -17,6 +17,11 @@ layers onto an existing localization.
   and a wizard (*Accounting → Configuration → Add Non-Profit Accounts*) that
   layers a UCOA-derived, Form-990-tagged chart of accounts onto an existing
   localisation chart — idempotent, prefix-able, never replaces.
+- [`nonprofit_fund_accounting/`](nonprofit_fund_accounting/) — enforces a Fund
+  analytic account (100%) on income/expense postings per company; a
+  *Restriction Releases* workflow that posts the balanced net-assets-released
+  entry between two clearing accounts; and a per-fund net-asset roll-forward
+  report.
 - `donation_base/`, `donation/` — OCA's donation stack (donations with lines,
   tax receipts, in-kind gifts, campaigns, bank-statement matching, thank-you
   letters), **forward-ported 18.0 → 19.0** and vendored here. See
@@ -24,8 +29,7 @@ layers onto an existing localization.
 
 _Planned (see the project plan): `volunteer_shift` (shifts, check-in/out, hours,
 recurring shifts, coordinator dashboard), `volunteer_profile` (skills,
-background checks, waivers, onboarding), `nonprofit_fund_accounting` (restriction
-enforcement + releases, net-asset roll-forward), `nonprofit_reports` (MIS Builder
+background checks, waivers, onboarding), `nonprofit_reports` (MIS Builder
 Statement of Activities / Financial Position, donor analytics, IRS year-end
 statements)._
 

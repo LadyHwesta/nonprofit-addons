@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_nonprofit_restriction_release_user,nonprofit.restriction.release user,model_nonprofit_restriction_release,account.group_account_user,1,0,0,0
+access_nonprofit_restriction_release_manager,nonprofit.restriction.release manager,model_nonprofit_restriction_release,account.group_account_manager,1,1,1,1
+access_nonprofit_net_assets_report_user,nonprofit.net.assets.report user,model_nonprofit_net_assets_report,account.group_account_user,1,1,1,1
+access_nonprofit_net_assets_report_line_user,nonprofit.net.assets.report.line user,model_nonprofit_net_assets_report_line,account.group_account_user,1,1,1,1

@@ -48,8 +48,12 @@
         <field name="name">NFP 990: Other Revenue</field>
         <field name="applicability">accounts</field>
     </record>
-    <record id="tag_release_from_restriction" model="account.account.tag">
-        <field name="name">NFP: Net Assets Released from Restriction</field>
+    <record id="tag_release_restricted" model="account.account.tag">
+        <field name="name">NFP: Net Assets Released - With Donor Restrictions side</field>
+        <field name="applicability">accounts</field>
+    </record>
+    <record id="tag_release_unrestricted" model="account.account.tag">
+        <field name="name">NFP: Net Assets Released - Without Donor Restrictions side</field>
         <field name="applicability">accounts</field>
     </record>
 

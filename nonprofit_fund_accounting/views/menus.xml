@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_nonprofit_fund" name="Non-Profit"
+              parent="account.menu_finance" sequence="90"
+              groups="account.group_account_user" />
+
+    <menuitem id="menu_nonprofit_restriction_release"
+              name="Restriction Releases"
+              parent="menu_nonprofit_fund"
+              action="action_nonprofit_restriction_release"
+              sequence="10" />
+
+    <menuitem id="menu_nonprofit_net_assets_report"
+              name="Net-Asset Roll-Forward"
+              parent="menu_nonprofit_fund"
+              action="action_nonprofit_net_assets_report"
+              sequence="20" />
+
+</odoo>

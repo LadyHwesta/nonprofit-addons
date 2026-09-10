@@ -14,8 +14,8 @@ code,name,account_type,reconcile,tag_xmlids
 4060,Program Service Fees,income,0,tag_rev_program_service|tag_soa_revenue
 4070,Investment Income,income_other,0,tag_rev_investment|tag_soa_revenue
 4080,Other Revenue,income_other,0,tag_rev_other|tag_soa_revenue
-4900,Net Assets Released - With Donor Restrictions,income,0,tag_release_from_restriction|tag_soa_revenue
-4910,Net Assets Released - Without Donor Restrictions,income,0,tag_release_from_restriction|tag_soa_revenue
+4900,Net Assets Released - With Donor Restrictions,income,0,tag_release_restricted|tag_soa_revenue
+4910,Net Assets Released - Without Donor Restrictions,income,0,tag_release_unrestricted|tag_soa_revenue
 5000,Grants and Assistance to Organizations,expense,0,tag_function_program|tag_soa_expense
 5010,Grants and Assistance to Individuals,expense,0,tag_function_program|tag_soa_expense
 5100,Salaries and Wages,expense,0,tag_soa_expense

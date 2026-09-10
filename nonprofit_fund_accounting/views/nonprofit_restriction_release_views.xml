@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="nonprofit_restriction_release_view_list" model="ir.ui.view">
+        <field name="name">nonprofit.restriction.release.list</field>
+        <field name="model">nonprofit.restriction.release</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="date" />
+                <field name="fund_from_id" />
+                <field name="fund_to_id" />
+                <field name="amount" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="state"
+                       decoration-success="state == 'posted'"
+                       decoration-muted="state == 'cancelled'"
+                       widget="badge" />
+            </list>
+        </field>
+    </record>
+
+    <record id="nonprofit_restriction_release_view_form" model="ir.ui.view">
+        <field name="name">nonprofit.restriction.release.form</field>
+        <field name="model">nonprofit.restriction.release</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_post" type="object" string="Post"
+                            class="btn-primary" invisible="state != 'draft'" />
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state == 'cancelled'"
+                            confirm="Cancel this release? A posted entry will be reversed." />
+                    <button name="action_draft" type="object"
+                            string="Reset to Draft"
+                            invisible="state != 'cancelled'" />
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,posted" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_move" type="object"
+                                class="oe_stat_button" icon="fa-book"
+                                invisible="not move_id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Journal Entry</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id"
+                                   groups="base.group_multi_company" />
+                            <field name="date"
+                                   readonly="state != 'draft'" />
+                            <field name="amount"
+                                   readonly="state != 'draft'" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="journal_id"
+                                   readonly="state != 'draft'" />
+                        </group>
+                        <group>
+                            <field name="fund_plan_id" invisible="1" />
+                            <field name="fund_from_id"
+                                   readonly="state != 'draft'" />
+                            <field name="fund_to_id"
+                                   readonly="state != 'draft'" />
+                            <field name="program_id"
+                                   readonly="state != 'draft'" />
+                            <field name="function_id"
+                                   readonly="state != 'draft'" />
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Notes / board resolution reference..."
+                           readonly="state == 'cancelled'" />
+                    <field name="move_id" invisible="1" />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_restriction_release" model="ir.actions.act_window">
+        <field name="name">Restriction Releases</field>
+        <field name="res_model">nonprofit.restriction.release</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Record a release from donor restriction</p>
+            <p>Reclassify net assets from a donor-restricted fund to another
+               fund once the purpose or time restriction has been met. Posting
+               a release creates the balanced journal entry for you.</p>
+        </field>
+    </record>
+
+</odoo>

@@ -13,21 +13,25 @@
             (donor-restricted or not).</field>
     </record>
     <record id="analytic_account_fund_unrestricted" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">Unrestricted</field>
         <field name="code">F-UR</field>
         <field name="plan_id" ref="analytic_plan_fund" />
     </record>
     <record id="analytic_account_fund_restricted_purpose" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">With Donor Restrictions - Purpose</field>
         <field name="code">F-DRP</field>
         <field name="plan_id" ref="analytic_plan_fund" />
     </record>
     <record id="analytic_account_fund_restricted_time" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">With Donor Restrictions - Time</field>
         <field name="code">F-DRT</field>
         <field name="plan_id" ref="analytic_plan_fund" />
     </record>
     <record id="analytic_account_fund_perpetual" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">Perpetual (Endowment)</field>
         <field name="code">F-PERP</field>
         <field name="plan_id" ref="analytic_plan_fund" />
@@ -42,16 +46,19 @@
             990 Part IX (program / management &amp; general / fundraising).</field>
     </record>
     <record id="analytic_account_function_program" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">Program Services</field>
         <field name="code">FN-PROG</field>
         <field name="plan_id" ref="analytic_plan_function" />
     </record>
     <record id="analytic_account_function_mgmt_general" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">Management &amp; General</field>
         <field name="code">FN-MG</field>
         <field name="plan_id" ref="analytic_plan_function" />
     </record>
     <record id="analytic_account_function_fundraising" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">Fundraising</field>
         <field name="code">FN-FR</field>
         <field name="plan_id" ref="analytic_plan_function" />
@@ -67,6 +74,7 @@
             transaction supports.</field>
     </record>
     <record id="analytic_account_program_general" model="account.analytic.account">
+        <field name="company_id" eval="False" />
         <field name="name">General Program</field>
         <field name="code">PG-GEN</field>
         <field name="plan_id" ref="analytic_plan_program" />

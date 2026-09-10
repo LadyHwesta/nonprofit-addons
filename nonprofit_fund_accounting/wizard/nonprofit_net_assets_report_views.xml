@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="nonprofit_net_assets_report_form" model="ir.ui.view">
+        <field name="name">nonprofit.net.assets.report.form</field>
+        <field name="model">nonprofit.net.assets.report</field>
+        <field name="arch" type="xml">
+            <form string="Net-Asset Roll-Forward">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Net-Asset Roll-Forward</h1>
+                    </div>
+                    <p>
+                        Beginning balance is net revenue less expense plus
+                        restrictions released, by fund, for everything dated
+                        before the start date.
+                    </p>
+                    <group>
+                        <field name="company_id"
+                               groups="base.group_multi_company" />
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_compute" type="object" string="Run"
+                            class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="nonprofit_net_assets_report_result_form" model="ir.ui.view">
+        <field name="name">nonprofit.net.assets.report.result.form</field>
+        <field name="model">nonprofit.net.assets.report</field>
+        <field name="arch" type="xml">
+            <form string="Net-Asset Roll-Forward">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Net-Asset Roll-Forward</h1>
+                        <h3>
+                            <field name="date_from" readonly="1" class="oe_inline" />
+                            &#8594;
+                            <field name="date_to" readonly="1" class="oe_inline" />
+                        </h3>
+                    </div>
+                    <field name="line_ids" readonly="1">
+                        <list create="false" delete="false">
+                            <field name="fund_id" />
+                            <field name="beginning_balance" sum="Beginning" />
+                            <field name="revenue" sum="Revenue" />
+                            <field name="expense" sum="Expense" />
+                            <field name="released_in" sum="Released In" />
+                            <field name="released_out" sum="Released Out" />
+                            <field name="ending_balance" sum="Ending" />
+                            <field name="currency_id" column_invisible="1" />
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_net_assets_report" model="ir.actions.act_window">
+        <field name="name">Net-Asset Roll-Forward</field>
+        <field name="res_model">nonprofit.net.assets.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_event_venue" model="slide.channel">
+        <field name="name">Vendor Coordinator</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Setting up booths, calibrating the live vendor map, and
+            printing the load-in reports.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('event.group_event_user')])]" />
+    </record>
+
+    <!-- ============= Section 1: Setting up the venue ============= -->
+    <record id="section_setup" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Setting up the venue</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_booths" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Booth categories and adding booths</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>Add a category for each kind of vendor space (Food, Retail,
+            Nonprofit…) under the event's Booth Categories, then add
+            booths under the event's <strong>Booths</strong> tab - a name, a
+            category, and the renter once you have one.</p>
+            <p>Two extra flags matter for planning: tick <strong>Needs
+            Power</strong> for anything that needs an electrical drop, and
+            set <strong>Spots Wide</strong> to more than 1 for a double-wide
+            (or wider) vendor. A booth's spot display and the load-in
+            manifest both show the full range it occupies - e.g. "5-6" - and
+            the system blocks another booth from overlapping that range, not
+            just from taking the exact same spot number.</p>
+        </field>
+    </record>
+
+    <record id="lesson_rows" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Rows and row/spot addressing</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>A <strong>Row</strong> is one lane or section of the venue -
+            add one per row, in the order they actually sit on the ground,
+            starting from whichever one you'll calibrate the map from (the
+            <strong>Rows</strong> button on the event). Give each booth a
+            <strong>Row</strong> and a <strong>Spot #</strong> and it now has
+            a plain address, like "Row C, Spot 12" - the same address that
+            shows on the load-in manifest and, once the map is calibrated,
+            places its pin automatically.</p>
+        </field>
+    </record>
+
+    <!-- ================ Section 2: The vendor map ================ -->
+    <record id="section_map" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">The vendor map</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_calibrate" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Calibrating the map</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p>You don't drag pins into place by hand - a calibration wizard
+            works out the venue's geometry from three real-world coordinates
+            you read off Google Maps, OpenStreetMap, or a phone GPS reading
+            on-site. On the event's <strong>Vendor Map</strong> tab, click
+            <strong>Calibrate from two points...</strong> and give it:</p>
+            <ol>
+              <li>Spot 1 on a reference row (the anchor).</li>
+              <li>Any other spot number on that same row.</li>
+              <li>Spot 1 on a different row.</li>
+            </ol>
+            <p>From those three points it works out the venue's bearing and
+            spacing in both directions. Do it once per event - every booth's
+            pin then follows automatically from its row and spot number.</p>
+        </field>
+    </record>
+
+    <record id="lesson_map_reading" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Reading the live map</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <p>Once calibrated, click <strong>Open Vendor Map</strong> on the
+            event to see every placed booth as a colored pin on an
+            OpenStreetMap-tiled map - teal for available, green for rented.
+            Click a pin's popup title to jump straight to that booth's
+            record. If the Logistics module is also installed, a
+            <strong>Place Facilities</strong> toggle appears on the same map
+            for dropping pins for portable toilets, hand-wash stations, and
+            the like.</p>
+        </field>
+    </record>
+
+    <!-- =================== Section 3: Reports =================== -->
+    <record id="section_reports" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Reports</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_reports" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">The Load-In Manifest and Vendor Requirements reports</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <p>From the event's Print menu: the <strong>Vendor Load-In
+            Manifest</strong> lists booths grouped by row in spot order -
+            the paper backup for morning-of setup, showing renter, contact,
+            and a power icon for anything flagged Needs Power. The
+            <strong>Vendor Requirements</strong> report is the planning
+            view instead - a flat list sorted by vendor, showing spot(s),
+            power needs, and width, for coordinating power drops and load-in
+            logistics ahead of the day.</p>
+        </field>
+    </record>
+
+    <!-- ========================= Quiz ========================= -->
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_event_venue" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A food truck needs two spots side by side. How do you set that up?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Create two separate booth records for the same vendor</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">Set Spots Wide to 2 on their one booth</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Leave the spot number blank</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Tick Needs Power</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">How many real-world coordinates does the calibration wizard need?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">One per booth</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Three - two on the same row, one on a different row</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">None - you drag every pin into place by hand</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">One per row</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">On the live vendor map, what does a green pin mean?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">The booth is available</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">The booth is rented</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">The booth needs power</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">The booth is a facility, not a vendor</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Which report would you hand an electrician planning power drops in advance?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Vendor Requirements</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Vendor Load-In Manifest</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">The parade lineup sheet</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">The permit status report</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

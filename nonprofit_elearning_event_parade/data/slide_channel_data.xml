@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_event_parade" model="slide.channel">
+        <field name="name">Parade Coordinator</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Taking public applications, building the lineup, and
+            printing everything parade day needs.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('event.group_event_user')])]" />
+    </record>
+
+    <!-- ================ Section 1: Taking applications ================ -->
+    <record id="section_applications" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Taking applications</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_turn_on" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Turning on public applications</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>On the event's <strong>Parade</strong> tab, tick
+            <strong>Accepting Parade Entries</strong>, optionally set a
+            <strong>deadline</strong> after which the public page politely
+            closes itself, and set a <strong>Parade Coordinator</strong> so
+            someone gets notified of new applications. The public
+            application page's address is shown right there on the tab -
+            share that link with community groups. No login is required to
+            apply.</p>
+        </field>
+    </record>
+
+    <record id="lesson_review" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Reviewing, approving, and rejecting entries</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>Every application lands as a <strong>Parade Entry</strong> in
+            Submitted state, and raises a to-do for the coordinator. Open
+            it, review the unit type, size, and any special requirements
+            (sound amplification is flagged separately, since a sound truck
+            needs marshal coordination), and click <strong>Approve</strong>
+            or <strong>Reject</strong>. An approved entry isn't in the
+            lineup yet - that's the next step.</p>
+        </field>
+    </record>
+
+    <!-- ================ Section 2: Building the lineup ================ -->
+    <record id="section_lineup" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Building the lineup</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_staging" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Staging areas, lineup order, and entry number</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p>On an approved entry, assign a <strong>Staging Area</strong>
+            (add these under the Parade tab's Staging Areas button) and a
+            lineup <strong>order</strong> - drag entries into place in the
+            list view. Once staging is settled, click
+            <strong>Confirm</strong> to move it to Confirmed for Lineup.</p>
+            <p><strong>Entry number is deliberately separate from lineup
+            order.</strong> Order controls where an entry sits in the
+            physical procession and can still get rearranged during
+            staging; entry number is the stable number printed on signs and
+            used in the roster, assigned once via <strong>Assign Entry
+            Numbers</strong> on the Parade tab - it numbers every confirmed
+            entry sequentially, staging area then order.</p>
+        </field>
+    </record>
+
+    <record id="lesson_stepoff" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">The Set Step-Off Times wizard</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <p><strong>Set Step-Off Times...</strong> on the Parade tab
+            walks every confirmed entry - staging area, then lineup order -
+            and stamps each one's step-off time a fixed number of minutes
+            after the one before it. Give it a start time and a gap in
+            minutes and it does the rest.</p>
+        </field>
+    </record>
+
+    <!-- =================== Section 3: Parade day =================== -->
+    <record id="section_day" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Parade day</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_printing" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Printing the lineup sheet, entry lists, and signs</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <p>Four printables, all from the Parade tab: the
+            <strong>Lineup Sheet</strong> (confirmed entries by staging area
+            and order, with step-off time and contact - what marshals carry
+            on the morning), two <strong>Entry List</strong> reports (the
+            same roster sorted by number, or by name), and
+            <strong>Print Entry Signs</strong> - one 8.5x11 landscape page
+            per confirmed entry, a large entry number with the unit's name
+            underneath, sized to read from a distance.</p>
+        </field>
+    </record>
+
+    <!-- ========================= Quiz ========================= -->
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_event_parade" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A group applies through the public page. What state does their entry start in?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Confirmed for Lineup</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">Submitted</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Approved</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">Withdrawn</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">Why is entry number kept separate from lineup order (sequence)?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">They're actually the same field</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Lineup order can still change during staging; entry number is the stable number already printed on signs</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Entry number is only for withdrawn entries</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">There's no real difference, it's just a display preference</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">What does the Set Step-Off Times wizard need from you?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">A start time and a gap in minutes</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">Each entry's own step-off time, typed in one by one</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">An entry number for every unit</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Nothing - it runs automatically overnight</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Which printable is sized to read from a distance, one per confirmed entry?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">The Lineup Sheet</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Entry Signs</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">The Entry List by Name</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">The Vendor Requirements report</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

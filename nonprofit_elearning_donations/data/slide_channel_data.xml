@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_donations" model="slide.channel">
+        <field name="name">Processing Donations</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Recording gifts of every kind, generating receipts, and
+            pulling the donor lists that drive an appeal.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('donation.group_donation_user')])]" />
+    </record>
+
+    <!-- =================== Section 1: Recording a gift =================== -->
+    <record id="section_recording" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">Recording a gift</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_cash_gift" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">A cash or check donation</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>Open <strong>Donations › Donations › New</strong>.
+            Choose the donor, the date, and the payment method, and add a
+            line for what was given - the contribution account is picked
+            for you. On that line, set <strong>Analytic Distribution</strong>
+            to the <em>Unrestricted</em> fund for an ordinary gift, then
+            click <strong>Validate</strong>. The system posts the journal
+            entry and can produce a tax receipt for the donor.</p>
+            <p>No donation module installed at all? Record it as a bank
+            entry or customer invoice against a Contributions account
+            instead - the donor reports and year-end statements still pick
+            it up as long as the account carries its contribution tag.</p>
+        </field>
+    </record>
+
+    <record id="lesson_restricted_inkind" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">A restricted gift, and an in-kind gift</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>A <strong>restricted gift</strong> is recorded the same way,
+            but choose <em>Contributions - With Donor Restrictions</em> as
+            the account and set the fund to <em>With Donor Restrictions -
+            Purpose</em> (or <em>- Time</em>). Note the restriction - what
+            it's for, or when it frees up - on the record, so whoever
+            releases it later knows the terms.</p>
+            <p>An <strong>in-kind gift</strong> (goods or services rather
+            than cash) is a journal entry: debit the asset or expense it
+            represents, credit In-Kind Contributions, at fair value. Set the
+            fund on both lines, and keep the donor's description and how
+            you valued it with the entry.</p>
+        </field>
+    </record>
+
+    <!-- ============ Section 2: Receipts and fundraising events ============ -->
+    <record id="section_events" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">Receipts and fundraising events</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_fundraising_event" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">A fundraising event</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p>Put ticket and sponsorship income to <em>Fundraising Events -
+            Gross Revenue</em>. Put the cost of what donors received in
+            return (the dinner, the band) to <em>Fundraising Events - Direct
+            Benefit to Donor</em>. The Statement of Activities nets the two,
+            which is what the 990 expects - and that split is also what
+            makes a gala ticket a <strong>quid pro quo</strong> gift: only
+            the portion above the benefit's value is deductible, and a
+            receipt for it has to say so.</p>
+        </field>
+    </record>
+
+    <!-- ==================== Section 3: Donor reporting ==================== -->
+    <record id="section_reporting" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">Donor reporting</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_donor_analytics" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">Donor analytics, LYBUNT &amp; SYBUNT</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <p><strong>Accounting › Reporting › Non-Profit
+            › Donor Analytics</strong> gives one row per donor:
+            lifetime giving, this year, last year, and first/last/largest
+            gift. Use the <strong>LYBUNT</strong> filter (gave <em>L</em>ast
+            <em>Y</em>ear <em>B</em>ut <em>U</em>nfortunately <em>N</em>ot
+            <em>T</em>his) to build a lapsed-donor appeal, and
+            <strong>SYBUNT</strong> (<em>S</em>ome <em>Y</em>ear…) for
+            a deeper reactivation list.</p>
+        </field>
+    </record>
+
+    <record id="lesson_year_end" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">Year-end contribution statements</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">32</field>
+        <field name="html_content" type="html">
+            <p><strong>Accounting › Reporting › Non-Profit
+            › Year-End Contribution Statements</strong> - choose the
+            year and a minimum total (defaults to $250), leave the donor
+            list blank to run it for everyone, and print. Each donor gets
+            one PDF listing every gift and the total, with the IRS
+            written-acknowledgement and quid-pro-quo language already on
+            it.</p>
+        </field>
+    </record>
+
+    <!-- ========================= Quiz ========================= -->
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A donor gives office furniture instead of cash. How do you record it?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Don't record it - only cash gifts count</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">A journal entry at fair value, crediting In-Kind Contributions</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">As a vendor bill</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">As a restricted gift</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">At a gala, a donor pays $200 for a ticket to a dinner worth $60. What's deductible?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">The full $200</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">$140 - the amount above the dinner's value</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Nothing - event tickets are never deductible</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only the $60</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">Which list helps you build an appeal to donors who gave last year but not this year?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">LYBUNT</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">The functional-expense grid</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">The net-asset roll-forward</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">The vendor bill list</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Where does a restricted gift's fund get set?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">The same Analytic Distribution field used for any gift</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">It can't be set - restricted gifts are tracked on paper</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">The donor's contact record</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">The tax receipt template</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

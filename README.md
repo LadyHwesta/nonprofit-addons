@@ -87,6 +87,46 @@ Three gaps those stock apps don't cover get their own modules here:
   on the event shows readiness at a glance, with one consolidated
   coordinator To-Do as the event approaches if anything's still open.
 
+## eLearning training
+
+Six small, pure-data modules that each drop one ready-built course into
+Odoo's own **eLearning** app (`website_slides`) - staff train inside the
+same tool they work in, nothing to author by hand. One module per
+functional area, each depending only on what it documents, so an org
+only installs the training that matches what it actually runs (the same
+principle as the modules themselves):
+
+- [`nonprofit_elearning_finance/`](nonprofit_elearning_finance/) - *Fund
+  Accounting for Treasurers*.
+- [`nonprofit_elearning_donations/`](nonprofit_elearning_donations/) -
+  *Processing Donations*.
+- [`nonprofit_elearning_volunteers/`](nonprofit_elearning_volunteers/) -
+  *Volunteer Coordination*.
+- [`nonprofit_elearning_event_venue/`](nonprofit_elearning_event_venue/) -
+  *Vendor Coordinator*.
+- [`nonprofit_elearning_event_parade/`](nonprofit_elearning_event_parade/) -
+  *Parade Coordinator*.
+- [`nonprofit_elearning_event_logistics/`](nonprofit_elearning_event_logistics/) -
+  *Logistics Lead*.
+
+Each course is gated (`visibility="members"`, `enroll="invite"`) with
+everyone already in the matching security group auto-enrolled via
+`enroll_group_ids` - no manual enrollment step - and ends with a
+4-question quiz. Content is adapted from `docs/handbook.html` where it
+already existed, and freshly written for the three events courses.
+
+**Gotcha for anyone adding a course lesson**: a `slide.slide`'s
+`html_content` field (`type="html"`) must hold real inline XML elements
+(`<p>`, `<strong>`, etc.) as actual child nodes - Odoo's data-loader
+schema (`import_xml.rng`) requires `oneOrMore(element)` for an html-typed
+field, and a `<![CDATA[...]]>` block is a single *text* node, not an
+element, so it fails schema validation with a confusing "Element odoo
+has extra content: record" error that points at the wrong line. Write
+the markup as literal XML, and use real Unicode characters (curly quotes,
+"→", "…") instead of HTML named entities like `&hellip;`/`&rsaquo;` -
+those aren't defined in plain XML and only `&amp; &lt; &gt; &apos; &quot;`
+are safe.
+
 ## Third-party
 
 OCA modules this suite depends on that aren't on an installable 19.0 channel yet

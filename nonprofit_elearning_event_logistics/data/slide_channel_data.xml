@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_event_logistics" model="slide.channel">
+        <field name="name">Logistics Lead</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Permits, temporary staff, crew bookings, facilities, and
+            reading the Logistics tab's readiness numbers.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('event.group_event_user')])]" />
+    </record>
+
+    <!-- ===================== Section 1: Permits ===================== -->
+    <record id="section_permits" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Permits</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_checklist" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Building a permit checklist from an event type</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>For a recurring event (an annual festival), add a
+            <strong>Permit Checklist</strong> to its Event Type once - a
+            name, permit type, and how many days before the event it should
+            be submitted by. Then on any event of that type, click
+            <strong>Generate permits from event type</strong> on the
+            Logistics tab and the whole list appears with submit-by dates
+            already calculated - it skips anything already generated, so
+            it's safe to click more than once.</p>
+        </field>
+    </record>
+
+    <record id="lesson_permit_deadlines" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Submit-by and expiry reminders</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>A permit moves through Not Started → Submitted →
+            Approved (or Denied). A daily check flags two situations
+            automatically with a to-do for the responsible person: a
+            not-started permit whose submit-by date is approaching, and an
+            approved permit whose expiry date is coming up for renewal. You
+            don't have to track either on a separate calendar.</p>
+        </field>
+    </record>
+
+    <!-- ============= Section 2: Temporary staff & crews ============= -->
+    <record id="section_staff" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Temporary staff &amp; crews</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_staff_shifts" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Staff shifts and check-in/out</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p>A <strong>Staff Shift</strong> is a role (Security, Setup
+            Crew, Ushers…), a time window, and how many people you
+            need. Add workers to it as they're hired - each gets
+            <strong>Check In</strong> / <strong>Check Out</strong> buttons
+            that compute their hours automatically, the same shape as
+            volunteer shifts, but for paid workers. There's no Community
+            Edition payroll app to hand those hours to, so this stops at
+            producing clean hours worked for whoever runs payroll
+            externally.</p>
+        </field>
+    </record>
+
+    <record id="lesson_crew_bookings" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Crew bookings and day-of contacts</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <p>A <strong>Crew Booking</strong> records the vendor or crew
+            (stage, sound, security, sanitation, generator, tent…),
+            load-in and load-out times, and - the part a purchase order
+            never captures - a <strong>day-of contact name and phone</strong>,
+            since whoever shows up on the truck often isn't who signed the
+            contract. A Purchase Order link is optional, since not every
+            booking runs through formal procurement (an in-kind sponsor,
+            for instance). Move it through Planned → Confirmed →
+            On Site → Complete as the day unfolds.</p>
+        </field>
+    </record>
+
+    <!-- ============ Section 3: Facilities & readiness ============ -->
+    <record id="section_facilities" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Facilities &amp; readiness</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_facilities" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Placing facilities on the vendor map</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <p>Add a <strong>Facility</strong> for each portable toilet
+            cluster, hand-wash station, first-aid tent, or similar - a
+            type, a quantity, and optionally which Crew Booking services
+            it. If the venue map module is installed, open the event's
+            Vendor Map and click <strong>Place Facilities</strong> to arm a
+            facility, then click the map where it actually sits - the same
+            live map vendor booths use, just a second pin layer.</p>
+        </field>
+    </record>
+
+    <record id="lesson_readiness" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">The Logistics tab and the readiness reminder</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">32</field>
+        <field name="html_content" type="html">
+            <p>The event's <strong>Logistics</strong> tab shows four
+            numbers at a glance: permits approved/total, staffing filled
+            percentage, crews confirmed/total, and a facility count. A
+            daily check, starting two weeks before the event by default,
+            raises <strong>one</strong> consolidated to-do for the Logistics
+            Coordinator if anything's still open - a single message listing
+            what's outstanding, not a separate notification per issue.
+            Three printable reports (Permit Status, Staffing Roster, and a
+            combined Crew &amp; Facilities Day-Of Sheet) round out what you
+            can hand to your team.</p>
+        </field>
+    </record>
+
+    <!-- ========================= Quiz ========================= -->
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_event_logistics" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A permit is Not Started and its submit-by date is approaching. What happens?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Nothing - you have to track deadlines yourself</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">A daily check raises a to-do for the responsible person</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">The permit is automatically marked Denied</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">The event is cancelled automatically</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">Does a crew booking require a linked Purchase Order?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Yes, always</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">No - it's optional, since not every booking is a formal purchase</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Only for sound and stage bookings</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Only once the crew is marked On Site</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">If three things are open (a permit, a shift, a crew booking) two weeks before an event, how many to-dos does the readiness check raise?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Three - one per open item</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">One consolidated to-do listing all of them</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">None - it only runs the day of the event</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">One per day until it's resolved</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Where do you place a facility's pin on the map?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">A separate facilities-only map</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">The same live Vendor Map, using Place Facilities mode</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">You can't - facilities have no location</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">On the crew booking's own form only</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

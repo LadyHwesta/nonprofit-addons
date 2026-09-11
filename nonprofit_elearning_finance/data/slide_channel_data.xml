@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_finance" model="slide.channel">
+        <field name="name">Fund Accounting for Treasurers</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>How to record money against the right fund, program, and
+            function, and pull the board and IRS reports that build
+            themselves from those answers.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('account.group_account_user')])]" />
+    </record>
+
+    <!-- ================= Section 1: Getting set up ================= -->
+    <record id="section_setup" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Getting set up</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_setup_coa" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Adding the non-profit chart of accounts</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <p>Before anything else, turn on <strong>Analytic Accounting</strong>
+            under Settings › Accounting - this is what lets you tag a
+            transaction with a fund, and everything below depends on it.</p>
+            <p>Then open <strong>Accounting › Configuration › Add
+            Non-Profit Accounts</strong>. Leave <strong>Code Prefix</strong>
+            blank unless the new account numbers collide with your existing
+            chart, keep <strong>Skip Codes That Already Exist</strong> ticked,
+            and click <strong>Add Accounts</strong>. It adds contribution,
+            grant, special-events, in-kind, functional-expense, and
+            net-asset accounts on top of what you already have - it never
+            changes or removes anything.</p>
+            <p><strong>Safe to re-run:</strong> if you're not sure whether it
+            ran, run it again. Accounts that already exist are skipped.</p>
+        </field>
+    </record>
+
+    <record id="lesson_setup_options" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Setting the fund-accounting options</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <p>Go to <strong>Settings › Accounting › Fund
+            Accounting (Non-Profit)</strong>. Under <strong>Net Assets
+            Released accounts</strong>, click <strong>Detect from
+            chart</strong> to fill the two clearing accounts the
+            restriction-release entry uses, then pick a default
+            <strong>Program</strong> and <strong>Function</strong> so you're
+            not choosing them on every release.</p>
+            <p>Leave <strong>Require a Fund on income &amp; expense</strong>
+            off until you've entered your opening balances and any
+            historical entries. Only then turn it on - once it's on, the
+            system won't let anyone post an income or expense line that
+            isn't 100% assigned to a fund, which is exactly what you want
+            going forward, but would block your opening entries if it's on
+            too soon.</p>
+        </field>
+    </record>
+
+    <!-- ========== Section 2: Funds, programs & functions ========== -->
+    <record id="section_funds" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Funds, programs &amp; functions</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_funds_questions" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">The three questions every transaction answers</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <p><strong>Fund</strong> - whose money is it? The starter funds
+            are Unrestricted (most gifts), With Donor Restrictions - Purpose
+            (must be spent on a specific thing), With Donor Restrictions -
+            Time (can't be spent until a future period), and Perpetual /
+            Endowment (the principal is never spent).</p>
+            <p><strong>Program</strong> - which mission activity? A food
+            pantry, an after-school club, a clinic day. Add one per real
+            activity.</p>
+            <p><strong>Function</strong> - what kind of work? The three Form
+            990 columns: Program Services, Management &amp; General,
+            Fundraising. Every expense is one of these.</p>
+            <p>You answer all three in the same place: the
+            <strong>Analytic Distribution</strong> field on an invoice,
+            bill, or journal-entry line. Set the fund to 100% (split across
+            two if a gift is genuinely shared), then add the Program and
+            Function the same way. That one field feeds every report later
+            in this course.</p>
+        </field>
+    </record>
+
+    <!-- ============ Section 3: Recording and releasing ============ -->
+    <record id="section_recording" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Recording and releasing</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_vendor_bill" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">A vendor bill</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <p>Enter the bill as normal under <strong>Accounting ›
+            Vendors › Bills</strong>. On each expense line, set
+            <strong>Analytic Distribution</strong>: the Fund it's paid
+            from, the Program it serves, and the Function. Split a line if
+            it's shared - e.g. 70% Program Services, 30% Management &amp;
+            General.</p>
+        </field>
+    </record>
+
+    <record id="lesson_release" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Releasing restricted funds</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">32</field>
+        <field name="html_content" type="html">
+            <p>When a donor's purpose has been met or a time restriction has
+            passed, you move that money from the restricted class to
+            unrestricted - with the release wizard, not a hand-written
+            journal entry. Open <strong>Accounting › Non-Profit
+            › Restriction Releases › New</strong>, set
+            <strong>Released From</strong> (the restricted fund) and
+            <strong>Released To</strong> (normally Unrestricted), the
+            amount and date, and click <strong>Post</strong>.</p>
+            <p>Posting creates one balanced journal entry between the two
+            Net Assets Released accounts. On the Statement of Activities it
+            shows as a reduction in the restricted column and an equal
+            increase in the unrestricted column - zero to the bottom line.
+            Made a mistake? Open the release and click <strong>Cancel</strong>
+            to reverse it - never delete the entry by hand.</p>
+            <p>Check your work any time under <strong>Accounting ›
+            Non-Profit › Net-Asset Roll-Forward</strong> - opening
+            balance, revenue, expense, releases in and out, and closing
+            balance, per fund, for any date range.</p>
+        </field>
+    </record>
+
+    <!-- ============= Section 4: Board & IRS reporting ============= -->
+    <record id="section_reporting" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Board &amp; IRS reporting</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="lesson_board_reports" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Statement of Activities &amp; Financial Position</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">41</field>
+        <field name="html_content" type="html">
+            <p>Because every transaction already carries its fund, program,
+            and function, the board reports come out without extra
+            bookkeeping. Find them under <strong>Accounting ›
+            Reporting › MIS Reports</strong> - open the Current Year
+            instance for the <strong>Statement of Activities</strong>
+            (revenue by source, expense by function, change in net assets)
+            and the <strong>Statement of Financial Position</strong> (assets,
+            liabilities, and net assets split into with/without donor
+            restrictions). Add fund-filtered periods to a report instance to
+            show either one broken out by fund.</p>
+        </field>
+    </record>
+
+    <record id="lesson_990" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">The Form 990 functional-expense grid</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">42</field>
+        <field name="html_content" type="html">
+            <p><strong>Accounting › Reporting › Non-Profit
+            › Functional Expenses</strong> gives your 990 preparer a
+            grid of every natural expense account against Program
+            Services, Management &amp; General, and Fundraising - built
+            straight from the Function you set on every expense line.</p>
+        </field>
+    </record>
+
+    <!-- ========================= Quiz ========================= -->
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_finance" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">A donor gives $5,000 that must be spent on the after-school club by June. Which Fund do you use?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Unrestricted</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">With Donor Restrictions - Time</field>
+        <field name="is_correct" eval="True" />
+        <field name="comment">A June deadline is a time condition, not a purpose one - though this gift also names the after-school club as its Program.</field>
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Perpetual / Endowment</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">It doesn't need a fund, only a Program</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">Where do you set the Fund, Program, and Function on a transaction?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">The Analytic Distribution field on the line</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">The customer/vendor's contact record</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">A separate spreadsheet you keep alongside Odoo</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">The journal used to post the entry</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">How do you move money from a restricted fund to unrestricted once the donor's condition is met?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Write a journal entry by hand between the two funds</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">Edit the original donation record's fund field</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">The Restriction Release wizard</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Delete and re-enter the original gift</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Which report gives the 990 preparer expenses by Program Services / Management &amp; General / Fundraising?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">The Net-Asset Roll-Forward</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">The Functional Expenses grid</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">The Statement of Financial Position</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">The donor's tax receipt</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

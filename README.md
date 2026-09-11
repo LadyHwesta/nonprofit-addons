@@ -97,8 +97,9 @@ on the addons path shadows Bootstrap's `scss/vendor/` and breaks
 External OCA modules that _do_ have a 19.0 branch and are just added to the
 addons path (not vendored): `mis-builder` (needs OCA `reporting-engine` +
 `server-ux` too) — required by `nonprofit_reports`; `account-budgeting`.
-`testing/start.sh` picks these up from `~/dev/<repo>` (override with the
-`OCA_*` env vars).
+Clone each repo's `19.0` branch under one clean parent directory,
+`~/dev/oca/<repo>` — `testing/start.sh` picks them up from there by
+default (override with the `OCA_*` env vars if yours live elsewhere).
 
 ## Testing
 

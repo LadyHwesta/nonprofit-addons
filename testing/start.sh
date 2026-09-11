@@ -15,12 +15,13 @@ DB_NAME="${DB_NAME:-nonprofit_test}"
 HTTP_PORT="${HTTP_PORT:-8069}"
 
 # External OCA repos nonprofit_reports needs (mis_builder + its own deps).
-# Clone the 19.0 branch of each next to this repo, or point these at wherever
+# Clone the 19.0 branch of each under ~/dev/oca/ (one clean parent dir for
+# every plain, unmodified OCA dependency repo), or point these at wherever
 # they live. Missing ones are just skipped (nonprofit_reports won't install).
-OCA_MIS_BUILDER="${OCA_MIS_BUILDER:-$HOME/dev/mis-builder}"
-OCA_REPORTING_ENGINE="${OCA_REPORTING_ENGINE:-$HOME/dev/reporting-engine}"
-OCA_SERVER_UX="${OCA_SERVER_UX:-$HOME/dev/server-ux}"
-OCA_ACCOUNT_BUDGETING="${OCA_ACCOUNT_BUDGETING:-$HOME/dev/account-budgeting}"
+OCA_MIS_BUILDER="${OCA_MIS_BUILDER:-$HOME/dev/oca/mis-builder}"
+OCA_REPORTING_ENGINE="${OCA_REPORTING_ENGINE:-$HOME/dev/oca/reporting-engine}"
+OCA_SERVER_UX="${OCA_SERVER_UX:-$HOME/dev/oca/server-ux}"
+OCA_ACCOUNT_BUDGETING="${OCA_ACCOUNT_BUDGETING:-$HOME/dev/oca/account-budgeting}"
 
 if [ ! -d "$DIR/.venv" ] || [ ! -d "$DIR/.pgdata" ]; then
     echo "Not set up yet - run ./setup.sh first." >&2

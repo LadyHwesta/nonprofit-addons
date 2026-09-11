@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="paperformat_parade_sign" model="report.paperformat">
+        <field name="name">US Letter Landscape (Parade Sign)</field>
+        <field name="default" eval="False" />
+        <field name="format">Letter</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_parade_entry_sign" model="ir.actions.report">
+        <field name="name">Parade Entry Sign</field>
+        <field name="model">event.parade.entry</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_parade.parade_entry_sign</field>
+        <field name="report_file">nonprofit_event_parade.parade_entry_sign</field>
+        <field name="print_report_name">'Entry Sign - %s' % object.name</field>
+        <field name="paperformat_id" ref="paperformat_parade_sign" />
+        <field name="binding_model_id" ref="model_event_parade_entry" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="parade_entry_sign">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <div t-attf-class="o_parade_sign #{'' if o_last else 'o_parade_sign_page_break'}">
+                    <div class="o_parade_sign_number"><span t-esc="o.entry_number or '?'" /></div>
+                    <div class="o_parade_sign_name"><span t-field="o.name" /></div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

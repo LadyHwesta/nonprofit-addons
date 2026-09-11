@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class EventEvent(models.Model):
@@ -37,3 +38,36 @@ class EventEvent(models.Model):
         action["domain"] = [("event_id", "=", self.id)]
         action["context"] = {"default_event_id": self.id}
         return action
+
+    def action_auto_number_entries(self):
+        self.ensure_one()
+        entries = self.parade_entry_ids.filtered(
+            lambda e: e.state == "confirmed"
+        ).sorted(key=lambda e: (e.staging_area_id.sequence, e.sequence, e.id))
+        if not entries:
+            raise UserError(_(
+                "No confirmed entries to number yet - confirm entries for "
+                "the lineup first."))
+        for number, entry in enumerate(entries, start=1):
+            entry.entry_number = number
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Entry numbers assigned"),
+                "message": _(
+                    "%(count)s confirmed entries numbered 1-%(count)s.",
+                    count=len(entries)),
+                "type": "success",
+            },
+        }
+
+    def action_print_entry_signs(self):
+        self.ensure_one()
+        entries = self.parade_entry_ids.filtered(
+            lambda e: e.state == "confirmed")
+        if not entries:
+            raise UserError(_("No confirmed entries to print signs for yet."))
+        return self.env.ref(
+            "nonprofit_event_parade.action_report_parade_entry_sign"
+        ).report_action(entries, config=False)

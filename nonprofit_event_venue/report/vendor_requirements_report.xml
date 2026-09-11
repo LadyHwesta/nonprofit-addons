@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_vendor_requirements" model="ir.actions.report">
+        <field name="name">Vendor Requirements</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_venue.vendor_requirements</field>
+        <field name="report_file">nonprofit_event_venue.vendor_requirements</field>
+        <field name="print_report_name">'Vendor Requirements - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="vendor_requirements">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Vendor Requirements</h2>
+                        <h4 class="text-muted"><span t-field="o.name" /></h4>
+                        <p class="text-muted">
+                            Every booth with its spot(s) and any special
+                            requirements - for planning power drops, load-in
+                            coordination, and vendor communications.
+                        </p>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <th>Booth</th>
+                                    <th>Row</th>
+                                    <th>Spot(s)</th>
+                                    <th>Category</th>
+                                    <th>Needs Power</th>
+                                    <th>Double/Multi-Wide</th>
+                                    <th>Contact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.event_booth_ids.sorted(
+                                        lambda b: (b.partner_id.display_name or b.name or ''))"
+                                    t-as="booth">
+                                    <td><span t-esc="booth.partner_id.display_name or 'Unrented'" /></td>
+                                    <td><span t-field="booth.name" /></td>
+                                    <td><span t-esc="booth.row_id.label or ''" /></td>
+                                    <td><span t-esc="booth.spot_range_display or ''" /></td>
+                                    <td><span t-esc="booth.booth_category_id.name or ''" /></td>
+                                    <td>
+                                        <span t-if="booth.needs_power">Yes</span>
+                                        <span t-else="">—</span>
+                                    </td>
+                                    <td>
+                                        <span t-if="booth.spot_width and booth.spot_width > 1"
+                                              t-esc="'%s spots' % booth.spot_width" />
+                                        <span t-else="">—</span>
+                                    </td>
+                                    <td>
+                                        <span t-esc="booth.contact_name or ''" />
+                                        <span t-if="booth.contact_phone">
+                                            — <span t-esc="booth.contact_phone" />
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p t-if="not o.event_booth_ids" class="text-muted">
+                            No booths added yet for this event.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

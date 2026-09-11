@@ -30,12 +30,13 @@
                                         <th>Category</th>
                                         <th>Renter</th>
                                         <th>Contact</th>
+                                        <th>Power</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr t-foreach="row.booth_ids.sorted('spot_number')"
                                         t-as="booth">
-                                        <td><span t-field="booth.spot_number" /></td>
+                                        <td><span t-esc="booth.spot_range_display or ''" /></td>
                                         <td><span t-field="booth.name" /></td>
                                         <td><span t-esc="booth.booth_category_id.name or ''" /></td>
                                         <td><span t-esc="booth.partner_id.display_name or 'Unrented'" /></td>
@@ -44,6 +45,9 @@
                                             <span t-if="booth.contact_phone">
                                                 — <span t-esc="booth.contact_phone" />
                                             </span>
+                                        </td>
+                                        <td>
+                                            <span t-if="booth.needs_power">⚡</span>
                                         </td>
                                     </tr>
                                 </tbody>

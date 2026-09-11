@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class EventParadeEntry(models.Model):
@@ -57,8 +57,32 @@ class EventParadeEntry(models.Model):
         domain="[('event_id', '=', event_id)]")
     sequence = fields.Integer(
         default=10, help="Lineup / marching order.")
+    entry_number = fields.Integer(
+        string="Entry #", copy=False,
+        help="The number printed on this entry's sign and used in the "
+             "printed entry lists - a stable identifier, separate from "
+             "lineup order (which can still be rearranged during staging).")
     step_off_time = fields.Datetime(copy=False)
     notes = fields.Text(string="Internal Notes")
+
+    @api.constrains("event_id", "entry_number")
+    def _check_entry_number_unique(self):
+        # entry_number is 0 (not NULL) until assigned - an Integer column
+        # has no "unset" state - so a plain SQL unique constraint would
+        # reject the second unnumbered entry for an event. Skip zero here
+        # and only enforce uniqueness once a real number is assigned.
+        for entry in self:
+            if not entry.entry_number:
+                continue
+            dup = self.search_count([
+                ("id", "!=", entry.id),
+                ("event_id", "=", entry.event_id.id),
+                ("entry_number", "=", entry.entry_number),
+            ])
+            if dup:
+                raise ValidationError(_(
+                    "Entry #%(number)s is already used by another entry "
+                    "for this event.", number=entry.entry_number))
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -40,8 +40,19 @@
                     <button name="%(action_parade_step_off_wizard)d"
                             type="action" string="Set Step-Off Times..."
                             class="btn-secondary" context="{'default_event_id': id}" />
+                    <button name="action_auto_number_entries" type="object"
+                            string="Assign Entry Numbers" class="btn-secondary" />
+                    <br />
                     <button name="%(action_report_parade_lineup)d" type="action"
                             string="Print Lineup Sheet" class="btn-secondary" />
+                    <button name="%(action_report_parade_entry_list_by_number)d"
+                            type="action" string="Print Entry List (by Number)"
+                            class="btn-secondary" />
+                    <button name="%(action_report_parade_entry_list_by_name)d"
+                            type="action" string="Print Entry List (by Name)"
+                            class="btn-secondary" />
+                    <button name="action_print_entry_signs" type="object"
+                            string="Print Entry Signs" class="btn-secondary" />
                 </page>
             </notebook>
         </field>

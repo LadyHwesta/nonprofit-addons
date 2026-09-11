@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Logistics",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Marketing/Events",
     "summary": "Permits, temp staff shifts, crew bookings and facility placement",
     "description": """
@@ -29,6 +29,9 @@ hourly staffing, and vendor/crew day-of logistics - while leaving
 * A **Logistics tab** on the event with at-a-glance readiness numbers,
   and a consolidated, deduped coordinator To-Do when the event is
   approaching with open items.
+* Starter reports for the logistics team: a **Permit Status Report**, a
+  **Staffing Roster** (shift by shift, who's assigned), and a combined
+  **Crew & Facilities Day-Of Sheet**.
 """,
     "author": "Tiesa",
     "license": "LGPL-3",
@@ -42,6 +45,9 @@ hourly staffing, and vendor/crew day-of logistics - while leaving
         "views/event_staff_views.xml",
         "views/event_crew_booking_views.xml",
         "views/event_facility_views.xml",
+        "report/permit_status_report.xml",
+        "report/staffing_roster_report.xml",
+        "report/crew_day_of_sheet_report.xml",
         "views/event_event_views.xml",
         "views/menus.xml",
     ],

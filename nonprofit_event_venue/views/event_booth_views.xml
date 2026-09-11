@@ -10,6 +10,8 @@
                 <group name="placement" string="Placement">
                     <field name="row_id" />
                     <field name="spot_number" />
+                    <field name="spot_width" />
+                    <field name="needs_power" />
                     <field name="booth_label" />
                     <field name="latitude" readonly="1" groups="base.group_no_one" />
                     <field name="longitude" readonly="1" groups="base.group_no_one" />
@@ -25,7 +27,8 @@
         <field name="arch" type="xml">
             <field name="booth_category_id" position="after">
                 <field name="row_id" optional="show" />
-                <field name="spot_number" optional="show" />
+                <field name="spot_range_display" string="Spot" optional="show" />
+                <field name="needs_power" optional="hide" widget="boolean_toggle" />
             </field>
         </field>
     </record>
@@ -38,6 +41,10 @@
             <filter name="group_by_booth_category_id" position="after">
                 <filter string="Row" name="group_by_row"
                         context="{'group_by': 'row_id'}" />
+            </filter>
+            <filter name="filter_booth_unavailable" position="after">
+                <filter string="Needs Power" name="filter_needs_power"
+                        domain="[('needs_power', '=', True)]" />
             </filter>
         </field>
     </record>

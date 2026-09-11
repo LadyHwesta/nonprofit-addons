@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_parade_entry_list_by_number" model="ir.actions.report">
+        <field name="name">Parade Entry List (by Number)</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_parade.parade_entry_list_by_number</field>
+        <field name="report_file">nonprofit_event_parade.parade_entry_list_by_number</field>
+        <field name="print_report_name">'Parade Entries by Number - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_parade_entry_list_by_name" model="ir.actions.report">
+        <field name="name">Parade Entry List (by Name)</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_parade.parade_entry_list_by_name</field>
+        <field name="report_file">nonprofit_event_parade.parade_entry_list_by_name</field>
+        <field name="print_report_name">'Parade Entries by Name - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="parade_entry_list_inner">
+        <!-- expects ambient "o" (the event), "entries" (pre-sorted) and
+             "list_title" from the caller. -->
+        <div class="page">
+            <h2><t t-esc="list_title" /></h2>
+            <h4 class="text-muted"><span t-field="o.name" /></h4>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Entry</th>
+                        <th>Organization</th>
+                        <th>Type</th>
+                        <th class="text-end">Participants</th>
+                        <th>Contact</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="entries" t-as="entry">
+                        <td><span t-esc="entry.entry_number or '—'" /></td>
+                        <td><span t-field="entry.name" /></td>
+                        <td><span t-esc="entry.org_name or ''" /></td>
+                        <td><span t-esc="dict(entry._fields['entry_type'].selection).get(entry.entry_type)" /></td>
+                        <td class="text-end"><span t-field="entry.participant_count" /></td>
+                        <td>
+                            <span t-esc="entry.contact_name or ''" />
+                            <span t-if="entry.contact_phone">
+                                — <span t-esc="entry.contact_phone" />
+                            </span>
+                        </td>
+                        <td><span t-esc="dict(entry._fields['state'].selection).get(entry.state)" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p t-if="not entries" class="text-muted">No parade entries yet.</p>
+        </div>
+    </template>
+
+    <template id="parade_entry_list_by_number">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-call="nonprofit_event_parade.parade_entry_list_inner">
+                        <t t-set="entries" t-value="o.parade_entry_ids.sorted('entry_number')" />
+                        <t t-set="list_title">Parade Entry List — By Number</t>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="parade_entry_list_by_name">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <t t-call="nonprofit_event_parade.parade_entry_list_inner">
+                        <t t-set="entries" t-value="o.parade_entry_ids.sorted('name')" />
+                        <t t-set="list_title">Parade Entry List — By Name</t>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

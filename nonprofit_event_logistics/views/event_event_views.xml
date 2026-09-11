@@ -37,6 +37,8 @@
                     <separator string="Permits" />
                     <button name="action_generate_permits_from_type" type="object"
                             string="Generate permits from event type" class="btn-link" />
+                    <button name="%(action_report_permit_status)d" type="action"
+                            string="Print Permit Status Report" class="btn-link" />
                     <field name="permit_ids">
                         <list editable="bottom">
                             <field name="name" />
@@ -48,6 +50,8 @@
                     </field>
 
                     <separator string="Staff Shifts" />
+                    <button name="%(action_report_staffing_roster)d" type="action"
+                            string="Print Staffing Roster" class="btn-link" />
                     <field name="staff_shift_ids">
                         <list editable="bottom">
                             <field name="name" />
@@ -60,6 +64,9 @@
                     </field>
 
                     <separator string="Crew Bookings" />
+                    <button name="%(action_report_crew_day_of_sheet)d" type="action"
+                            string="Print Crew &amp; Facilities Day-Of Sheet"
+                            class="btn-link" />
                     <field name="crew_booking_ids">
                         <list editable="bottom">
                             <field name="partner_id" />

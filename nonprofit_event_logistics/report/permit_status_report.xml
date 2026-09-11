@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_permit_status" model="ir.actions.report">
+        <field name="name">Permit Status Report</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_logistics.permit_status</field>
+        <field name="report_file">nonprofit_event_logistics.permit_status</field>
+        <field name="print_report_name">'Permit Status - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="permit_status">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Permit Status Report</h2>
+                        <h4 class="text-muted"><span t-field="o.name" /></h4>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Permit</th>
+                                    <th>Type</th>
+                                    <th>Issuing Authority</th>
+                                    <th>Permit #</th>
+                                    <th>Responsible</th>
+                                    <th>Submit By</th>
+                                    <th>Expires</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.permit_ids.sorted('submit_by_date')"
+                                    t-as="permit">
+                                    <td><span t-field="permit.name" /></td>
+                                    <td><span t-esc="dict(permit._fields['permit_type'].selection).get(permit.permit_type)" /></td>
+                                    <td><span t-esc="permit.issuing_authority or ''" /></td>
+                                    <td><span t-esc="permit.permit_number or ''" /></td>
+                                    <td><span t-esc="permit.responsible_id.name or ''" /></td>
+                                    <td><span t-field="permit.submit_by_date" /></td>
+                                    <td><span t-field="permit.expiry_date" /></td>
+                                    <td><span t-esc="dict(permit._fields['state'].selection).get(permit.state)" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p t-if="not o.permit_ids" class="text-muted">
+                            No permits added yet for this event.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <list default_order="staging_area_id, sequence">
                 <field name="sequence" widget="handle" />
+                <field name="entry_number" optional="show" />
                 <field name="name" />
                 <field name="org_name" optional="show" />
                 <field name="entry_type" />
@@ -69,6 +70,7 @@
                         <group>
                             <field name="staging_area_id" />
                             <field name="sequence" />
+                            <field name="entry_number" />
                             <field name="step_off_time" />
                         </group>
                     </group>

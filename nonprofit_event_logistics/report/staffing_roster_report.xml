@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_staffing_roster" model="ir.actions.report">
+        <field name="name">Staffing Roster</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_logistics.staffing_roster</field>
+        <field name="report_file">nonprofit_event_logistics.staffing_roster</field>
+        <field name="print_report_name">'Staffing Roster - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="staffing_roster">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Staffing Roster</h2>
+                        <h4 class="text-muted"><span t-field="o.name" /></h4>
+
+                        <t t-foreach="o.staff_shift_ids.sorted('start')" t-as="shift">
+                            <h5 class="mt-4">
+                                <span t-field="shift.name" /> —
+                                <span t-esc="shift.role_id.name" />
+                                <span class="text-muted">
+                                    (<span t-field="shift.start" /> -
+                                    <span t-field="shift.stop" />,
+                                    <span t-esc="shift.filled_count" />/<span t-esc="shift.headcount_needed" /> filled)
+                                </span>
+                            </h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Worker</th>
+                                        <th>Phone</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="shift.assignment_ids" t-as="assignment">
+                                        <td><span t-esc="assignment.partner_id.display_name" /></td>
+                                        <td><span t-esc="assignment.partner_id.phone or ''" /></td>
+                                        <td><span t-esc="dict(assignment._fields['state'].selection).get(assignment.state)" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p t-if="not shift.assignment_ids" class="text-muted">
+                                Nobody assigned yet.
+                            </p>
+                        </t>
+                        <p t-if="not o.staff_shift_ids" class="text-muted">
+                            No staff shifts added yet for this event.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

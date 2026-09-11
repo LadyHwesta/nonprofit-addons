@@ -41,6 +41,17 @@ dependency at runtime).
 A **Vendor Load-In Manifest** PDF (event's Print menu) lists booths
 grouped by row in spot order - the paper backup for morning-of setup.
 
+### Vendor requirements
+
+A booth can be flagged **Needs Power** and given a **Spots Wide** count
+(2+ for a double-wide vendor, etc.) - a booth's row/spot display and its
+load-in manifest row both show the full range it occupies (e.g. "5-6"),
+and placing a second booth that would overlap that range is blocked
+(`_check_no_spot_overlap`). A separate **Vendor Requirements** PDF lists
+every booth with its vendor, spot(s), power needs, and width - sorted by
+vendor, for planning power drops and load-in coordination ahead of the
+day-of manifest above.
+
 ## A note on the map tiles
 
 The public OpenStreetMap tile server this module points at has a usage

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Venue Map",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Marketing/Events",
     "summary": "Row/spot vendor placement with a live OpenStreetMap vendor map",
     "description": """
@@ -32,6 +32,7 @@ Extends *Events Booths* (``event_booth``): give every booth a plain
         "security/ir.model.access.csv",
         "wizard/venue_map_calibrate_views.xml",
         "report/vendor_manifest_report.xml",
+        "report/vendor_requirements_report.xml",
         "views/event_venue_row_views.xml",
         "views/event_booth_views.xml",
         "views/vendor_map_action.xml",

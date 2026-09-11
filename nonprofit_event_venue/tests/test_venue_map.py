@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 
-from psycopg2 import IntegrityError
-
+from odoo.exceptions import ValidationError
 from odoo.tests import TransactionCase, tagged
 
 from ..models.geo import destination_point
@@ -111,8 +110,16 @@ class TestVenueMap(TransactionCase):
 
     def test_row_spot_unique_per_row(self):
         self._make_booth(self.row_a, 1, "First")
-        with self.assertRaises(IntegrityError), self.env.cr.savepoint():
+        with self.assertRaises(ValidationError):
             self._make_booth(self.row_a, 1, "Duplicate spot")
+
+    def test_unassigned_spot_number_does_not_collide(self):
+        # Both left at the default spot_number (0, unassigned) - this must
+        # NOT be treated as a collision the way two real matching spot
+        # numbers would be.
+        self._make_booth(self.row_a, 0, "Unplaced 1")
+        booth = self._make_booth(self.row_a, 0, "Unplaced 2")
+        self.assertTrue(booth)
 
     def test_calibrate_rejects_same_sequence_rows(self):
         same_seq_row = self.env["event.venue.row"].create({

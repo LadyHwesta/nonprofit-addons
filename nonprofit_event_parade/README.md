@@ -28,3 +28,11 @@ stamps a step-off time a fixed number of minutes after the one before.
 The **Parade Lineup Sheet** PDF (event's Print menu) lists confirmed
 entries by staging area and order, with step-off time, contact, and
 special requirements - the paper marshals actually carry.
+
+**Assign Entry Numbers** (event's Parade tab) numbers every confirmed
+entry sequentially, staging area then lineup order - a stable identifier
+separate from lineup order itself, since that can still get rearranged
+during staging. Two **Parade Entry List** PDFs (by number, by name) give
+the full roster either way. **Print Entry Signs** makes one big, one-per-
+page 8.5x11 landscape sign per confirmed entry - a large entry number
+with the entrant's name underneath, sized to read from a distance.

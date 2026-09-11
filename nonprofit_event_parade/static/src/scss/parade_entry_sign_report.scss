@@ -1,0 +1,24 @@
+.o_parade_sign_page_break {
+    page-break-after: always;
+}
+
+.o_parade_sign {
+    height: 190mm;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .o_parade_sign_number {
+        font-weight: 700;
+        font-size: 260pt;
+        line-height: 1;
+    }
+
+    .o_parade_sign_name {
+        margin-top: 12mm;
+        font-size: 40pt;
+    }
+}

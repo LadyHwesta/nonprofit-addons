@@ -59,3 +59,16 @@ readiness cron, starting 14 days before an event (configurable via
 `nonprofit_event_logistics.readiness_horizon_days`), raises **one**
 consolidated To-Do for the event's Logistics Coordinator listing what's
 still open - deliberately one activity, not a flood of separate ones.
+
+### Starter reports
+
+Three reports, meant as a first pass to tune with the Logistics Lead:
+
+- **Permit Status Report** - every permit, its authority/number,
+  submit-by/expiry dates, responsible person, and status.
+- **Staffing Roster** - shift by shift (role, time window, fill count),
+  with who's assigned and their phone number.
+- **Crew & Facilities Day-Of Sheet** - one page: every crew booking
+  (service, load-in/out, day-of contact) and every facility (type,
+  quantity, who services it) - the thing to have printed and in-pocket
+  on event day.

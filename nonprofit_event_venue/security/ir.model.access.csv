@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_event_venue_row_desk,event.venue.row.desk,model_event_venue_row,event.group_event_registration_desk,1,0,0,0
+access_event_venue_row_user,event.venue.row.user,model_event_venue_row,event.group_event_user,1,1,1,1
+access_nonprofit_venue_map_calibrate,nonprofit.venue.map.calibrate,model_nonprofit_venue_map_calibrate,event.group_event_user,1,1,1,1

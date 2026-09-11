@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_booth_view_form_from_event_placement" model="ir.ui.view">
+        <field name="name">event.booth.view.form.from.event.placement</field>
+        <field name="model">event.booth</field>
+        <field name="inherit_id" ref="event_booth.event_booth_view_form_from_event" />
+        <field name="arch" type="xml">
+            <group name="details" position="after">
+                <group name="placement" string="Placement">
+                    <field name="row_id" />
+                    <field name="spot_number" />
+                    <field name="booth_label" />
+                    <field name="latitude" readonly="1" groups="base.group_no_one" />
+                    <field name="longitude" readonly="1" groups="base.group_no_one" />
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="event_booth_view_tree_from_event_placement" model="ir.ui.view">
+        <field name="name">event.booth.view.list.from.event.placement</field>
+        <field name="model">event.booth</field>
+        <field name="inherit_id" ref="event_booth.event_booth_view_tree_from_event" />
+        <field name="arch" type="xml">
+            <field name="booth_category_id" position="after">
+                <field name="row_id" optional="show" />
+                <field name="spot_number" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="event_booth_view_search_placement" model="ir.ui.view">
+        <field name="name">event.booth.view.search.placement</field>
+        <field name="model">event.booth</field>
+        <field name="inherit_id" ref="event_booth.event_booth_view_search" />
+        <field name="arch" type="xml">
+            <filter name="group_by_booth_category_id" position="after">
+                <filter string="Row" name="group_by_row"
+                        context="{'group_by': 'row_id'}" />
+            </filter>
+        </field>
+    </record>
+
+</odoo>

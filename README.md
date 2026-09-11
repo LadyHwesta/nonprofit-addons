@@ -45,6 +45,36 @@ layers onto an existing localization.
 
 All seven planned modules are in place; see the module READMEs for detail.
 
+## Events: vendors, stage shows, parades
+
+Fundraising and street-fair-style events (beer/wine/swag sales, drag and
+other live performances, a full Pride event with vendors/parade/stage
+shows) mostly run on **stock Odoo 19 CE apps** — install these, no
+module here required:
+
+- `event` + `event_sale` — events, tickets, registrations.
+- `event_booth` + `event_booth_sale` — vendor booths, availability,
+  sale-order-linked rental.
+- `website_event_track` — stage shows/performances as `event.track`
+  records against `event.track.location` ("stages"), with a built-in
+  double-booking guard per location.
+- `point_of_sale` (+ `pos_event_sale` for ticket sales through a POS) —
+  beer/wine/swag sales.
+- Routing event revenue to a Program analytic tag (for the reports in
+  `nonprofit_reports`) is a **configuration** step — an
+  `account.analytic.distribution.model` record — not code.
+
+Two gaps those stock apps don't cover get their own modules here:
+
+- [`nonprofit_event_venue/`](nonprofit_event_venue/) — give every booth a
+  plain **row + spot number**; a two-point calibration wizard (read two
+  coordinates off a map, no trigonometry) turns that into a live,
+  OpenStreetMap-based **vendor placement map** plus a load-in manifest PDF.
+- [`nonprofit_event_parade/`](nonprofit_event_parade/) — a **public,
+  no-login parade-entry application page**, coordinator approve/reject
+  and staging-area/lineup-order assignment, a step-off-time wizard, and
+  a parade lineup sheet PDF.
+
 ## Third-party
 
 OCA modules this suite depends on that aren't on an installable 19.0 channel yet

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_event_view_form_parade" model="ir.ui.view">
+        <field name="name">event.event.view.form.parade</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="action_view_parade_entries"
+                        type="object" icon="fa-flag">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="parade_entry_count" />
+                        </span>
+                        <span class="o_stat_text">Parade Entries</span>
+                    </div>
+                </button>
+            </div>
+            <notebook position="inside">
+                <page string="Parade" name="parade">
+                    <group>
+                        <group>
+                            <field name="parade_enabled" />
+                            <field name="parade_entry_deadline" />
+                            <field name="parade_coordinator_id" />
+                        </group>
+                        <group>
+                            <label for="id" string="Public application page" />
+                            <div>
+                                <span>/event/</span>
+                                <field name="id" readonly="1" class="oe_inline" />
+                                <span>/parade/apply</span>
+                            </div>
+                        </group>
+                    </group>
+                    <button name="%(action_event_parade_staging_area)d" type="action"
+                            string="Staging Areas" class="btn-secondary"
+                            context="{'default_event_id': id}" />
+                    <button name="%(action_parade_step_off_wizard)d"
+                            type="action" string="Set Step-Off Times..."
+                            class="btn-secondary" context="{'default_event_id': id}" />
+                    <button name="%(action_report_parade_lineup)d" type="action"
+                            string="Print Lineup Sheet" class="btn-secondary" />
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_event_view_form_venue" model="ir.ui.view">
+        <field name="name">event.event.view.form.venue</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" name="action_view_venue_rows"
+                        type="object" icon="fa-th-list">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="row_count" />
+                        </span>
+                        <span class="o_stat_text">Rows</span>
+                    </div>
+                </button>
+            </div>
+            <notebook position="inside">
+                <page string="Vendor Map" name="vendor_map">
+                    <group>
+                        <field name="map_enabled" />
+                    </group>
+                    <button name="%(nonprofit_event_venue.action_venue_map_calibrate)d"
+                            type="action" string="Calibrate from two points..."
+                            class="btn-secondary" context="{'default_event_id': id}" />
+                    <button name="action_view_vendor_map" type="object"
+                            string="Open Vendor Map" class="btn-secondary"
+                            invisible="not map_enabled" />
+                    <group string="Calibration" invisible="not map_enabled">
+                        <group>
+                            <field name="map_origin_lat" />
+                            <field name="map_origin_lng" />
+                        </group>
+                        <group>
+                            <field name="map_spot_bearing_deg" />
+                            <field name="map_spot_spacing_m" />
+                            <field name="map_row_bearing_deg" />
+                            <field name="map_row_spacing_m" />
+                        </group>
+                    </group>
+                    <p class="text-muted">
+                        Give the venue its rows (the "Rows" button above),
+                        assign each booth a row and spot number on the
+                        Booths tab, then calibrate the map once - every
+                        booth's pin follows automatically from its row/spot.
+                    </p>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

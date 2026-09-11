@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="parade_step_off_wizard_view_form" model="ir.ui.view">
+        <field name="model">nonprofit.parade.step_off.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Set Parade Step-Off Times">
+                <field name="event_id" invisible="1" />
+                <p class="text-muted">
+                    Walks every <strong>confirmed</strong> entry in staging-
+                    area then lineup order, stamping each one's step-off
+                    time a fixed number of minutes after the one before it.
+                </p>
+                <group>
+                    <field name="staging_area_id" />
+                    <field name="start_time" />
+                    <field name="gap_minutes" />
+                </group>
+                <footer>
+                    <button name="action_apply" type="object"
+                            string="Set Times" class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_parade_step_off_wizard" model="ir.actions.act_window">
+        <field name="name">Set Parade Step-Off Times</field>
+        <field name="res_model">nonprofit.parade.step_off.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

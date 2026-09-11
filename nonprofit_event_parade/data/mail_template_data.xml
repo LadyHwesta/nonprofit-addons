@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="mail_template_parade_application_received" model="mail.template">
+        <field name="name">Parade Entry: Application Received</field>
+        <field name="model_id" ref="model_event_parade_entry" />
+        <field name="subject">We received your parade entry for {{ object.event_id.name }}</field>
+        <field name="email_to">{{ object.contact_email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Hi <t t-out="object.contact_name" />,</p>
+                <p>
+                    Thanks for applying to bring
+                    <strong t-out="object.name" /> to the
+                    <t t-out="object.event_id.name" /> parade. We've got
+                    your application and will follow up once it's been
+                    reviewed.
+                </p>
+                <p>Thanks,<br />
+                    <t t-out="object.event_id.company_id.name" />
+                </p>
+            </div>
+        </field>
+    </record>
+
+</odoo>

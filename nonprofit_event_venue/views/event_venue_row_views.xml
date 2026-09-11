@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_venue_row_view_list" model="ir.ui.view">
+        <field name="model">event.venue.row</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="label" />
+                <field name="booth_count" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_event_venue_row" model="ir.actions.act_window">
+        <field name="name">Venue Rows</field>
+        <field name="res_model">event.venue.row</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'default_event_id': active_id}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a row</p>
+            <p>Rows give every booth an address ("Row C, Spot 12") - give
+               them a sequence in the order they actually sit on the ground,
+               starting from the one you'll calibrate the map from.</p>
+        </field>
+    </record>
+
+</odoo>

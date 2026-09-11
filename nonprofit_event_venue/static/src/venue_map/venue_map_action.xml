@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="nonprofit_event_venue.VendorMapAction">
+        <div class="o_nonprofit_vendor_map d-flex flex-column h-100">
+            <div class="p-2 border-bottom bg-light d-flex align-items-center justify-content-between">
+                <h5 class="m-0" t-if="state.event">
+                    Vendor Map — <t t-esc="state.event.name" />
+                </h5>
+                <div class="text-muted small">
+                    <span class="me-3">
+                        <span class="o_nonprofit_map_dot" style="background:#2e6e7e" /> Available
+                    </span>
+                    <span>
+                        <span class="o_nonprofit_map_dot" style="background:#3f7d4f" /> Rented
+                    </span>
+                </div>
+            </div>
+            <div t-if="state.loading" class="p-4 text-muted">Loading…</div>
+            <div t-elif="!state.event" class="p-4 text-muted">
+                No event given - open this from an event's "Open Vendor Map" button.
+            </div>
+            <div t-else="" t-ref="map" class="o_nonprofit_vendor_map_canvas flex-grow-1" />
+        </div>
+    </t>
+</templates>

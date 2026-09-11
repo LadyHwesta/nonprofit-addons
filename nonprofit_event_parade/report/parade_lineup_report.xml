@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_parade_lineup" model="ir.actions.report">
+        <field name="name">Parade Lineup Sheet</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_parade.parade_lineup</field>
+        <field name="report_file">nonprofit_event_parade.parade_lineup</field>
+        <field name="print_report_name">'Parade Lineup - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="parade_lineup">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Parade Lineup Sheet</h2>
+                        <h4 class="text-muted"><span t-field="o.name" /></h4>
+
+                        <t t-set="confirmed"
+                           t-value="o.parade_entry_ids.filtered(lambda e: e.state == 'confirmed').sorted(lambda e: (e.staging_area_id.sequence, e.sequence))" />
+                        <t t-set="areas" t-value="confirmed.mapped('staging_area_id')" />
+
+                        <t t-foreach="areas" t-as="area">
+                            <h5 class="mt-4"><span t-field="area.name" /></h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Order</th>
+                                        <th>Step-Off</th>
+                                        <th>Unit</th>
+                                        <th>Type</th>
+                                        <th>Contact</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="confirmed.filtered(lambda e: e.staging_area_id == area)"
+                                        t-as="entry">
+                                        <td><span t-esc="entry_index + 1" /></td>
+                                        <td><span t-field="entry.step_off_time" /></td>
+                                        <td><span t-field="entry.name" /></td>
+                                        <td><span t-esc="dict(entry._fields['entry_type'].selection).get(entry.entry_type)" /></td>
+                                        <td>
+                                            <span t-esc="entry.contact_name" /> —
+                                            <span t-esc="entry.contact_phone or entry.contact_email" />
+                                        </td>
+                                        <td><span t-esc="entry.special_requirements or ''" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <p t-if="not confirmed" class="text-muted">
+                            No confirmed entries yet.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

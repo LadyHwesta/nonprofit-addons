@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_vendor_map" model="ir.actions.client">
+        <field name="name">Vendor Map</field>
+        <field name="tag">nonprofit_event_venue.vendor_map</field>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

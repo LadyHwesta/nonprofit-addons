@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_vendor_manifest" model="ir.actions.report">
+        <field name="name">Vendor Load-In Manifest</field>
+        <field name="model">event.event</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_venue.vendor_manifest</field>
+        <field name="report_file">nonprofit_event_venue.vendor_manifest</field>
+        <field name="print_report_name">'Vendor Manifest - %s' % object.name</field>
+        <field name="binding_model_id" ref="event.model_event_event" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="vendor_manifest">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Vendor Load-In Manifest</h2>
+                        <h4 class="text-muted"><span t-field="o.name" /></h4>
+
+                        <t t-foreach="o.row_ids.sorted('sequence')" t-as="row">
+                            <h5 class="mt-4"><span t-field="row.label" /></h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Spot</th>
+                                        <th>Booth</th>
+                                        <th>Category</th>
+                                        <th>Renter</th>
+                                        <th>Contact</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="row.booth_ids.sorted('spot_number')"
+                                        t-as="booth">
+                                        <td><span t-field="booth.spot_number" /></td>
+                                        <td><span t-field="booth.name" /></td>
+                                        <td><span t-esc="booth.booth_category_id.name or ''" /></td>
+                                        <td><span t-esc="booth.partner_id.display_name or 'Unrented'" /></td>
+                                        <td>
+                                            <span t-esc="booth.contact_name or ''" />
+                                            <span t-if="booth.contact_phone">
+                                                — <span t-esc="booth.contact_phone" />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <p t-if="not o.row_ids" class="text-muted">
+                            No rows defined yet for this event.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

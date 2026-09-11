@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="venue_map_calibrate_view_form" model="ir.ui.view">
+        <field name="model">nonprofit.venue.map.calibrate</field>
+        <field name="arch" type="xml">
+            <form string="Calibrate Venue Map">
+                <field name="event_id" invisible="1" />
+                <p class="text-muted">
+                    Read two coordinates off a map (Google Maps, OpenStreetMap,
+                    or a phone GPS reading on-site) and this fills in the
+                    event's map calibration for you - no trigonometry needed.
+                </p>
+                <group string="1. A row's Spot 1 (the anchor point)">
+                    <group>
+                        <field name="origin_row_id" />
+                    </group>
+                    <group>
+                        <field name="origin_lat" />
+                        <field name="origin_lng" />
+                    </group>
+                </group>
+                <group string="2. Another spot on that same row">
+                    <group>
+                        <field name="spot_calib_number" />
+                    </group>
+                    <group>
+                        <field name="spot_calib_lat" />
+                        <field name="spot_calib_lng" />
+                    </group>
+                </group>
+                <group string="3. Spot 1 on a different row">
+                    <group>
+                        <field name="row_calib_row_id" />
+                    </group>
+                    <group>
+                        <field name="row_calib_lat" />
+                        <field name="row_calib_lng" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object"
+                            string="Calibrate" class="btn-primary" />
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_venue_map_calibrate" model="ir.actions.act_window">
+        <field name="name">Calibrate Venue Map</field>
+        <field name="res_model">nonprofit.venue.map.calibrate</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="parade_apply_page" name="Parade Entry Application">
+        <t t-call="website.layout">
+            <t t-set="title">Parade Entry - <t t-esc="event.name" /></t>
+            <div id="wrap" class="container py-5" style="max-width: 720px;">
+                <h2>Parade Entry Application</h2>
+                <h5 class="text-muted mb-4"><span t-esc="event.name" /></h5>
+
+                <div t-if="ok" class="alert alert-success" role="alert">
+                    <span t-esc="msg" />
+                </div>
+
+                <div t-if="errors" class="alert alert-danger" role="alert">
+                    <ul class="mb-0">
+                        <li t-foreach="errors" t-as="error" t-esc="error" />
+                    </ul>
+                </div>
+
+                <t t-if="not ok">
+                    <form t-attf-action="/event/#{event.id}/parade/apply/submit"
+                          method="post" class="row g-3">
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()" />
+
+                        <div class="col-md-6">
+                            <label class="form-label">Unit / Contingent Name *</label>
+                            <input type="text" name="name" class="form-control"
+                                   t-att-value="post and post.get('name')" required="required" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Organization</label>
+                            <input type="text" name="org_name" class="form-control"
+                                   t-att-value="post and post.get('org_name')" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Contact Name *</label>
+                            <input type="text" name="contact_name" class="form-control"
+                                   t-att-value="post and post.get('contact_name')" required="required" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Contact Email *</label>
+                            <input type="email" name="contact_email" class="form-control"
+                                   t-att-value="post and post.get('contact_email')" required="required" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Contact Phone</label>
+                            <input type="text" name="contact_phone" class="form-control"
+                                   t-att-value="post and post.get('contact_phone')" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Entry Type</label>
+                            <select name="entry_type" class="form-select">
+                                <option value="walking_group">Walking Group</option>
+                                <option value="float">Float</option>
+                                <option value="vehicle">Vehicle</option>
+                                <option value="marching_band">Marching Band</option>
+                                <option value="equestrian">Equestrian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Participants</label>
+                            <input type="number" min="0" name="participant_count"
+                                   class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Vehicles</label>
+                            <input type="number" min="0" name="vehicle_count"
+                                   class="form-control" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Linear Feet Needed</label>
+                            <input type="number" min="0" step="0.5"
+                                   name="linear_feet_needed" class="form-control" />
+                        </div>
+                        <div class="col-md-6 d-flex align-items-end">
+                            <div class="form-check">
+                                <input type="checkbox" name="sound_amplification"
+                                       value="1" class="form-check-input"
+                                       id="sound_amplification" />
+                                <label class="form-check-label" for="sound_amplification">
+                                    We'll have sound amplification (speakers/truck)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Special Requirements</label>
+                            <textarea name="special_requirements" class="form-control"
+                                      rows="3" />
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input type="checkbox" name="waiver_accepted" value="1"
+                                       class="form-check-input" id="waiver_accepted"
+                                       required="required" />
+                                <label class="form-check-label" for="waiver_accepted">
+                                    I understand that participating in this parade is
+                                    voluntary, and I accept responsibility for my
+                                    group's own safety and equipment.
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">
+                                Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </t>
+            </div>
+        </t>
+    </template>
+
+</odoo>

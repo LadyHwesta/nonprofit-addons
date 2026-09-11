@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_crew_booking_view_list" model="ir.ui.view">
+        <field name="model">event.crew.booking</field>
+        <field name="arch" type="xml">
+            <list default_order="load_in">
+                <field name="event_id" optional="show" />
+                <field name="partner_id" />
+                <field name="service_type" />
+                <field name="load_in" />
+                <field name="load_out" />
+                <field name="day_of_contact_name" optional="hide" />
+                <field name="state" widget="badge"
+                       decoration-muted="state == 'planned'"
+                       decoration-info="state == 'confirmed'"
+                       decoration-success="state in ('on_site', 'complete')"
+                       decoration-danger="state == 'cancelled'" />
+            </list>
+        </field>
+    </record>
+
+    <record id="event_crew_booking_view_form" model="ir.ui.view">
+        <field name="model">event.crew.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="btn-primary" invisible="state != 'planned'" />
+                    <button name="action_mark_on_site" type="object"
+                            string="Mark On-Site" class="btn-primary"
+                            invisible="state != 'confirmed'" />
+                    <button name="action_mark_complete" type="object"
+                            string="Mark Complete"
+                            invisible="state not in ('on_site', 'confirmed')" />
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('complete', 'cancelled')" />
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="planned,confirmed,on_site,complete" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="partner_id" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="event_id" />
+                            <field name="service_type" />
+                            <field name="service_type_other"
+                                   invisible="service_type != 'other'" />
+                            <field name="purchase_order_id" />
+                        </group>
+                        <group>
+                            <field name="load_in" />
+                            <field name="load_out" />
+                            <field name="day_of_contact_name" />
+                            <field name="day_of_contact_phone" />
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="Equipment list, special instructions..." />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="event_crew_booking_view_search" model="ir.ui.view">
+        <field name="model">event.crew.booking</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="event_id" />
+                <group>
+                    <filter string="Event" name="group_by_event"
+                            context="{'group_by': 'event_id'}" />
+                    <filter string="Service" name="group_by_service"
+                            context="{'group_by': 'service_type'}" />
+                    <filter string="Status" name="group_by_state"
+                            context="{'group_by': 'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_event_crew_booking" model="ir.actions.act_window">
+        <field name="name">Crew Bookings</field>
+        <field name="res_model">event.crew.booking</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_event_id': active_id}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a crew booking</p>
+            <p>Stage, sound, security, sanitation - whoever's showing up,
+               when they load in/out, and who to call day-of.</p>
+        </field>
+    </record>
+
+</odoo>

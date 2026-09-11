@@ -60,11 +60,14 @@ module here required:
   double-booking guard per location.
 - `point_of_sale` (+ `pos_event_sale` for ticket sales through a POS) —
   beer/wine/swag sales.
+- `project` + `purchase` — general event-planning tasks and actual
+  procurement (e.g. ordering a porta-potty rental). Kept doing what
+  they already do well rather than reinvented.
 - Routing event revenue to a Program analytic tag (for the reports in
   `nonprofit_reports`) is a **configuration** step — an
   `account.analytic.distribution.model` record — not code.
 
-Two gaps those stock apps don't cover get their own modules here:
+Three gaps those stock apps don't cover get their own modules here:
 
 - [`nonprofit_event_venue/`](nonprofit_event_venue/) — give every booth a
   plain **row + spot number**; a two-point calibration wizard (read two
@@ -74,6 +77,15 @@ Two gaps those stock apps don't cover get their own modules here:
   no-login parade-entry application page**, coordinator approve/reject
   and staging-area/lineup-order assignment, a step-off-time wizard, and
   a parade lineup sheet PDF.
+- [`nonprofit_event_logistics/`](nonprofit_event_logistics/) — **permits**
+  with a checklist template + deadline reminders, **temporary hourly
+  staff shifts** with check-in/out hours (no CE payroll to feed - just
+  clean hours for whoever runs it externally), **crew/vendor bookings**
+  (optionally linked to a Purchase Order) with day-of contacts, and
+  **facility placement** (portable toilets, hand-wash stations...) via a
+  click-to-drop-pin mode added to the vendor map above. A Logistics tab
+  on the event shows readiness at a glance, with one consolidated
+  coordinator To-Do as the event approaches if anything's still open.
 
 ## Third-party
 

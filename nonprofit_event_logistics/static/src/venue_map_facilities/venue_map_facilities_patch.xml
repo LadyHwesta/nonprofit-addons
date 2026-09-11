@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-inherit="nonprofit_event_venue.VendorMapAction" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('text-muted')][hasclass('small')]" position="inside">
+            <span class="ms-3">
+                <span class="o_nonprofit_facility_pin_inner d-inline-block" /> Facility
+            </span>
+        </xpath>
+        <xpath expr="//div[hasclass('p-2')][hasclass('border-bottom')]" position="after">
+            <div t-if="state.event" class="p-2 border-bottom bg-light">
+                <button type="button" class="btn btn-sm btn-outline-secondary"
+                        t-on-click="() => this.togglePlacementMode()">
+                    <t t-esc="state.placementMode ? 'Done Placing Facilities' : 'Place Facilities'" />
+                </button>
+                <div t-if="state.placementMode" class="mt-2 small">
+                    <span t-if="!unplacedFacilities.length" class="text-muted">
+                        Every facility already has a position.
+                    </span>
+                    <t t-else="">
+                        <span class="text-muted">Click a facility, then click the map:</span>
+                        <button t-foreach="unplacedFacilities" t-as="facility" t-key="facility.id"
+                                type="button"
+                                t-attf-class="btn btn-sm ms-1 {{ state.placingFacilityId === facility.id ? 'btn-primary' : 'btn-outline-primary' }}"
+                                t-on-click="() => this.armFacility(facility.id)">
+                            <t t-esc="facility.name" />
+                        </button>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_permit_view_list" model="ir.ui.view">
+        <field name="model">event.permit</field>
+        <field name="arch" type="xml">
+            <list default_order="submit_by_date">
+                <field name="event_id" optional="show" />
+                <field name="name" />
+                <field name="permit_type" />
+                <field name="issuing_authority" optional="hide" />
+                <field name="submit_by_date" />
+                <field name="expiry_date" optional="hide" />
+                <field name="responsible_id" optional="show" widget="many2one_avatar_user" />
+                <field name="state" widget="badge"
+                       decoration-info="state == 'not_started'"
+                       decoration-warning="state == 'submitted'"
+                       decoration-success="state == 'approved'"
+                       decoration-danger="state == 'denied'" />
+            </list>
+        </field>
+    </record>
+
+    <record id="event_permit_view_form" model="ir.ui.view">
+        <field name="model">event.permit</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Mark Submitted"
+                            class="btn-primary" invisible="state != 'not_started'" />
+                    <button name="action_approve" type="object" string="Approve"
+                            class="btn-primary" invisible="state != 'submitted'" />
+                    <button name="action_deny" type="object" string="Deny"
+                            invisible="state not in ('not_started', 'submitted')" />
+                    <button name="action_reset_to_not_started" type="object"
+                            string="Reset" invisible="state not in ('submitted', 'denied')" />
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="not_started,submitted,approved" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="event_id" />
+                            <field name="permit_type" />
+                            <field name="permit_type_other"
+                                   invisible="permit_type != 'other'" />
+                            <field name="issuing_authority" />
+                            <field name="permit_number" />
+                        </group>
+                        <group>
+                            <field name="responsible_id" />
+                            <field name="submit_by_date" />
+                            <field name="submitted_date" readonly="1" />
+                            <field name="approval_date" readonly="1" />
+                            <field name="expiry_date" />
+                        </group>
+                    </group>
+                    <field name="notes" placeholder="Notes..." />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="event_permit_view_search" model="ir.ui.view">
+        <field name="model">event.permit</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="event_id" />
+                <field name="issuing_authority" />
+                <filter string="Not Started" name="filter_not_started"
+                        domain="[('state', '=', 'not_started')]" />
+                <filter string="Approved" name="filter_approved"
+                        domain="[('state', '=', 'approved')]" />
+                <group>
+                    <filter string="Event" name="group_by_event"
+                            context="{'group_by': 'event_id'}" />
+                    <filter string="Status" name="group_by_state"
+                            context="{'group_by': 'state'}" />
+                    <filter string="Type" name="group_by_type"
+                            context="{'group_by': 'permit_type'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_event_permit" model="ir.actions.act_window">
+        <field name="name">Permits</field>
+        <field name="res_model">event.permit</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_event_id': active_id}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a permit</p>
+            <p>Alcohol, food/health, street closure, noise, fire/safety -
+               whatever this event needs signed off.</p>
+        </field>
+    </record>
+
+</odoo>

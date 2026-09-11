@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_event_view_form_logistics" model="ir.ui.view">
+        <field name="name">event.event.view.form.logistics</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Logistics" name="logistics">
+                    <group>
+                        <field name="logistics_coordinator_id" />
+                    </group>
+                    <div class="row text-center mb-3">
+                        <div class="col">
+                            <h3>
+                                <field name="permit_approved_count" class="oe_inline" />/<field name="permit_count" class="oe_inline" />
+                            </h3>
+                            <span class="text-muted">Permits Approved</span>
+                        </div>
+                        <div class="col">
+                            <h3><field name="staffing_fill_pct" widget="percentage" class="oe_inline" /></h3>
+                            <span class="text-muted">Staffing Filled</span>
+                        </div>
+                        <div class="col">
+                            <h3>
+                                <field name="crew_confirmed_count" class="oe_inline" />/<field name="crew_booking_count" class="oe_inline" />
+                            </h3>
+                            <span class="text-muted">Crews Confirmed</span>
+                        </div>
+                        <div class="col">
+                            <h3><field name="facility_count" class="oe_inline" /></h3>
+                            <span class="text-muted">Facilities</span>
+                        </div>
+                    </div>
+
+                    <separator string="Permits" />
+                    <button name="action_generate_permits_from_type" type="object"
+                            string="Generate permits from event type" class="btn-link" />
+                    <field name="permit_ids">
+                        <list editable="bottom">
+                            <field name="name" />
+                            <field name="permit_type" />
+                            <field name="submit_by_date" />
+                            <field name="responsible_id" />
+                            <field name="state" />
+                        </list>
+                    </field>
+
+                    <separator string="Staff Shifts" />
+                    <field name="staff_shift_ids">
+                        <list editable="bottom">
+                            <field name="name" />
+                            <field name="role_id" />
+                            <field name="start" />
+                            <field name="stop" />
+                            <field name="headcount_needed" />
+                            <field name="fill_state" />
+                        </list>
+                    </field>
+
+                    <separator string="Crew Bookings" />
+                    <field name="crew_booking_ids">
+                        <list editable="bottom">
+                            <field name="partner_id" />
+                            <field name="service_type" />
+                            <field name="load_in" />
+                            <field name="load_out" />
+                            <field name="state" />
+                        </list>
+                    </field>
+
+                    <separator string="Facilities" />
+                    <field name="facility_ids">
+                        <list editable="bottom">
+                            <field name="name" />
+                            <field name="facility_type" />
+                            <field name="quantity" />
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

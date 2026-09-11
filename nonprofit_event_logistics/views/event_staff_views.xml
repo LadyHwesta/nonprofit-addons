@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_staff_role_view_list" model="ir.ui.view">
+        <field name="model">event.staff.role</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_event_staff_role" model="ir.actions.act_window">
+        <field name="name">Staff Roles</field>
+        <field name="res_model">event.staff.role</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="event_staff_shift_view_list" model="ir.ui.view">
+        <field name="model">event.staff.shift</field>
+        <field name="arch" type="xml">
+            <list default_order="start">
+                <field name="event_id" optional="show" />
+                <field name="name" />
+                <field name="role_id" />
+                <field name="start" />
+                <field name="stop" />
+                <field name="headcount_needed" />
+                <field name="hourly_rate" optional="hide" />
+                <field name="fill_state" widget="badge"
+                       decoration-muted="fill_state == 'empty'"
+                       decoration-warning="fill_state == 'partial'"
+                       decoration-success="fill_state == 'full'"
+                       decoration-danger="fill_state == 'over'" />
+            </list>
+        </field>
+    </record>
+
+    <record id="event_staff_shift_view_form" model="ir.ui.view">
+        <field name="model">event.staff.shift</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="event_id" />
+                            <field name="role_id" />
+                            <field name="start" />
+                            <field name="stop" />
+                        </group>
+                        <group>
+                            <field name="headcount_needed" />
+                            <field name="hourly_rate" />
+                            <field name="fill_state" />
+                            <field name="seats_available" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Assignments" name="assignments">
+                            <field name="assignment_ids">
+                                <list editable="bottom">
+                                    <field name="partner_id" />
+                                    <field name="state" />
+                                    <field name="check_in" />
+                                    <field name="check_out" />
+                                    <field name="hours" sum="Hours" />
+                                    <button name="action_check_in" type="object"
+                                            string="Check In" icon="fa-sign-in"
+                                            invisible="check_in" />
+                                    <button name="action_check_out" type="object"
+                                            string="Check Out" icon="fa-sign-out"
+                                            invisible="not check_in or check_out" />
+                                    <button name="action_mark_no_show" type="object"
+                                            string="No-Show" icon="fa-times"
+                                            invisible="state == 'no_show'" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="event_staff_shift_view_search" model="ir.ui.view">
+        <field name="model">event.staff.shift</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="event_id" />
+                <field name="role_id" />
+                <group>
+                    <filter string="Event" name="group_by_event"
+                            context="{'group_by': 'event_id'}" />
+                    <filter string="Role" name="group_by_role"
+                            context="{'group_by': 'role_id'}" />
+                    <filter string="Coverage" name="group_by_fill_state"
+                            context="{'group_by': 'fill_state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_event_staff_shift" model="ir.actions.act_window">
+        <field name="name">Staff Shifts</field>
+        <field name="res_model">event.staff.shift</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'default_event_id': active_id}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a staff shift</p>
+            <p>Security, setup crew, ushers, traffic control - whoever
+               you're hiring by the hour, with how many you need and when.</p>
+        </field>
+    </record>
+
+</odoo>

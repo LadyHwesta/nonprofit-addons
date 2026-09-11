@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_event_permit" name="Permits"
+              action="action_event_permit"
+              parent="event.menu_event_configuration" sequence="40" />
+    <menuitem id="menu_event_staff_shift" name="Staff Shifts"
+              action="action_event_staff_shift"
+              parent="event.menu_event_configuration" sequence="41" />
+    <menuitem id="menu_event_staff_role" name="Staff Roles"
+              action="action_event_staff_role"
+              parent="event.menu_event_configuration" sequence="42" />
+    <menuitem id="menu_event_crew_booking" name="Crew Bookings"
+              action="action_event_crew_booking"
+              parent="event.menu_event_configuration" sequence="43" />
+    <menuitem id="menu_event_facility" name="Facilities"
+              action="action_event_facility"
+              parent="event.menu_event_configuration" sequence="44" />
+
+</odoo>

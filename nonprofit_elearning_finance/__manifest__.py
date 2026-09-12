@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Fund Accounting for Treasurers",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: funds, programs, functions, and board/IRS reporting",
     "description": """
@@ -22,7 +22,10 @@ anything else to get this course.
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": ["website_slides", "nonprofit_base", "nonprofit_fund_accounting"],
+    "depends": [
+        "website_slides", "nonprofit_elearning_theme",
+        "nonprofit_base", "nonprofit_fund_accounting",
+    ],
     "data": [
         "data/slide_channel_data.xml",
     ],

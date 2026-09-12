@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Volunteer Coordination",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: roles, shifts, screening, and volunteer hours",
     "description": """
@@ -20,7 +20,10 @@ Only depends on ``event_volunteer`` + ``volunteer_shift`` +
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": ["website_slides", "event_volunteer", "volunteer_shift", "volunteer_profile"],
+    "depends": [
+        "website_slides", "nonprofit_elearning_theme",
+        "event_volunteer", "volunteer_shift", "volunteer_profile",
+    ],
     "data": [
         "data/slide_channel_data.xml",
     ],

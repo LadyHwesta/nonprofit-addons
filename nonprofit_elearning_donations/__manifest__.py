@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Processing Donations",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: recording gifts, receipts, and donor reporting",
     "description": """
@@ -19,7 +19,7 @@ Only depends on ``donation_base`` + ``donation``.
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": ["website_slides", "donation_base", "donation"],
+    "depends": ["website_slides", "nonprofit_elearning_theme", "donation_base", "donation"],
     "data": [
         "data/slide_channel_data.xml",
     ],

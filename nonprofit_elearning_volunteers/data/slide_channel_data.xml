@@ -28,15 +28,41 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>Open the event and go to its <strong>Volunteers</strong> tab.
-            Add a role - a name ("Setup Crew", "Greeter", "Net Control"), how
-            many people it needs, and a short description volunteers will
-            see on the website.</p>
-            <p>A role can be filled as one block for the whole event, or
-            broken into timed shifts. To do the latter, tick <strong>Run as
-            Shifts</strong> on the role, then add shifts - each is a time
-            window and a slot count. The <strong>Shifts</strong> stat button
-            on the event shows them on a calendar.</p>
+            <div class="oe-course-content">
+                <p>Open the event and go to its <strong>Volunteers</strong>
+                tab. Add a role - a name ("Setup Crew", "Greeter", "Net
+                Control"), how many people it needs, and a short description
+                volunteers will see on the website.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-columns">
+                        <div class="oe-column">
+                            <h4><i class="fa fa-square-o" /> Whole-event role</h4>
+                            <p class="mb-0 text-muted">One block covering the
+                            entire event.</p>
+                        </div>
+                        <div class="oe-column">
+                            <h4><i class="fa fa-clock-o" /> Run as Shifts</h4>
+                            <p class="mb-0">Tick <strong>Run as
+                            Shifts</strong>, then add shifts - each a time
+                            window and a slot count.</p>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the two ways a role can be filled.
+                    </p>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-calendar" /></span>
+                    <div>
+                        <span class="oe-callout-label">Seeing it all at once</span>
+                        <p>The <strong>Shifts</strong> stat button on the
+                        event shows every shift on a calendar.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -46,14 +72,46 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>On an <strong>Event Type</strong> (Events ›
-            Configuration › Event Types), add Recurring Volunteer
-            Shift lines: role name, weekday, start time, length, slots. Give
-            your recurring event that type, and a nightly job creates the
-            matching shifts as far ahead as the horizon in settings -
-            without duplicating ones it's already made. Need them sooner?
-            Open the event and click <strong>Generate shifts from event
-            type</strong>.</p>
+            <div class="oe-course-content">
+                <p>On an <strong>Event Type</strong> (Events ›
+                Configuration › Event Types), add Recurring Volunteer
+                Shift lines: role name, weekday, start time, length, slots.
+                Give your recurring event that type.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-list" /></span>
+                            Event Type shift lines
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-moon-o" /></span>
+                            Nightly job
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-calendar-check-o" /></span>
+                            Shifts on the calendar
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        a nightly job creates shifts as far ahead as the
+                        horizon in settings, without duplicating ones it's
+                        already made.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-bolt" /></span>
+                    <div>
+                        <span class="oe-callout-label">Need them sooner?</span>
+                        <p>Open the event and click <strong>Generate shifts
+                        from event type</strong>.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -71,12 +129,41 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>Front desk opens the shift and clicks <strong>Check In</strong>
-            as each volunteer arrives, <strong>Check Out</strong> when they
-            leave - hours are calculated automatically from the two
-            timestamps. If someone didn't show up, click
-            <strong>No-show</strong> on their assignment: it's kept for the
-            record but left out of hours reports.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-sign-in" /></span>
+                            Check In
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-sign-out" /></span>
+                            Check Out
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-clock-o" /></span>
+                            Hours calculated automatically
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        front desk clicks these as each volunteer arrives and
+                        leaves.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-user-times" /></span>
+                    <div>
+                        <span class="oe-callout-label">Didn't show up?</span>
+                        <p>Click <strong>No-show</strong> on their assignment:
+                        it's kept for the record but left out of hours
+                        reports.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -86,11 +173,41 @@
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
         <field name="html_content" type="html">
-            <p>A volunteer can offer a shift for swap from their own page.
-            Another volunteer claims it. The coordinator approves it under
-            <strong>Events › Shift Swaps</strong>, which reassigns
-            the shift - the volunteer taking it still has to meet whatever
-            screening the role requires.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-user" /></span>
+                            Volunteer offers shift
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-user-plus" /></span>
+                            Another volunteer claims it
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-check-square-o" /></span>
+                            Coordinator approves
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        approval, under <strong>Events › Shift
+                        Swaps</strong>, is what actually reassigns the
+                        shift.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-shield" /></span>
+                    <div>
+                        <span class="oe-callout-label">Screening still applies</span>
+                        <p>The volunteer taking it still has to meet whatever
+                        screening the role requires.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -108,23 +225,50 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p>All set up on the volunteer's own contact record, under the
-            <strong>Volunteer</strong> tab. Tag <strong>Skills</strong>
-            (First Aid, Spanish, Licensed Driver…) from the list under
-            Events › Configuration › Volunteer Skills.</p>
-            <p>For a <strong>background check</strong>: set it to Requested
-            when you start one, and click <strong>Mark Cleared</strong> once
-            it comes back - that stamps today's date and sets the re-check
-            due date from the validity in settings. A nightly job flips
-            lapsed checks to Expired and raises a to-do for the Volunteer
-            Coordinator ahead of expiry, so nobody has to watch a
-            calendar.</p>
-            <p>For a <strong>liability waiver</strong>: print it from the
-            contact's Print menu (it adapts for minors), collect the signed
-            copy, then click <strong>Record Waiver Accepted</strong> to
-            stamp the date. For a minor, tick <strong>Under 18</strong> and
-            record the parent/guardian - the waiver PDF picks them up
-            automatically.</p>
+            <div class="oe-course-content">
+                <p>All set up on the volunteer's own contact record, under
+                the <strong>Volunteer</strong> tab. Tag
+                <strong>Skills</strong> (First Aid, Spanish, Licensed
+                Driver…) from the list under Events › Configuration
+                › Volunteer Skills.</p>
+
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-id-card" /> Background check</h4>
+                        <p class="mb-0">Set it to Requested when you start
+                        one, and click <strong>Mark Cleared</strong> once it
+                        comes back - that stamps today's date and sets the
+                        re-check due date from the validity in settings.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-file-text" /> Liability waiver</h4>
+                        <p class="mb-0">Print it from the contact's Print
+                        menu (it adapts for minors), collect the signed copy,
+                        then click <strong>Record Waiver Accepted</strong> to
+                        stamp the date.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-bell" /></span>
+                    <div>
+                        <span class="oe-callout-label">Nothing to watch by hand</span>
+                        <p>A nightly job flips lapsed checks to Expired and
+                        raises a to-do for the Volunteer Coordinator ahead of
+                        expiry, so nobody has to watch a calendar.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-child" /></span>
+                    <div>
+                        <span class="oe-callout-label">A minor volunteer</span>
+                        <p>Tick <strong>Under 18</strong> and record the
+                        parent/guardian - the waiver PDF picks them up
+                        automatically.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -134,16 +278,33 @@
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
         <field name="html_content" type="html">
-            <p>On the volunteer role, tick <strong>Requires Background
-            Check</strong> and/or <strong>Requires Waiver</strong>, and add
-            any <strong>Required Skills</strong>. From then on, a sign-up -
-            on the website or in the back office - from a volunteer who
-            isn't cleared, hasn't a current waiver, or lacks a skill is
-            refused, with a message saying exactly what's missing.</p>
-            <p>Looking for the right person instead? Click <strong>Suggest
-            Volunteers</strong> on a shift to get everyone who has every
-            required skill, is cleared and waivered as the role needs, and
-            isn't already booked on an overlapping shift.</p>
+            <div class="oe-course-content">
+                <p>On the volunteer role, tick <strong>Requires Background
+                Check</strong> and/or <strong>Requires Waiver</strong>, and
+                add any <strong>Required Skills</strong>.</p>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-ban" /></span>
+                    <div>
+                        <span class="oe-callout-label">The gate is enforced everywhere</span>
+                        <p>From then on, a sign-up - on the website or in the
+                        back office - from a volunteer who isn't cleared,
+                        hasn't a current waiver, or lacks a skill is refused,
+                        with a message saying exactly what's missing.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-magic" /></span>
+                    <div>
+                        <span class="oe-callout-label">Looking for the right person instead?</span>
+                        <p>Click <strong>Suggest Volunteers</strong> on a
+                        shift to get everyone who has every required skill,
+                        is cleared and waivered as the role needs, and isn't
+                        already booked on an overlapping shift.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -161,13 +322,31 @@
         <field name="slide_category">article</field>
         <field name="sequence">41</field>
         <field name="html_content" type="html">
-            <p><strong>Events › Volunteer Reporting ›
-            Volunteer Hours</strong> is a pivot by volunteer, program,
-            event, or month. <strong>Hours Certificates</strong> print a
-            per-volunteer PDF for a chosen year, listing every shift and the
-            total - handy for students and court-ordered service.
-            <strong>Understaffed Shifts</strong> lists upcoming shifts still
-            short of people.</p>
+            <div class="oe-course-content">
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-table" /> Volunteer Hours</h4>
+                        <p class="mb-0">A pivot by volunteer, program, event,
+                        or month.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-certificate" /> Hours Certificates</h4>
+                        <p class="mb-0">A per-volunteer PDF for a chosen year,
+                        listing every shift and the total - handy for
+                        students and court-ordered service.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Understaffed Shifts</span>
+                        <p>Lists upcoming shifts still short of people, all
+                        under <strong>Events › Volunteer
+                        Reporting</strong>.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 

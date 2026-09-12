@@ -28,14 +28,32 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>On the event's <strong>Parade</strong> tab, tick
-            <strong>Accepting Parade Entries</strong>, optionally set a
-            <strong>deadline</strong> after which the public page politely
-            closes itself, and set a <strong>Parade Coordinator</strong> so
-            someone gets notified of new applications. The public
-            application page's address is shown right there on the tab -
-            share that link with community groups. No login is required to
-            apply.</p>
+            <div class="oe-course-content">
+                <ol class="oe-steps">
+                    <li>
+                        <p>On the event's <strong>Parade</strong> tab, tick
+                        <strong>Accepting Parade Entries</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Optionally set a <strong>deadline</strong> after
+                        which the public page politely closes itself.</p>
+                    </li>
+                    <li>
+                        <p>Set a <strong>Parade Coordinator</strong> so
+                        someone gets notified of new applications.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-link" /></span>
+                    <div>
+                        <span class="oe-callout-label">Share the link</span>
+                        <p>The public application page's address is shown
+                        right there on the tab - share that link with
+                        community groups. No login is required to apply.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -45,13 +63,45 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>Every application lands as a <strong>Parade Entry</strong> in
-            Submitted state, and raises a to-do for the coordinator. Open
-            it, review the unit type, size, and any special requirements
-            (sound amplification is flagged separately, since a sound truck
-            needs marshal coordination), and click <strong>Approve</strong>
-            or <strong>Reject</strong>. An approved entry isn't in the
-            lineup yet - that's the next step.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-badge">Submitted</span>
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-search" /></span>
+                            Coordinator reviews
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Approved</span>
+                            or
+                            <span class="oe-badge oe-badge-warn">Rejected</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        every application lands as a Parade Entry and raises
+                        a to-do for the coordinator.
+                    </p>
+                </div>
+
+                <p>Review the unit type, size, and any special requirements
+                (sound amplification is flagged separately, since a sound
+                truck needs marshal coordination), and click
+                <strong>Approve</strong> or <strong>Reject</strong>.</p>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Not in the lineup yet</span>
+                        <p>An approved entry isn't in the lineup yet - that's
+                        the next step.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -69,18 +119,38 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>On an approved entry, assign a <strong>Staging Area</strong>
-            (add these under the Parade tab's Staging Areas button) and a
-            lineup <strong>order</strong> - drag entries into place in the
-            list view. Once staging is settled, click
-            <strong>Confirm</strong> to move it to Confirmed for Lineup.</p>
-            <p><strong>Entry number is deliberately separate from lineup
-            order.</strong> Order controls where an entry sits in the
-            physical procession and can still get rearranged during
-            staging; entry number is the stable number printed on signs and
-            used in the roster, assigned once via <strong>Assign Entry
-            Numbers</strong> on the Parade tab - it numbers every confirmed
-            entry sequentially, staging area then order.</p>
+            <div class="oe-course-content">
+                <ol class="oe-steps">
+                    <li>
+                        <p>On an approved entry, assign a <strong>Staging
+                        Area</strong> (add these under the Parade tab's
+                        Staging Areas button).</p>
+                    </li>
+                    <li>
+                        <p>Set a lineup <strong>order</strong> - drag entries
+                        into place in the list view.</p>
+                    </li>
+                    <li>
+                        <p>Once staging is settled, click
+                        <strong>Confirm</strong> to move it to Confirmed for
+                        Lineup.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Entry number is deliberately separate from lineup order</span>
+                        <p>Order controls where an entry sits in the physical
+                        procession and can still get rearranged during
+                        staging; entry number is the stable number printed
+                        on signs and used in the roster, assigned once via
+                        <strong>Assign Entry Numbers</strong> on the Parade
+                        tab - it numbers every confirmed entry sequentially,
+                        staging area then order.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -90,11 +160,33 @@
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
         <field name="html_content" type="html">
-            <p><strong>Set Step-Off Times...</strong> on the Parade tab
-            walks every confirmed entry - staging area, then lineup order -
-            and stamps each one's step-off time a fixed number of minutes
-            after the one before it. Give it a start time and a gap in
-            minutes and it does the rest.</p>
+            <div class="oe-course-content">
+                <p><strong>Set Step-Off Times...</strong> on the Parade tab
+                walks every confirmed entry - staging area, then lineup
+                order - and stamps each one's step-off time a fixed number
+                of minutes after the one before it.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Set Step-Off Times
+                    </div>
+                    <div class="oe-mock-body">
+                        <p class="mb-2"><strong>Start time</strong></p>
+                        <p class="text-muted">9:00 AM</p>
+                        <p class="mb-2 mt-3"><strong>Gap between entries</strong></p>
+                        <p class="text-muted">2 minutes</p>
+                        <p class="mb-0 mt-3">
+                            <span class="oe-mock-btn"><i class="fa fa-check" /> Apply</span>
+                        </p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        give it a start time and a gap in minutes and it does
+                        the rest.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -112,14 +204,41 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p>Four printables, all from the Parade tab: the
-            <strong>Lineup Sheet</strong> (confirmed entries by staging area
-            and order, with step-off time and contact - what marshals carry
-            on the morning), two <strong>Entry List</strong> reports (the
-            same roster sorted by number, or by name), and
-            <strong>Print Entry Signs</strong> - one 8.5x11 landscape page
-            per confirmed entry, a large entry number with the unit's name
-            underneath, sized to read from a distance.</p>
+            <div class="oe-course-content">
+                <p>Four printables, all from the Parade tab:</p>
+
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-list-ol" /> Lineup Sheet</h4>
+                        <p class="mb-0">Confirmed entries by staging area and
+                        order, with step-off time and contact - what
+                        marshals carry on the morning.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-sort-numeric-asc" /> Entry Lists</h4>
+                        <p class="mb-0">Two reports - the same roster sorted
+                        by number, or by name.</p>
+                    </div>
+                </div>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Entry Sign
+                    </div>
+                    <div class="oe-mock-body">
+                        <p class="mb-0 text-center" style="font-size:2.5em;font-weight:700">42</p>
+                        <p class="mb-0 text-center text-muted">Riverside Marching Band</p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        <strong>Print Entry Signs</strong> makes one 8.5x11
+                        landscape page per confirmed entry - a large entry
+                        number with the unit's name underneath, sized to
+                        read from a distance.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 

@@ -28,14 +28,42 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>For a recurring event (an annual festival), add a
-            <strong>Permit Checklist</strong> to its Event Type once - a
-            name, permit type, and how many days before the event it should
-            be submitted by. Then on any event of that type, click
-            <strong>Generate permits from event type</strong> on the
-            Logistics tab and the whole list appears with submit-by dates
-            already calculated - it skips anything already generated, so
-            it's safe to click more than once.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-list" /></span>
+                            Permit Checklist on Event Type
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-magic" /></span>
+                            Generate permits from event type
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-calendar-check-o" /></span>
+                            Full list, submit-by dates set
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        for a recurring event (an annual festival), add a
+                        Permit Checklist to its Event Type once - a name,
+                        permit type, and how many days before the event it
+                        should be submitted by.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-refresh" /></span>
+                    <div>
+                        <span class="oe-callout-label">Safe to re-run</span>
+                        <p>It skips anything already generated, so it's safe
+                        to click more than once.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -45,12 +73,42 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>A permit moves through Not Started → Submitted →
-            Approved (or Denied). A daily check flags two situations
-            automatically with a to-do for the responsible person: a
-            not-started permit whose submit-by date is approaching, and an
-            approved permit whose expiry date is coming up for renewal. You
-            don't have to track either on a separate calendar.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-badge">Not Started</span>
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-accent">Submitted</span>
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Approved</span>
+                            or
+                            <span class="oe-badge oe-badge-warn">Denied</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the states a permit moves through.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-bell" /></span>
+                    <div>
+                        <span class="oe-callout-label">Nothing to track by hand</span>
+                        <p>A daily check flags two situations automatically
+                        with a to-do for the responsible person: a
+                        not-started permit whose submit-by date is
+                        approaching, and an approved permit whose expiry
+                        date is coming up for renewal. You don't have to
+                        track either on a separate calendar.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -68,15 +126,45 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>A <strong>Staff Shift</strong> is a role (Security, Setup
-            Crew, Ushers…), a time window, and how many people you
-            need. Add workers to it as they're hired - each gets
-            <strong>Check In</strong> / <strong>Check Out</strong> buttons
-            that compute their hours automatically, the same shape as
-            volunteer shifts, but for paid workers. There's no Community
-            Edition payroll app to hand those hours to, so this stops at
-            producing clean hours worked for whoever runs payroll
-            externally.</p>
+            <div class="oe-course-content">
+                <p>A <strong>Staff Shift</strong> is a role (Security, Setup
+                Crew, Ushers…), a time window, and how many people you
+                need. Add workers to it as they're hired.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-sign-in" /></span>
+                            Check In
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-sign-out" /></span>
+                            Check Out
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-clock-o" /></span>
+                            Hours computed automatically
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the same shape as volunteer shifts, but for paid
+                        workers.
+                    </p>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Where it stops</span>
+                        <p>There's no Community Edition payroll app to hand
+                        those hours to, so this stops at producing clean
+                        hours worked for whoever runs payroll externally.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -86,15 +174,43 @@
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
         <field name="html_content" type="html">
-            <p>A <strong>Crew Booking</strong> records the vendor or crew
-            (stage, sound, security, sanitation, generator, tent…),
-            load-in and load-out times, and - the part a purchase order
-            never captures - a <strong>day-of contact name and phone</strong>,
-            since whoever shows up on the truck often isn't who signed the
-            contract. A Purchase Order link is optional, since not every
-            booking runs through formal procurement (an in-kind sponsor,
-            for instance). Move it through Planned → Confirmed →
-            On Site → Complete as the day unfolds.</p>
+            <div class="oe-course-content">
+                <p>A <strong>Crew Booking</strong> records the vendor or
+                crew (stage, sound, security, sanitation, generator,
+                tent…), load-in and load-out times, and - the part a
+                purchase order never captures -</p>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-phone" /></span>
+                    <div>
+                        <span class="oe-callout-label">Day-of contact name and phone</span>
+                        <p>Whoever shows up on the truck often isn't who
+                        signed the contract. A Purchase Order link is
+                        optional, since not every booking runs through
+                        formal procurement (an in-kind sponsor, for
+                        instance).</p>
+                    </div>
+                </div>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">Planned</div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">Confirmed</div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">On Site</div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Complete</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        move a crew booking through these states as the day
+                        unfolds.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -112,13 +228,24 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p>Add a <strong>Facility</strong> for each portable toilet
-            cluster, hand-wash station, first-aid tent, or similar - a
-            type, a quantity, and optionally which Crew Booking services
-            it. If the venue map module is installed, open the event's
-            Vendor Map and click <strong>Place Facilities</strong> to arm a
-            facility, then click the map where it actually sits - the same
-            live map vendor booths use, just a second pin layer.</p>
+            <div class="oe-course-content">
+                <p>Add a <strong>Facility</strong> for each portable toilet
+                cluster, hand-wash station, first-aid tent, or similar - a
+                type, a quantity, and optionally which Crew Booking services
+                it.</p>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-map-marker" /></span>
+                    <div>
+                        <span class="oe-callout-label">If the venue map module is installed</span>
+                        <p>Open the event's Vendor Map and click
+                        <strong>Place Facilities</strong> to arm a facility,
+                        then click the map where it actually sits - the same
+                        live map vendor booths use, just a second pin
+                        layer.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -128,16 +255,55 @@
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
         <field name="html_content" type="html">
-            <p>The event's <strong>Logistics</strong> tab shows four
-            numbers at a glance: permits approved/total, staffing filled
-            percentage, crews confirmed/total, and a facility count. A
-            daily check, starting two weeks before the event by default,
-            raises <strong>one</strong> consolidated to-do for the Logistics
-            Coordinator if anything's still open - a single message listing
-            what's outstanding, not a separate notification per issue.
-            Three printable reports (Permit Status, Staffing Roster, and a
-            combined Crew &amp; Facilities Day-Of Sheet) round out what you
-            can hand to your team.</p>
+            <div class="oe-course-content">
+                <p>The event's <strong>Logistics</strong> tab shows four
+                numbers at a glance:</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Logistics
+                    </div>
+                    <div class="oe-mock-body">
+                        <p>
+                            <span class="oe-badge">Permits 4/5</span>
+                            <span class="oe-badge">Staffing 80%</span>
+                            <span class="oe-badge">Crews 3/3</span>
+                            <span class="oe-badge">Facilities 6</span>
+                        </p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        permits approved/total, staffing filled percentage,
+                        crews confirmed/total, and a facility count.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-bell" /></span>
+                    <div>
+                        <span class="oe-callout-label">One consolidated to-do</span>
+                        <p>A daily check, starting two weeks before the event
+                        by default, raises <strong>one</strong> consolidated
+                        to-do for the Logistics Coordinator if anything's
+                        still open - a single message listing what's
+                        outstanding, not a separate notification per
+                        issue.</p>
+                    </div>
+                </div>
+
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-file-text-o" /> Permit Status</h4>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-file-text-o" /> Staffing Roster</h4>
+                    </div>
+                </div>
+                <p class="text-muted">Plus a combined Crew &amp; Facilities
+                Day-Of Sheet - three printable reports that round out what
+                you can hand to your team.</p>
+            </div>
         </field>
     </record>
 

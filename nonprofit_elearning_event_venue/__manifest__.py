@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Vendor Coordinator",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: booths, the vendor map, and load-in reports",
     "description": """
@@ -19,7 +19,7 @@ Only depends on ``nonprofit_event_venue``.
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": ["website_slides", "nonprofit_event_venue"],
+    "depends": ["website_slides", "nonprofit_elearning_theme", "nonprofit_event_venue"],
     "data": [
         "data/slide_channel_data.xml",
     ],

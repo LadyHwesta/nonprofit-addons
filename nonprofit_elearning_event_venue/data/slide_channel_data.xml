@@ -28,17 +28,45 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>Add a category for each kind of vendor space (Food, Retail,
-            Nonprofit…) under the event's Booth Categories, then add
-            booths under the event's <strong>Booths</strong> tab - a name, a
-            category, and the renter once you have one.</p>
-            <p>Two extra flags matter for planning: tick <strong>Needs
-            Power</strong> for anything that needs an electrical drop, and
-            set <strong>Spots Wide</strong> to more than 1 for a double-wide
-            (or wider) vendor. A booth's spot display and the load-in
-            manifest both show the full range it occupies - e.g. "5-6" - and
-            the system blocks another booth from overlapping that range, not
-            just from taking the exact same spot number.</p>
+            <div class="oe-course-content">
+                <p>Add a category for each kind of vendor space (Food,
+                Retail, Nonprofit…) under the event's Booth Categories, then
+                add booths under the event's <strong>Booths</strong> tab - a
+                name, a category, and the renter once you have one.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Booth - Row C, Spot 5
+                    </div>
+                    <div class="oe-mock-body">
+                        <p>
+                            <span class="oe-badge oe-badge-accent"><i class="fa fa-bolt" /> Needs Power</span>
+                            <span class="oe-badge">Spots Wide: 2</span>
+                        </p>
+                        <p class="mb-0 text-muted">Occupies spots 5-6 - the
+                        system blocks another booth from overlapping that
+                        range.</p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        a double-wide, powered booth's spot display.
+                    </p>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-arrows-h" /></span>
+                    <div>
+                        <span class="oe-callout-label">Two flags matter for planning</span>
+                        <p>Tick <strong>Needs Power</strong> for anything
+                        that needs an electrical drop, and set
+                        <strong>Spots Wide</strong> to more than 1 for a
+                        double-wide (or wider) vendor. A booth's spot display
+                        and the load-in manifest both show the full range it
+                        occupies - e.g. "5-6".</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -48,14 +76,31 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>A <strong>Row</strong> is one lane or section of the venue -
-            add one per row, in the order they actually sit on the ground,
-            starting from whichever one you'll calibrate the map from (the
-            <strong>Rows</strong> button on the event). Give each booth a
-            <strong>Row</strong> and a <strong>Spot #</strong> and it now has
-            a plain address, like "Row C, Spot 12" - the same address that
-            shows on the load-in manifest and, once the map is calibrated,
-            places its pin automatically.</p>
+            <div class="oe-course-content">
+                <p>A <strong>Row</strong> is one lane or section of the
+                venue - add one per row, in the order they actually sit on
+                the ground, starting from whichever one you'll calibrate the
+                map from (the <strong>Rows</strong> button on the event).</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">Row</div>
+                        <span class="oe-flow-arrow">+</span>
+                        <div class="oe-flow-step">Spot #</div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-map-marker" /></span>
+                            "Row C, Spot 12"
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the address every booth carries - the same one that
+                        shows on the load-in manifest and, once calibrated,
+                        places the pin on the map automatically.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -73,19 +118,37 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>You don't drag pins into place by hand - a calibration wizard
-            works out the venue's geometry from three real-world coordinates
-            you read off Google Maps, OpenStreetMap, or a phone GPS reading
-            on-site. On the event's <strong>Vendor Map</strong> tab, click
-            <strong>Calibrate from two points...</strong> and give it:</p>
-            <ol>
-              <li>Spot 1 on a reference row (the anchor).</li>
-              <li>Any other spot number on that same row.</li>
-              <li>Spot 1 on a different row.</li>
-            </ol>
-            <p>From those three points it works out the venue's bearing and
-            spacing in both directions. Do it once per event - every booth's
-            pin then follows automatically from its row and spot number.</p>
+            <div class="oe-course-content">
+                <p>You don't drag pins into place by hand - a calibration
+                wizard works out the venue's geometry from three real-world
+                coordinates you read off Google Maps, OpenStreetMap, or a
+                phone GPS reading on-site. On the event's <strong>Vendor
+                Map</strong> tab, click <strong>Calibrate from two
+                points...</strong> and give it:</p>
+
+                <ol class="oe-steps">
+                    <li>
+                        <p>Spot 1 on a reference row (the anchor).</p>
+                    </li>
+                    <li>
+                        <p>Any other spot number on that same row.</p>
+                    </li>
+                    <li>
+                        <p>Spot 1 on a different row.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-check-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Once per event</span>
+                        <p>From those three points it works out the venue's
+                        bearing and spacing in both directions. Do it once
+                        per event - every booth's pin then follows
+                        automatically from its row and spot number.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -95,14 +158,41 @@
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
         <field name="html_content" type="html">
-            <p>Once calibrated, click <strong>Open Vendor Map</strong> on the
-            event to see every placed booth as a colored pin on an
-            OpenStreetMap-tiled map - teal for available, green for rented.
-            Click a pin's popup title to jump straight to that booth's
-            record. If the Logistics module is also installed, a
-            <strong>Place Facilities</strong> toggle appears on the same map
-            for dropping pins for portable toilets, hand-wash stations, and
-            the like.</p>
+            <div class="oe-course-content">
+                <p>Once calibrated, click <strong>Open Vendor Map</strong> on
+                the event to see every placed booth as a colored pin on an
+                OpenStreetMap-tiled map. Click a pin's popup title to jump
+                straight to that booth's record.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Vendor Map
+                    </div>
+                    <div class="oe-mock-body">
+                        <p>
+                            <span class="oe-badge oe-badge-accent">◉ Available</span>
+                            <span class="oe-badge oe-badge-good">◉ Rented</span>
+                        </p>
+                        <p class="mb-0 text-muted">Teal pins are available,
+                        green pins are rented.</p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the pin coloring on the live map.
+                    </p>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-building-o" /></span>
+                    <div>
+                        <span class="oe-callout-label">If Logistics is also installed</span>
+                        <p>A <strong>Place Facilities</strong> toggle appears
+                        on the same map for dropping pins for portable
+                        toilets, hand-wash stations, and the like.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -120,14 +210,26 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p>From the event's Print menu: the <strong>Vendor Load-In
-            Manifest</strong> lists booths grouped by row in spot order -
-            the paper backup for morning-of setup, showing renter, contact,
-            and a power icon for anything flagged Needs Power. The
-            <strong>Vendor Requirements</strong> report is the planning
-            view instead - a flat list sorted by vendor, showing spot(s),
-            power needs, and width, for coordinating power drops and load-in
-            logistics ahead of the day.</p>
+            <div class="oe-course-content">
+                <p>From the event's Print menu:</p>
+
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-map" /> Vendor Load-In Manifest</h4>
+                        <p class="mb-0">Lists booths grouped by row in spot
+                        order - the paper backup for morning-of setup,
+                        showing renter, contact, and a power icon for
+                        anything flagged Needs Power.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-list-alt" /> Vendor Requirements</h4>
+                        <p class="mb-0">The planning view instead - a flat
+                        list sorted by vendor, showing spot(s), power needs,
+                        and width, for coordinating power drops and load-in
+                        logistics ahead of the day.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 

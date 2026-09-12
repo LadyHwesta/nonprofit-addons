@@ -28,17 +28,43 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>Open <strong>Donations › Donations › New</strong>.
-            Choose the donor, the date, and the payment method, and add a
-            line for what was given - the contribution account is picked
-            for you. On that line, set <strong>Analytic Distribution</strong>
-            to the <em>Unrestricted</em> fund for an ordinary gift, then
-            click <strong>Validate</strong>. The system posts the journal
-            entry and can produce a tax receipt for the donor.</p>
-            <p>No donation module installed at all? Record it as a bank
-            entry or customer invoice against a Contributions account
-            instead - the donor reports and year-end statements still pick
-            it up as long as the account carries its contribution tag.</p>
+            <div class="oe-course-content">
+                <ol class="oe-steps">
+                    <li>
+                        <p>Open <strong>Donations › Donations ›
+                        New</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Choose the donor, the date, and the payment
+                        method.</p>
+                    </li>
+                    <li>
+                        <p>Add a line for what was given - the contribution
+                        account is picked for you.</p>
+                    </li>
+                    <li>
+                        <p>On that line, set <strong>Analytic
+                        Distribution</strong> to the <em>Unrestricted</em>
+                        fund for an ordinary gift.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Validate</strong>. The system posts
+                        the journal entry and can produce a tax receipt for
+                        the donor.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">No donation module installed at all?</span>
+                        <p>Record it as a bank entry or customer invoice
+                        against a Contributions account instead - the donor
+                        reports and year-end statements still pick it up as
+                        long as the account carries its contribution tag.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -48,17 +74,30 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>A <strong>restricted gift</strong> is recorded the same way,
-            but choose <em>Contributions - With Donor Restrictions</em> as
-            the account and set the fund to <em>With Donor Restrictions -
-            Purpose</em> (or <em>- Time</em>). Note the restriction - what
-            it's for, or when it frees up - on the record, so whoever
-            releases it later knows the terms.</p>
-            <p>An <strong>in-kind gift</strong> (goods or services rather
-            than cash) is a journal entry: debit the asset or expense it
-            represents, credit In-Kind Contributions, at fair value. Set the
-            fund on both lines, and keep the donor's description and how
-            you valued it with the entry.</p>
+            <div class="oe-course-content">
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-lock" /> Restricted gift</h4>
+                        <p>Recorded the same way, but choose <em>Contributions
+                        - With Donor Restrictions</em> as the account and set
+                        the fund to <em>With Donor Restrictions - Purpose</em>
+                        (or <em>- Time</em>).</p>
+                        <p class="mb-0 text-muted">Note the restriction - what
+                        it's for, or when it frees up - on the record, so
+                        whoever releases it later knows the terms.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-gift" /> In-kind gift</h4>
+                        <p>Goods or services rather than cash - recorded as a
+                        journal entry: debit the asset or expense it
+                        represents, credit In-Kind Contributions, at fair
+                        value.</p>
+                        <p class="mb-0 text-muted">Set the fund on both lines,
+                        and keep the donor's description and how you valued
+                        it with the entry.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -76,14 +115,45 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p>Put ticket and sponsorship income to <em>Fundraising Events -
-            Gross Revenue</em>. Put the cost of what donors received in
-            return (the dinner, the band) to <em>Fundraising Events - Direct
-            Benefit to Donor</em>. The Statement of Activities nets the two,
-            which is what the 990 expects - and that split is also what
-            makes a gala ticket a <strong>quid pro quo</strong> gift: only
-            the portion above the benefit's value is deductible, and a
-            receipt for it has to say so.</p>
+            <div class="oe-course-content">
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-badge">$200 ticket</span>
+                        </div>
+                        <span class="oe-flow-arrow">-</span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-warn">$60 dinner value</span>
+                        </div>
+                        <span class="oe-flow-arrow">=</span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">$140 deductible</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        a quid pro quo gift - only the amount above the
+                        benefit's value is deductible.
+                    </p>
+                </div>
+
+                <p>Put ticket and sponsorship income to <em>Fundraising
+                Events - Gross Revenue</em>. Put the cost of what donors
+                received in return (the dinner, the band) to <em>Fundraising
+                Events - Direct Benefit to Donor</em>. The Statement of
+                Activities nets the two, which is what the 990 expects.</p>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-ticket" /></span>
+                    <div>
+                        <span class="oe-callout-label">Quid pro quo</span>
+                        <p>That split is also what makes a gala ticket a
+                        <strong>quid pro quo</strong> gift: only the portion
+                        above the benefit's value is deductible, and a
+                        receipt for it has to say so.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -101,14 +171,27 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p><strong>Accounting › Reporting › Non-Profit
-            › Donor Analytics</strong> gives one row per donor:
-            lifetime giving, this year, last year, and first/last/largest
-            gift. Use the <strong>LYBUNT</strong> filter (gave <em>L</em>ast
-            <em>Y</em>ear <em>B</em>ut <em>U</em>nfortunately <em>N</em>ot
-            <em>T</em>his) to build a lapsed-donor appeal, and
-            <strong>SYBUNT</strong> (<em>S</em>ome <em>Y</em>ear…) for
-            a deeper reactivation list.</p>
+            <div class="oe-course-content">
+                <p><strong>Accounting › Reporting › Non-Profit
+                › Donor Analytics</strong> gives one row per donor:
+                lifetime giving, this year, last year, and first/last/largest
+                gift.</p>
+
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><span class="oe-badge oe-badge-warn">LYBUNT</span></h4>
+                        <p class="mb-0">Gave <em>L</em>ast <em>Y</em>ear
+                        <em>B</em>ut <em>U</em>nfortunately <em>N</em>ot
+                        <em>T</em>his - build a lapsed-donor appeal from it.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><span class="oe-badge oe-badge-accent">SYBUNT</span></h4>
+                        <p class="mb-0"><em>S</em>ome <em>Y</em>ear <em>B</em>ut
+                        <em>U</em>nfortunately <em>N</em>ot <em>T</em>his - a
+                        deeper reactivation list.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -118,13 +201,36 @@
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
         <field name="html_content" type="html">
-            <p><strong>Accounting › Reporting › Non-Profit
-            › Year-End Contribution Statements</strong> - choose the
-            year and a minimum total (defaults to $250), leave the donor
-            list blank to run it for everyone, and print. Each donor gets
-            one PDF listing every gift and the total, with the IRS
-            written-acknowledgement and quid-pro-quo language already on
-            it.</p>
+            <div class="oe-course-content">
+                <ol class="oe-steps">
+                    <li>
+                        <p>Open <strong>Accounting › Reporting ›
+                        Non-Profit › Year-End Contribution
+                        Statements</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Choose the year and a minimum total (defaults to
+                        $250).</p>
+                    </li>
+                    <li>
+                        <p>Leave the donor list blank to run it for
+                        everyone.</p>
+                    </li>
+                    <li>
+                        <p>Print.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-file-pdf-o" /></span>
+                    <div>
+                        <span class="oe-callout-label">Ready to mail</span>
+                        <p>Each donor gets one PDF listing every gift and the
+                        total, with the IRS written-acknowledgement and
+                        quid-pro-quo language already on it.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 

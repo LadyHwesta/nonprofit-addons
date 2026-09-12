@@ -29,19 +29,66 @@
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
-            <p>Before anything else, turn on <strong>Analytic Accounting</strong>
-            under Settings › Accounting - this is what lets you tag a
-            transaction with a fund, and everything below depends on it.</p>
-            <p>Then open <strong>Accounting › Configuration › Add
-            Non-Profit Accounts</strong>. Leave <strong>Code Prefix</strong>
-            blank unless the new account numbers collide with your existing
-            chart, keep <strong>Skip Codes That Already Exist</strong> ticked,
-            and click <strong>Add Accounts</strong>. It adds contribution,
-            grant, special-events, in-kind, functional-expense, and
-            net-asset accounts on top of what you already have - it never
-            changes or removes anything.</p>
-            <p><strong>Safe to re-run:</strong> if you're not sure whether it
-            ran, run it again. Accounts that already exist are skipped.</p>
+            <div class="oe-course-content">
+                <p>Before anything else, turn on <strong>Analytic
+                Accounting</strong> under Settings › Accounting - this is
+                what lets you tag a transaction with a fund, and everything
+                below depends on it.</p>
+
+                <ol class="oe-steps">
+                    <li>
+                        <p>Open <strong>Accounting › Configuration ›
+                        Add Non-Profit Accounts</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Leave <strong>Code Prefix</strong> blank unless
+                        the new account numbers collide with your existing
+                        chart.</p>
+                    </li>
+                    <li>
+                        <p>Keep <strong>Skip Codes That Already Exist</strong>
+                        ticked.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Add Accounts</strong>.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Add Non-Profit Accounts
+                    </div>
+                    <div class="oe-mock-body">
+                        <p class="mb-2"><strong>Adds to your chart</strong></p>
+                        <p>
+                            <span class="oe-badge">Contribution</span>
+                            <span class="oe-badge">Grant</span>
+                            <span class="oe-badge">Special Events</span>
+                            <span class="oe-badge">In-Kind</span>
+                            <span class="oe-badge">Functional Expense</span>
+                            <span class="oe-badge">Net Asset</span>
+                        </p>
+                        <p class="mb-0 text-muted">It only adds accounts - it
+                        never changes or removes anything already in your
+                        chart.</p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the account groups the wizard adds - your chart's
+                        actual account numbers will differ.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-refresh" /></span>
+                    <div>
+                        <span class="oe-callout-label">Safe to re-run</span>
+                        <p>If you're not sure whether it ran, run it again.
+                        Accounts that already exist are skipped.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -51,20 +98,39 @@
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
-            <p>Go to <strong>Settings › Accounting › Fund
-            Accounting (Non-Profit)</strong>. Under <strong>Net Assets
-            Released accounts</strong>, click <strong>Detect from
-            chart</strong> to fill the two clearing accounts the
-            restriction-release entry uses, then pick a default
-            <strong>Program</strong> and <strong>Function</strong> so you're
-            not choosing them on every release.</p>
-            <p>Leave <strong>Require a Fund on income &amp; expense</strong>
-            off until you've entered your opening balances and any
-            historical entries. Only then turn it on - once it's on, the
-            system won't let anyone post an income or expense line that
-            isn't 100% assigned to a fund, which is exactly what you want
-            going forward, but would block your opening entries if it's on
-            too soon.</p>
+            <div class="oe-course-content">
+                <p>Go to <strong>Settings › Accounting › Fund
+                Accounting (Non-Profit)</strong>.</p>
+
+                <ol class="oe-steps">
+                    <li>
+                        <p>Under <strong>Net Assets Released accounts</strong>,
+                        click <strong>Detect from chart</strong> to fill the
+                        two clearing accounts the restriction-release entry
+                        uses.</p>
+                    </li>
+                    <li>
+                        <p>Pick a default <strong>Program</strong> and
+                        <strong>Function</strong> so you're not choosing
+                        them on every release.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Timing matters</span>
+                        <p>Leave <strong>Require a Fund on income &amp;
+                        expense</strong> off until you've entered your
+                        opening balances and any historical entries. Only
+                        then turn it on - once it's on, the system won't
+                        let anyone post an income or expense line that isn't
+                        100% assigned to a fund, which is exactly what you
+                        want going forward, but would block your opening
+                        entries if it's on too soon.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -82,23 +148,64 @@
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
         <field name="html_content" type="html">
-            <p><strong>Fund</strong> - whose money is it? The starter funds
-            are Unrestricted (most gifts), With Donor Restrictions - Purpose
-            (must be spent on a specific thing), With Donor Restrictions -
-            Time (can't be spent until a future period), and Perpetual /
-            Endowment (the principal is never spent).</p>
-            <p><strong>Program</strong> - which mission activity? A food
-            pantry, an after-school club, a clinic day. Add one per real
-            activity.</p>
-            <p><strong>Function</strong> - what kind of work? The three Form
-            990 columns: Program Services, Management &amp; General,
-            Fundraising. Every expense is one of these.</p>
-            <p>You answer all three in the same place: the
-            <strong>Analytic Distribution</strong> field on an invoice,
-            bill, or journal-entry line. Set the fund to 100% (split across
-            two if a gift is genuinely shared), then add the Program and
-            Function the same way. That one field feeds every report later
-            in this course.</p>
+            <div class="oe-course-content">
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-university" /> Fund</h4>
+                        <p class="text-muted mb-1">Whose money is it?</p>
+                        <p>
+                            <span class="oe-badge">Unrestricted</span>
+                            <span class="oe-badge">With Donor Restrictions - Purpose</span>
+                            <span class="oe-badge">With Donor Restrictions - Time</span>
+                            <span class="oe-badge">Perpetual / Endowment</span>
+                        </p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-heart" /> Program</h4>
+                        <p class="text-muted mb-1">Which mission activity?</p>
+                        <p class="mb-0">A food pantry, an after-school club,
+                        a clinic day. Add one per real activity.</p>
+                    </div>
+                </div>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">Fund</div>
+                        <span class="oe-flow-arrow">+</span>
+                        <div class="oe-flow-step">Program</div>
+                        <span class="oe-flow-arrow">+</span>
+                        <div class="oe-flow-step">Function</div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-sitemap" /></span>
+                            Analytic Distribution
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the three questions every transaction answers, all
+                        set on the same field.
+                    </p>
+                </div>
+
+                <p><strong>Function</strong> - what kind of work? The three
+                Form 990 columns: Program Services, Management &amp;
+                General, Fundraising. Every expense is one of these.</p>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-sitemap" /></span>
+                    <div>
+                        <span class="oe-callout-label">One field, every report</span>
+                        <p>You answer all three in the same place: the
+                        <strong>Analytic Distribution</strong> field on an
+                        invoice, bill, or journal-entry line. Set the fund
+                        to 100% (split across two if a gift is genuinely
+                        shared), then add the Program and Function the same
+                        way. That one field feeds every report later in
+                        this course.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -116,12 +223,34 @@
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
-            <p>Enter the bill as normal under <strong>Accounting ›
-            Vendors › Bills</strong>. On each expense line, set
-            <strong>Analytic Distribution</strong>: the Fund it's paid
-            from, the Program it serves, and the Function. Split a line if
-            it's shared - e.g. 70% Program Services, 30% Management &amp;
-            General.</p>
+            <div class="oe-course-content">
+                <p>Enter the bill as normal under <strong>Accounting ›
+                Vendors › Bills</strong>. On each expense line, set
+                <strong>Analytic Distribution</strong>: the Fund it's paid
+                from, the Program it serves, and the Function.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Vendor Bill - Line 1
+                    </div>
+                    <div class="oe-mock-body">
+                        <p class="mb-2"><strong>Analytic Distribution</strong></p>
+                        <p>
+                            <span class="oe-badge oe-badge-accent">Program Services 70%</span>
+                            <span class="oe-badge oe-badge-warn">Management &amp; General 30%</span>
+                        </p>
+                        <p class="mb-0 text-muted">Split a line whenever the
+                        expense is genuinely shared across more than one
+                        Function.</p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        splitting one bill line 70/30 across two Functions -
+                        your own splits will vary by bill.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -131,24 +260,74 @@
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
         <field name="html_content" type="html">
-            <p>When a donor's purpose has been met or a time restriction has
-            passed, you move that money from the restricted class to
-            unrestricted - with the release wizard, not a hand-written
-            journal entry. Open <strong>Accounting › Non-Profit
-            › Restriction Releases › New</strong>, set
-            <strong>Released From</strong> (the restricted fund) and
-            <strong>Released To</strong> (normally Unrestricted), the
-            amount and date, and click <strong>Post</strong>.</p>
-            <p>Posting creates one balanced journal entry between the two
-            Net Assets Released accounts. On the Statement of Activities it
-            shows as a reduction in the restricted column and an equal
-            increase in the unrestricted column - zero to the bottom line.
-            Made a mistake? Open the release and click <strong>Cancel</strong>
-            to reverse it - never delete the entry by hand.</p>
-            <p>Check your work any time under <strong>Accounting ›
-            Non-Profit › Net-Asset Roll-Forward</strong> - opening
-            balance, revenue, expense, releases in and out, and closing
-            balance, per fund, for any date range.</p>
+            <div class="oe-course-content">
+                <p>When a donor's purpose has been met or a time restriction
+                has passed, you move that money from the restricted class
+                to unrestricted - with the release wizard, not a
+                hand-written journal entry.</p>
+
+                <ol class="oe-steps">
+                    <li>
+                        <p>Open <strong>Accounting › Non-Profit ›
+                        Restriction Releases › New</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Set <strong>Released From</strong> (the
+                        restricted fund) and <strong>Released To</strong>
+                        (normally Unrestricted).</p>
+                    </li>
+                    <li>
+                        <p>Enter the amount and date.</p>
+                    </li>
+                    <li>
+                        <p>Click <strong>Post</strong>.</p>
+                    </li>
+                </ol>
+
+                <div class="oe-diagram">
+                    <div class="oe-flow">
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-warn">Restricted Fund</span>
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-flow-step-icon"><i class="fa fa-exchange" /></span>
+                            Restriction Release
+                        </div>
+                        <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
+                        <div class="oe-flow-step">
+                            <span class="oe-badge oe-badge-good">Unrestricted</span>
+                        </div>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        posting creates one balanced entry between the two
+                        Net Assets Released accounts - a reduction on one
+                        side, an equal increase on the other, zero to the
+                        bottom line.
+                    </p>
+                </div>
+
+                <div class="oe-callout oe-callout-warn">
+                    <span class="oe-callout-icon"><i class="fa fa-undo" /></span>
+                    <div>
+                        <span class="oe-callout-label">Made a mistake?</span>
+                        <p>Open the release and click <strong>Cancel</strong>
+                        to reverse it - never delete the entry by hand.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout oe-callout-good">
+                    <span class="oe-callout-icon"><i class="fa fa-line-chart" /></span>
+                    <div>
+                        <span class="oe-callout-label">Check your work any time</span>
+                        <p><strong>Accounting › Non-Profit ›
+                        Net-Asset Roll-Forward</strong> shows opening
+                        balance, revenue, expense, releases in and out, and
+                        closing balance, per fund, for any date range.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -166,16 +345,34 @@
         <field name="slide_category">article</field>
         <field name="sequence">41</field>
         <field name="html_content" type="html">
-            <p>Because every transaction already carries its fund, program,
-            and function, the board reports come out without extra
-            bookkeeping. Find them under <strong>Accounting ›
-            Reporting › MIS Reports</strong> - open the Current Year
-            instance for the <strong>Statement of Activities</strong>
-            (revenue by source, expense by function, change in net assets)
-            and the <strong>Statement of Financial Position</strong> (assets,
-            liabilities, and net assets split into with/without donor
-            restrictions). Add fund-filtered periods to a report instance to
-            show either one broken out by fund.</p>
+            <div class="oe-course-content">
+                <p>Because every transaction already carries its fund,
+                program, and function, the board reports come out without
+                extra bookkeeping. Find them under <strong>Accounting ›
+                Reporting › MIS Reports</strong>.</p>
+
+                <div class="oe-columns">
+                    <div class="oe-column">
+                        <h4><i class="fa fa-bar-chart" /> Statement of Activities</h4>
+                        <p class="mb-0">Revenue by source, expense by
+                        function, change in net assets.</p>
+                    </div>
+                    <div class="oe-column">
+                        <h4><i class="fa fa-balance-scale" /> Statement of Financial Position</h4>
+                        <p class="mb-0">Assets, liabilities, and net assets
+                        split into with/without donor restrictions.</p>
+                    </div>
+                </div>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-filter" /></span>
+                    <div>
+                        <span class="oe-callout-label">Breaking it out by fund</span>
+                        <p>Add fund-filtered periods to a report instance to
+                        show either statement broken out by fund.</p>
+                    </div>
+                </div>
+            </div>
         </field>
     </record>
 
@@ -185,11 +382,35 @@
         <field name="slide_category">article</field>
         <field name="sequence">42</field>
         <field name="html_content" type="html">
-            <p><strong>Accounting › Reporting › Non-Profit
-            › Functional Expenses</strong> gives your 990 preparer a
-            grid of every natural expense account against Program
-            Services, Management &amp; General, and Fundraising - built
-            straight from the Function you set on every expense line.</p>
+            <div class="oe-course-content">
+                <p><strong>Accounting › Reporting › Non-Profit
+                › Functional Expenses</strong> gives your 990 preparer a
+                grid of every natural expense account against the three
+                Function columns - built straight from the Function you set
+                on every expense line.</p>
+
+                <div class="oe-diagram">
+                    <div class="oe-mock-bar">
+                        <span class="oe-mock-dots"><span /><span /><span /></span>
+                        Functional Expenses
+                    </div>
+                    <div class="oe-mock-body">
+                        <p class="mb-2"><strong>Every natural account, against:</strong></p>
+                        <p>
+                            <span class="oe-badge oe-badge-accent">Program Services</span>
+                            <span class="oe-badge oe-badge-warn">Management &amp; General</span>
+                            <span class="oe-badge">Fundraising</span>
+                        </p>
+                        <p class="mb-0 text-muted">Ready for the 990 preparer
+                        exactly as it stands - no reclassifying by hand.</p>
+                    </div>
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Illustration</span>
+                        the shape of the functional-expense grid - your
+                        actual account list will be longer.
+                    </p>
+                </div>
+            </div>
         </field>
     </record>
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Parade Coordinator",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: parade applications, staging, lineup, and signs",
     "description": """
@@ -19,7 +19,7 @@ Only depends on ``nonprofit_event_parade``.
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": ["website_slides", "nonprofit_event_parade"],
+    "depends": ["website_slides", "nonprofit_elearning_theme", "nonprofit_event_parade"],
     "data": [
         "data/slide_channel_data.xml",
     ],

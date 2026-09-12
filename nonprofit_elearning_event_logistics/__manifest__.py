@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Logistics Lead",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: permits, temp staff, crews, and facilities",
     "description": """
@@ -20,7 +20,7 @@ Only depends on ``nonprofit_event_logistics``.
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": ["website_slides", "nonprofit_event_logistics"],
+    "depends": ["website_slides", "nonprofit_elearning_theme", "nonprofit_event_logistics"],
     "data": [
         "data/slide_channel_data.xml",
     ],

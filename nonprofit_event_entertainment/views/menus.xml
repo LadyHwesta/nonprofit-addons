@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_event_performer" name="Performers"
+              action="action_event_performer"
+              parent="event.menu_event_configuration" sequence="50" />
+    <menuitem id="menu_event_stage" name="Stages"
+              action="action_event_stage"
+              parent="event.menu_event_configuration" sequence="51" />
+
+</odoo>

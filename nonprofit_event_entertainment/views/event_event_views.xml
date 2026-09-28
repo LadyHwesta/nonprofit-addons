@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_event_view_form_entertainment" model="ir.ui.view">
+        <field name="name">event.event.view.form.entertainment</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Entertainment" name="entertainment">
+                    <div class="row text-center mb-3">
+                        <div class="col">
+                            <h3><field name="stage_count" class="oe_inline" /></h3>
+                            <span class="text-muted">Stages</span>
+                        </div>
+                    </div>
+
+                    <separator string="Stages" />
+                    <p class="text-muted">
+                        Each stage runs its own independent run of show -
+                        open a stage to build/reorder its schedule and
+                        print it.
+                    </p>
+                    <field name="stage_ids">
+                        <list editable="bottom">
+                            <field name="name" />
+                            <field name="start_time" />
+                            <field name="line_count" string="Items" />
+                        </list>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

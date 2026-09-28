@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="event_performer_view_list" model="ir.ui.view">
+        <field name="model">event.performer</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="genre" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="default_set_length" optional="hide" />
+                <field name="booking_count" optional="show" string="Bookings" />
+            </list>
+        </field>
+    </record>
+
+    <record id="event_performer_view_form" model="ir.ui.view">
+        <field name="model">event.performer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. The Wandering Fiddlers" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" />
+                            <field name="genre" />
+                            <field name="default_set_length" />
+                        </group>
+                        <group>
+                            <field name="active" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Technical Rider" name="rider">
+                            <field name="technical_rider" placeholder="Power, mics, monitors, backline, etc." />
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes" />
+                        </page>
+                        <page string="Bookings" name="bookings">
+                            <field name="booking_ids">
+                                <list>
+                                    <field name="event_id" />
+                                    <field name="stage_id" />
+                                    <field name="computed_start" />
+                                    <field name="duration_minutes" />
+                                    <field name="booking_state" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="event_performer_view_search" model="ir.ui.view">
+        <field name="model">event.performer</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="genre" />
+                <field name="partner_id" />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+                <group>
+                    <filter string="Genre" name="group_by_genre" context="{'group_by': 'genre'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_event_performer" model="ir.actions.act_window">
+        <field name="name">Performers</field>
+        <field name="res_model">event.performer</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a performer</p>
+            <p>A reusable roster - contact info, genre, default set
+               length, and technical rider carry across every event this
+               act plays.</p>
+        </field>
+    </record>
+
+</odoo>

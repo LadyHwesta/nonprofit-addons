@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_report_run_of_show" model="ir.actions.report">
+        <field name="name">Run of Show</field>
+        <field name="model">event.stage</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">nonprofit_event_entertainment.run_of_show</field>
+        <field name="report_file">nonprofit_event_entertainment.run_of_show</field>
+        <field name="print_report_name">'Run of Show - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_event_stage" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="run_of_show">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Run of Show</h2>
+                        <h4 class="text-muted">
+                            <span t-field="o.event_id.name" /> — <span t-field="o.name" />
+                        </h4>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Time</th>
+                                    <th>Item</th>
+                                    <th style="width: 15%;">Duration</th>
+                                    <th style="width: 15%;">Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.line_ids.sorted('sequence')" t-as="line">
+                                    <td>
+                                        <strong><span t-field="line.computed_start" t-options="{'format': 'h:mm a'}" /></strong>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.title" />
+                                        <div t-if="line.notes" class="text-muted small">
+                                            <span t-field="line.notes" />
+                                        </div>
+                                    </td>
+                                    <td><span t-esc="line.duration_minutes" /> min</td>
+                                    <td>
+                                        <em t-if="line.line_type == 'announcement'">Announcement</em>
+                                        <span t-else="" t-esc="''" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p t-if="not o.line_ids" class="text-muted">
+                            No items added to this stage's run of show yet.
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

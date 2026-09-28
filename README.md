@@ -67,7 +67,7 @@ module here required:
   `nonprofit_reports`) is a **configuration** step — an
   `account.analytic.distribution.model` record — not code.
 
-Three gaps those stock apps don't cover get their own modules here:
+Four gaps those stock apps don't cover get their own modules here:
 
 - [`nonprofit_event_venue/`](nonprofit_event_venue/) — give every booth a
   plain **row + spot number**; a two-point calibration wizard (read two
@@ -86,6 +86,15 @@ Three gaps those stock apps don't cover get their own modules here:
   click-to-drop-pin mode added to the vendor map above. A Logistics tab
   on the event shows readiness at a glance, with one consolidated
   coordinator To-Do as the event approaches if anything's still open.
+- [`nonprofit_event_entertainment/`](nonprofit_event_entertainment/) —
+  a reusable **performer roster** (contact, genre, default set length,
+  technical rider) and **stages**, each with its own independent,
+  drag-to-reorder **run of show** mixing performances and announcements
+  (a raffle drawing, sponsor thank-yous). Every item's start/end time
+  computes itself as a rolling clock from set lengths, with a **hard
+  time** override that pins one item to a fixed clock time and pushes
+  everything after it forward. A printable Run of Show PDF per stage,
+  plus click-to-drop-pin stage placement on the same vendor map.
 
 ## eLearning training
 

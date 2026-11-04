@@ -10,7 +10,7 @@ from .common import EventEntertainmentCommon
 class TestEventStage(EventEntertainmentCommon):
 
     def test_start_time_defaults_from_the_event(self):
-        stage = self.env["event.stage"].create({
+        stage = self.env["event.entertainment.stage"].create({
             "event_id": self.event.id, "name": "Acoustic Tent",
         })
 
@@ -18,7 +18,7 @@ class TestEventStage(EventEntertainmentCommon):
 
     def test_start_time_is_not_overridden_when_given_explicitly(self):
         explicit = datetime(2027, 9, 25, 19, 30, 0)
-        stage = self.env["event.stage"].create({
+        stage = self.env["event.entertainment.stage"].create({
             "event_id": self.event.id, "name": "Acoustic Tent",
             "start_time": explicit,
         })

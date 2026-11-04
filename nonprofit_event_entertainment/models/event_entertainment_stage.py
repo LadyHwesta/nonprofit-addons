@@ -2,13 +2,13 @@
 from odoo import api, fields, models
 
 
-class EventStage(models.Model):
+class EventEntertainmentStage(models.Model):
     """A named performance area for one event - Main Stage, Acoustic
     Tent, etc. Each stage runs its own independent, ordered schedule
     (event.run_of_show.line) starting from its own start_time.
     """
-    _name = "event.stage"
-    _description = "Event Stage"
+    _name = "event.entertainment.stage"
+    _description = "Event Entertainment Stage"
     _order = "sequence, name"
 
     event_id = fields.Many2one(

@@ -6,7 +6,7 @@ class EventEvent(models.Model):
     _inherit = "event.event"
 
     stage_ids = fields.One2many(
-        "event.stage", "event_id", string="Stages")
+        "event.entertainment.stage", "event_id", string="Stages")
     stage_count = fields.Integer(compute="_compute_stage_count")
 
     @api.depends("stage_ids")

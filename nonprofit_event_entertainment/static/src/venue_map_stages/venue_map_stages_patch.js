@@ -41,7 +41,7 @@ patch(VendorMapAction.prototype, {
                 return;
             }
             this.state.stages = await this.orm.searchRead(
-                "event.stage",
+                "event.entertainment.stage",
                 [["event_id", "=", eventId]],
                 ["name", "latitude", "longitude"]
             );
@@ -99,7 +99,7 @@ patch(VendorMapAction.prototype, {
         }
         const { lat, lng } = ev.latlng;
         await this.orm.write(
-            "event.stage", [this.state.placingStageId],
+            "event.entertainment.stage", [this.state.placingStageId],
             { latitude: lat, longitude: lng });
         const stage = this.state.stages.find(
             (s) => s.id === this.state.placingStageId);
@@ -114,7 +114,7 @@ patch(VendorMapAction.prototype, {
     _openStage(stageId) {
         this.actionService.doAction({
             type: "ir.actions.act_window",
-            res_model: "event.stage",
+            res_model: "event.entertainment.stage",
             res_id: stageId,
             views: [[false, "form"]],
             target: "current",

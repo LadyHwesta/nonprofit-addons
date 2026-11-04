@@ -19,7 +19,7 @@ plays - its "Bookings" tab shows its history across all of them.
 
 ### Stages
 
-`event.stage` - one event can have several independent schedules
+`event.entertainment.stage` - one event can have several independent schedules
 (Main Stage, Acoustic Tent, ...), each with its own start time. Placed
 either by typing a coordinate or with a **click-to-drop-pin mode**
 added to `nonprofit_event_venue`'s existing live Vendor Map (a *Place

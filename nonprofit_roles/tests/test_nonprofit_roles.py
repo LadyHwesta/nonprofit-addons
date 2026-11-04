@@ -72,6 +72,73 @@ class TestNonprofitRoles(TransactionCase):
         with self.assertRaises(AccessError):
             self.parade_entry.with_user(user).write({'name': 'Renamed'})
 
+    def test_general_volunteer_cannot_change_events_or_booths(self):
+        user = self._user('group_role_general_volunteer')
+        self.assertTrue(user.has_group('event.group_event_registration_desk'))
+        self.assertFalse(user.has_group('event.group_event_user'))
+        self.event.with_user(user).read(['name'])
+        with self.assertRaises(AccessError):
+            self.event.with_user(user).write({'name': 'Renamed'})
+        with self.assertRaises(AccessError):
+            self.env['event.event'].with_user(user).create({
+                'name': 'New Event',
+                'date_begin': datetime.now(),
+                'date_end': datetime.now() + timedelta(hours=1),
+            })
+        booths = self.env['event.booth'].with_user(user)
+        self.assertTrue(booths.has_access('read'))
+        for operation in ('write', 'create', 'unlink'):
+            self.assertFalse(booths.has_access(operation))
+        self.assertFalse(self.env['event.event.ticket'].with_user(user).has_access('write'))
+
+    def test_volunteer_viewers_can_open_events_with_volunteer_roles(self):
+        # The event and shift forms list assignments, so a viewer who can't
+        # read them gets an access error opening either form.
+        for role in ('group_role_general_volunteer', 'group_role_treasurer'):
+            user = self._user(role)
+            self.role.with_user(user).read(['assignment_ids'])
+            self.shift.with_user(user).read(['assignment_ids'])
+            self.assertFalse(
+                self.env['event.volunteer.assignment'].with_user(user).has_access('write'))
+
+    def test_general_volunteer_can_still_work_the_door(self):
+        user = self._user('group_role_general_volunteer')
+        registrations = self.env['event.registration'].with_user(user)
+        self.assertTrue(registrations.has_access('create'))
+        self.assertTrue(registrations.has_access('write'))
+        self.assertFalse(registrations.has_access('unlink'))
+
+    def test_general_volunteer_sees_the_screens_it_can_read(self):
+        user = self._user('group_role_general_volunteer')
+        visible = self.env['ir.ui.menu'].with_user(user)._visible_menu_ids()
+        for xmlid in (
+            'event.event_main_menu',
+            'event_volunteer.menu_event_volunteers',
+            'volunteer_shift.menu_volunteer_shifts',
+            'volunteer_shift.menu_volunteer_hours_report',
+        ):
+            self.assertIn(self.env.ref(xmlid).id, visible, xmlid)
+        self.assertNotIn(
+            self.env.ref('volunteer_shift.menu_volunteer_hours_certificate').id, visible)
+
+    def test_shift_swaps_menu_needs_volunteer_user(self):
+        menu = self.env.ref('volunteer_shift.menu_volunteer_shift_swaps').id
+        for role, expected in (
+            ('group_role_general_volunteer', False),
+            ('group_role_treasurer', False),
+            ('group_role_volunteer_coordinator', True),
+        ):
+            user = self._user(role)
+            visible = self.env['ir.ui.menu'].with_user(user)._visible_menu_ids()
+            self.assertEqual(menu in visible, expected, role)
+            self.assertEqual(
+                self.env['volunteer.shift.swap'].with_user(user).has_access('read'),
+                expected, role)
+
+    def test_coordinator_roles_keep_events_user(self):
+        for role in ('group_role_treasurer', 'group_role_volunteer_coordinator'):
+            self.assertTrue(self._user(role).has_group('event.group_event_user'), role)
+
     # -- real separation between coordinator roles ---------------------------
 
     def test_volunteer_coordinator_manages_volunteers_not_parade(self):

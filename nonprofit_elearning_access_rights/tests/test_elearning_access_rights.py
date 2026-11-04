@@ -39,6 +39,10 @@ class TestElearningAccessRights(TransactionCase):
             self.assertEqual(
                 len(question.answer_ids.filtered("is_correct")), 1)
 
+    def test_core_events_lesson_matches_general_volunteer_access(self):
+        lesson = self.env.ref("nonprofit_elearning_access_rights.lesson_core_events")
+        self.assertIn("Registration Desk", lesson.html_content)
+
     def test_screenshots_exist(self):
         lesson = self.env.ref("nonprofit_elearning_access_rights.lesson_assign")
         images = re.findall(r'src="/([^"]+\.png)"', lesson.html_content)

@@ -4,5 +4,6 @@ access_event_volunteer_role_viewer,event.volunteer.role viewer,model_event_volun
 access_event_volunteer_role_portal,event.volunteer.role portal,model_event_volunteer_role,base.group_portal,1,0,0,0
 access_event_volunteer_role_public,event.volunteer.role public,model_event_volunteer_role,base.group_public,1,0,0,0
 access_event_volunteer_assignment_manager,event.volunteer.assignment manager,model_event_volunteer_assignment,group_volunteer_manager,1,1,1,1
+access_event_volunteer_assignment_viewer,event.volunteer.assignment viewer,model_event_volunteer_assignment,group_volunteer_viewer,1,0,0,0
 access_event_volunteer_assignment_user,event.volunteer.assignment user,model_event_volunteer_assignment,group_volunteer_user,1,1,1,0
 access_event_volunteer_assignment_portal,event.volunteer.assignment portal,model_event_volunteer_assignment,base.group_portal,1,0,0,0

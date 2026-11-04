@@ -17,14 +17,18 @@
     <!-- The new baseline - added to the default user template in
          data/default_user_groups.xml so a brand-new internal user
          starts here instead of with nothing nonprofit-specific
-         configured either way. Read-only everywhere, so it's safe to
-         hand to anyone without a real decision being made first. -->
+         configured either way. Safe to hand to anyone without a real
+         decision being made first: read-only, except that Registration
+         Desk can create and edit registrations for check-in. The (3, ...)
+         removes Events User from databases that installed an older version,
+         where this role could change events, tickets, and booths. -->
     <record id="group_role_general_volunteer" model="res.groups">
         <field name="name">General Volunteer/Staff</field>
         <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
         <field name="implied_ids" eval="[
             (4, ref('base.group_user')),
-            (4, ref('event.group_event_user')),
+            (3, ref('event.group_event_user')),
+            (4, ref('event.group_event_registration_desk')),
             (4, ref('event_volunteer.group_volunteer_viewer')),
             (4, ref('nonprofit_event_venue.group_venue_viewer')),
             (4, ref('nonprofit_event_logistics.group_logistics_viewer')),

@@ -115,6 +115,8 @@ principle as the modules themselves):
   *Vendor Coordinator*.
 - [`nonprofit_elearning_event_parade/`](nonprofit_elearning_event_parade/) -
   *Parade Coordinator*.
+- [`nonprofit_elearning_access_rights/`](nonprofit_elearning_access_rights/) -
+  *Access Rights and Roles*: choosing roles, what each allows, and checking access.
 - [`nonprofit_elearning_event_logistics/`](nonprofit_elearning_event_logistics/) -
   *Logistics Lead*.
 

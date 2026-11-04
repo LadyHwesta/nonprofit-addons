@@ -23,7 +23,7 @@ class TestEventPerformer(EventEntertainmentCommon):
             "date_begin": datetime(2028, 4, 10, 12, 0, 0),
             "date_end": datetime(2028, 4, 10, 18, 0, 0),
         })
-        other_stage = self.env["event.stage"].create({
+        other_stage = self.env["event.entertainment.stage"].create({
             "event_id": other_event.id,
             "name": "Main Stage",
             "start_time": datetime(2028, 4, 10, 12, 0, 0),

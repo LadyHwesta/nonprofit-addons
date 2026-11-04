@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_access_rights" model="slide.channel">
+        <field name="name">Access Rights and Roles</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Choosing the right role for each person, what each role and
+            tier allows, and checking that access works.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('base.group_erp_manager')])]" />
+    </record>
+
+    <!-- ================= How access works ================= -->
+    <record id="section_how" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">How access works</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_layers" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Roles, tiers, and the Administrator setting</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Three things decide what someone can do in this system. Most
+                of the time you only set the first one, a <strong>Nonprofit Org
+                Role</strong> such as Treasurer or Parade Coordinator.</p>
+                <div class="oe-diagram"><div class="oe-flow">
+                    <div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-id-badge" /></span>Nonprofit Org Role</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-sliders" /></span>Viewer, User, or Manager in each area</div><span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span><div class="oe-flow-step"><span class="oe-flow-step-icon"><i class="fa fa-file-text-o" /></span>What they can read and change</div>
+                </div><p class="oe-diagram-caption"><span class="oe-diagram-caption-tag">Illustration</span> a role is a named bundle of tiers, one for each area of work.</p></div>
+                <ul>
+                    <li><strong>Role:</strong> matches a real job. Pick this first.</li>
+                    <li><strong>Tier:</strong> Viewer, User, or Manager in one area: Volunteers, Venue, Logistics, Parade, or Entertainment.</li>
+                    <li><strong>Administrator:</strong> controls Settings and user accounts. It's separate from both of the above.</li>
+                </ul>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-plus-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Access only adds up</span>
+                        <p>Someone's access is everything their role and any other groups allow combined. Choosing a role never takes away access they already had.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_admin" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">What Administrator does and doesn't include</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>The user form has a <strong>Role</strong> setting with two
+                choices, <strong>User</strong> and <strong>Administrator</strong>.
+                Despite the name, it's different from the Nonprofit Org Role.
+                Administrator opens Settings, including user accounts and access
+                rights.</p>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th></th><th>Administrator only</th><th>Nonprofit role only</th></tr></thead><tbody><tr><td>Settings and user accounts</td><td>Yes</td><td>No</td></tr><tr><td>Volunteers, Venue, Logistics, Parade, Entertainment records</td><td>No, not on its own</td><td>As the role allows</td></tr></tbody></table></div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Administrators need a role too</span>
+                        <p>Administrator doesn't include the nonprofit areas. If an administrator also works in them, give that person a Nonprofit Org Role as well.</p>
+                    </div>
+                </div>
+                <p>Keep Administrator to the few people who manage accounts. An
+                administrator can change anyone's access, including their own.</p>
+            </div>
+        </field>
+    </record>
+
+
+    <!-- ================= What each level allows ================= -->
+    <record id="section_levels" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">What each level allows</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_tiers" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Viewer, User, and Manager in each area</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>In each area, Manager includes everything in User, and User
+                includes everything in Viewer.</p>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Area</th><th>Viewer</th><th>User adds</th><th>Manager adds</th></tr></thead><tbody><tr><td>Volunteers</td><td>Read roles, assignments, shifts, templates, skills, and hours</td><td>Create and edit assignments, manage shifts and swaps, issue hours certificates</td><td>Manage roles, shift templates, and skills; delete assignments</td></tr><tr><td>Venue</td><td>Read rows and vendor booths</td><td>Manage rows and use map calibration</td><td>Full control of vendor booths</td></tr><tr><td>Logistics (shown as Event Logistics)</td><td>Read permits, staff, crew bookings, and facilities</td><td>Create, edit, and delete all of them</td><td>Nothing more today</td></tr><tr><td>Parade</td><td>Read staging areas and entries</td><td>Create, edit, and delete them; run step-off times</td><td>Nothing more today</td></tr><tr><td>Entertainment</td><td>Read performers, stages, and run of show</td><td>Create, edit, and delete all of them</td><td>Nothing more today</td></tr></tbody></table></div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Tiers cover a whole area</span>
+                        <p>You can't limit someone to part of an area. A Logistics User can edit permits, staffing, crew bookings, and facilities alike.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_roles" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">What each nonprofit role provides</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Each role gives full access to its own work and read-only
+                access to the areas around it.</p>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Role</th><th>Manages</th><th>Can read</th></tr></thead><tbody><tr><td>General Volunteer/Staff</td><td>Nothing in the five areas</td><td>Venue, Logistics, Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Chair Person</td><td>All five areas, Events, Donation, Accounting, Projects, HR, Website design</td><td>Everything listed</td></tr><tr><td>Operating Officer</td><td>Logistics, Volunteers, HR</td><td>Venue, Parade, Entertainment, Donation, Accounting</td></tr><tr><td>Treasurer</td><td>Accounting, Donation</td><td>All five areas</td></tr><tr><td>Fundraising Manager</td><td>Donation</td><td>All five areas, Accounting</td></tr><tr><td>Program Director</td><td>All five areas, Events, Projects</td><td>Donation, Accounting</td></tr><tr><td>Marketing &amp; Communications Director</td><td>Website design; Donation at User level</td><td>All five areas</td></tr><tr><td>Volunteer Coordinator</td><td>Volunteers</td><td>Venue, Logistics, Parade, Entertainment, Donation</td></tr><tr><td>Logistics Coordinator</td><td>Logistics</td><td>Venue, Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Vendor Coordinator</td><td>Venue; Logistics at User level</td><td>Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Parade Coordinator</td><td>Parade</td><td>Venue, Logistics, Entertainment, Volunteers, Donation</td></tr></tbody></table></div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-lock" /></span>
+                    <div>
+                        <span class="oe-callout-label">Not included in any role</span>
+                        <p>Settings, plus apps such as Sales, Point of Sale, Inventory, and Email Marketing. Set those separately on the user's form if the person needs them.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_core_events" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">The Events access that comes with every role</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">23</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Every role also includes access to Odoo's own <strong>Events</strong>
+                app. Chair Person and Program Director are Events
+                <strong>Administrators</strong>. Every other role, including
+                General Volunteer/Staff, is an Events <strong>User</strong>.</p>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Record</th><th>Events User</th><th>Events Administrator</th></tr></thead><tbody><tr><td>Events</td><td>Create and edit</td><td>Also delete</td></tr><tr><td>Tickets</td><td>Create, edit, delete</td><td>Same</td></tr><tr><td>Registrations</td><td>Create and edit</td><td>Also delete</td></tr><tr><td>Vendor booths</td><td>Create, edit, delete</td><td>Same</td></tr><tr><td>Event types and pipeline stages</td><td>Read only</td><td>Create, edit, delete</td></tr></tbody></table></div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Read-only has limits here</span>
+                        <p>A role listed as able to read Venue can still edit vendor booths, because Events User includes them. Only give an account to people you trust with event records.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+
+    <!-- ================= Setting access ================= -->
+    <record id="section_setting" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Setting access</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_assign" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Giving someone a role</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>You need to be an Administrator to do this.</p>
+                <ol>
+                    <li>Go to <strong>Settings › Users &amp; Companies › Users</strong> and open the person.</li>
+                    <li>On the <strong>Access Rights</strong> tab, find <strong>Nonprofit Org Role</strong> and pick one.</li>
+                    <li>Save. The change applies the next time they load a page.</li>
+                </ol>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_access_rights/static/img/access_rights_tab.png" alt="The Access Rights tab on a user form, showing the Role setting and the Nonprofit Org Role field" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Access Rights tab, with Parade Coordinator selected for a sample user.
+                    </p>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_access_rights/static/img/role_dropdown.png" alt="The Nonprofit Org Role dropdown open, listing the available roles" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the list of roles. Each person gets one.
+                    </p>
+                </div>
+                <h4>Seeing what the role grants</h4>
+                <p>Tiers that come from the role appear in grey under each
+                area. Here, a Parade Coordinator is a Parade Manager and a Viewer
+                everywhere else.</p>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_access_rights/static/img/tiers_from_role.png" alt="The Marketing section of the Access Rights tab, with greyed-out tiers such as Parade Manager and Venue Viewer" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        tiers granted by the Parade Coordinator role, shown in grey.
+                    </p>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-user-times" /></span>
+                    <div>
+                        <span class="oe-callout-label">Removing Administrator</span>
+                        <p>Set the role and save first, then change Role from Administrator to User. Tell the person beforehand, since they'll lose Settings.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_defaults" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">New users, and existing users after an upgrade</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">32</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <h4>New users</h4>
+                <p>Every new internal user starts as <strong>General
+                Volunteer/Staff</strong>. Change that if they need more.</p>
+                <h4>Existing users</h4>
+                <p>Installing roles doesn't give existing users a role, so assign
+                one to each person.</p>
+                <h4>Moving from an older version</h4>
+                <p>Older versions gave access through the Events groups. Upgrading
+                moves people across automatically so they keep what they had:</p>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Before the upgrade</th><th>After, in all five areas</th></tr></thead><tbody><tr><td>Events Administrator</td><td>Manager</td></tr><tr><td>Events User</td><td>User</td></tr><tr><td>Neither</td><td>No change</td></tr></tbody></table></div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-check-square-o" /></span>
+                    <div>
+                        <span class="oe-callout-label">Review after upgrading</span>
+                        <p>This keeps access the same, so everyone who had Events access can still edit all five areas. To separate duties, assign roles and remove the extra tiers from each user's form.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_verify" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Checking that it worked</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">33</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>The surest check is to try it as that person. Ask them, or log
+                in with a test account that has the same role.</p>
+                <ol>
+                    <li>Open a screen their role manages, and edit a record.</li>
+                    <li>Open a screen their role can only read. There should be no way to save changes.</li>
+                    <li>Confirm <strong>Settings</strong> is missing unless they're an Administrator.</li>
+                </ol>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-life-ring" /></span>
+                    <div>
+                        <span class="oe-callout-label">If they see an access error</span>
+                        <p>Check the Access Rights tab first. An access error or a missing menu usually means the role wasn't saved, or they need a different role. It doesn't mean any records are gone.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ================= Quiz ================= -->
+    <record id="section_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Check your understanding</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">40</field>
+    </record>
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_access_rights" />
+        <field name="name">Access rights quiz</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">41</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">Who can assign a Nonprofit Org Role to a user?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">Any Chair Person</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">An Administrator</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Any Manager in that area</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">The user, from their own preferences</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">An Administrator can't open the Volunteers screens. What's the likely fix?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Reinstall the module</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Nothing, administrators can never see them</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Give that person a Nonprofit Org Role as well</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Delete and recreate the user</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">What does assigning a role do to access someone already has?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Nothing, access only adds up</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">Removes all of it</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">Removes Administrator</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">Replaces it with Viewer access</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">What's a new internal user's starting role?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Chair Person</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Administrator</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">None</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">General Volunteer/Staff</field>
+        <field name="is_correct" eval="True" />
+    </record>
+
+</odoo>

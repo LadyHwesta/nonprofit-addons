@@ -31,7 +31,7 @@ class EventRunOfShowLine(models.Model):
     _order = "stage_id, sequence, id"
 
     stage_id = fields.Many2one(
-        "event.stage", string="Stage", required=True, ondelete="cascade",
+        "event.entertainment.stage", string="Stage", required=True, ondelete="cascade",
         index=True)
     event_id = fields.Many2one(
         related="stage_id.event_id", store=True, string="Event")

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Logistics",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Marketing/Events",
     "summary": "Permits, temp staff shifts, crew bookings and facility placement",
     "description": """
@@ -38,6 +38,7 @@ hourly staffing, and vendor/crew day-of logistics - while leaving
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
     "depends": ["event", "mail", "purchase", "nonprofit_event_venue"],
     "data": [
+        "security/nonprofit_event_logistics_security.xml",
         "security/ir.model.access.csv",
         "data/ir_cron.xml",
         "views/event_permit_views.xml",

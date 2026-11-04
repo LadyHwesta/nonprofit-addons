@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Entertainment",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Marketing/Events",
     "summary": "A reusable performer roster, per-stage scheduling, and a printable Run of Show",
     "description": """
@@ -17,7 +17,7 @@ alongside vendor booths (``nonprofit_event_venue``), the parade
   genre, a default set length, and technical rider notes carry across
   every event a recurring act plays, instead of being re-typed each
   time.
-* **Stages** (``event.stage``) - one event can have several
+* **Stages** (``event.entertainment.stage``) - one event can have several
   independent schedules (Main Stage, Acoustic Tent, ...), each with
   its own start time and, optionally, a position on the existing
   Vendor Map (the same click-to-place-a-pin flow
@@ -42,6 +42,7 @@ alongside vendor booths (``nonprofit_event_venue``), the parade
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
     "depends": ["event", "mail", "nonprofit_event_venue"],
     "data": [
+        "security/nonprofit_event_entertainment_security.xml",
         "security/ir.model.access.csv",
         "views/event_performer_views.xml",
         "report/run_of_show_report.xml",

@@ -3,12 +3,12 @@
 
     <record id="action_report_run_of_show" model="ir.actions.report">
         <field name="name">Run of Show</field>
-        <field name="model">event.stage</field>
+        <field name="model">event.entertainment.stage</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">nonprofit_event_entertainment.run_of_show</field>
         <field name="report_file">nonprofit_event_entertainment.run_of_show</field>
         <field name="print_report_name">'Run of Show - %s' % object.name</field>
-        <field name="binding_model_id" ref="model_event_stage" />
+        <field name="binding_model_id" ref="model_event_entertainment_stage" />
         <field name="binding_type">report</field>
     </record>
 

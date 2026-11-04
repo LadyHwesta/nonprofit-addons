@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Parade Lineup",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Marketing/Events",
     "summary": "Public parade-entry applications, staging areas and a lineup sheet",
     "description": """
@@ -29,6 +29,7 @@ Event Parade Lineup
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
     "depends": ["event", "mail", "website"],
     "data": [
+        "security/nonprofit_event_parade_security.xml",
         "security/ir.model.access.csv",
         "data/mail_template_data.xml",
         "wizard/parade_step_off_wizard_views.xml",

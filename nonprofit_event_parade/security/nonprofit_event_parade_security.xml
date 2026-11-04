@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- A dedicated Parade privilege/tier - separate from the blanket
+         event.group_event_user/manager every event-domain module used
+         to share. Manager implies User implies Viewer. -->
+    <record id="res_groups_privilege_parade" model="res.groups.privilege">
+        <field name="name">Parade</field>
+        <field name="category_id" ref="base.module_category_marketing" />
+    </record>
+    <record id="group_parade_viewer" model="res.groups">
+        <field name="name">Parade Viewer</field>
+        <field name="privilege_id" ref="res_groups_privilege_parade" />
+    </record>
+    <record id="group_parade_user" model="res.groups">
+        <field name="name">Parade User</field>
+        <field name="privilege_id" ref="res_groups_privilege_parade" />
+        <field name="implied_ids" eval="[(4, ref('group_parade_viewer'))]" />
+    </record>
+    <record id="group_parade_manager" model="res.groups">
+        <field name="name">Parade Manager</field>
+        <field name="privilege_id" ref="res_groups_privilege_parade" />
+        <field name="implied_ids" eval="[(4, ref('group_parade_user'))]" />
+    </record>
+</odoo>

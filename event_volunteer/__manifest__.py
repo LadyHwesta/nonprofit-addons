@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Event Volunteer Roles',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Marketing/Events',
     'summary': 'Named volunteer positions with slot quotas on events, and '
                'member self sign-up from the website',
@@ -30,8 +30,8 @@ Requires `event` and `website_event`. No extra Python packages.
     'website': 'https://github.com/LadyHwesta/odoo-addons',
     'depends': ['event', 'website_event'],
     'data': [
-        'security/ir.model.access.csv',
         'security/event_volunteer_security.xml',
+        'security/ir.model.access.csv',
         'data/mail_template_data.xml',
         'data/ir_cron.xml',
         'views/event_volunteer_views.xml',

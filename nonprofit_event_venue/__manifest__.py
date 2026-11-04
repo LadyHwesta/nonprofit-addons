@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Venue Map",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Marketing/Events",
     "summary": "Row/spot vendor placement with a live OpenStreetMap vendor map",
     "description": """
@@ -29,6 +29,7 @@ Extends *Events Booths* (``event_booth``): give every booth a plain
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
     "depends": ["event_booth"],
     "data": [
+        "security/nonprofit_event_venue_security.xml",
         "security/ir.model.access.csv",
         "wizard/venue_map_calibrate_views.xml",
         "report/vendor_manifest_report.xml",

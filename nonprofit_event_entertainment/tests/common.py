@@ -13,7 +13,7 @@ class EventEntertainmentCommon(TransactionCase):
             "date_begin": datetime(2027, 9, 25, 18, 0, 0),
             "date_end": datetime(2027, 9, 25, 23, 0, 0),
         })
-        cls.stage = cls.env["event.stage"].create({
+        cls.stage = cls.env["event.entertainment.stage"].create({
             "event_id": cls.event.id,
             "name": "Main Stage",
             "start_time": datetime(2027, 9, 25, 18, 0, 0),

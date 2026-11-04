@@ -41,6 +41,24 @@ internal user starts here. Upgrade an existing user's role from Settings
 **Administrator** (`base.group_system`) is untouched - none of these
 roles grant Settings/Technical access.
 
+## Installing on a running system
+
+Install this module only after upgrading the suite's event modules, which adds
+their permission tiers and moves existing users across. Do both in one command:
+
+```
+odoo-bin -c <config> -d <database> -i nonprofit_roles -u event_volunteer,nonprofit_event_venue,nonprofit_event_logistics,nonprofit_event_parade,nonprofit_event_entertainment --stop-after-init
+```
+
+Installing it alone on an out-of-date database stops with an error and changes
+nothing in this module. Usually the error names the upgrade you need, but if
+Entertainment already has run of show data it's a foreign key error instead.
+The fix is the same.
+
+The upgrade keeps people's access: Events Administrators become Manager in all
+five areas, and Events Users become User. Databases that already have the tiers
+are left alone. It doesn't assign nonprofit roles, so do that per person.
+
 ## A real limit worth knowing
 
 Permission tiers are per *domain* (Venue, Logistics, Parade,
@@ -50,6 +68,11 @@ across all of Logistics (permits, staff shifts, crew booking,
 facilities), not narrowly scoped to crew bookings alone - there's no
 finer-grained group to restrict that further without splitting
 Logistics into its own sub-domains, which nothing here does today.
+
+Every role also includes core Events access, and that isn't read-only. Events
+Users, including General Volunteer/Staff, can create and edit events and can
+create, edit, and delete tickets and vendor booths. So a role listed as read-only
+on Venue can still change booths.
 
 ## HR, Projects, and Website
 

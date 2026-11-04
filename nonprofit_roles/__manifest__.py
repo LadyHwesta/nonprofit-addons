@@ -50,6 +50,7 @@ See README.md for the full role-to-permission table.
         "security/nonprofit_roles_security.xml",
         "data/default_user_groups.xml",
     ],
+    "pre_init_hook": "check_domain_modules_upgraded",
     "installable": True,
     "application": False,
 }

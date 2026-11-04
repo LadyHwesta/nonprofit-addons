@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Event Volunteer Roles',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'category': 'Marketing/Events',
     'summary': 'Named volunteer positions with slot quotas on events, and '
                'member self sign-up from the website',

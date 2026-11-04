@@ -20,7 +20,7 @@ module already uses), then composes the roles below from them.
 
 | Role | Full manage | Read-only elsewhere |
 |---|---|---|
-| **General Volunteer/Staff** | - | Venue, Logistics, Parade, Entertainment, Volunteers, Donation |
+| **General Volunteer/Staff** | - (can create and edit registrations) | Events, Venue, Logistics, Parade, Entertainment, Volunteers, Donation |
 | **Chair Person** | Everything, plus core Event scheduling | - (not Settings/Technical) |
 | **Operating Officer** | Logistics (incl. facilities), Volunteers, HR | Venue, Parade, Entertainment, Donation, Accounting |
 | **Treasurer** | Accounting, Donation | Venue, Logistics, Parade, Entertainment, Volunteers |
@@ -69,10 +69,12 @@ facilities), not narrowly scoped to crew bookings alone - there's no
 finer-grained group to restrict that further without splitting
 Logistics into its own sub-domains, which nothing here does today.
 
-Every role also includes core Events access, and that isn't read-only. Events
-Users, including General Volunteer/Staff, can create and edit events and can
-create, edit, and delete tickets and vendor booths. So a role listed as read-only
-on Venue can still change booths.
+Every role also includes core Events access, and only General Volunteer/Staff
+is limited to Registration Desk: it can read events, tickets, and vendor booths,
+and create and edit registrations. Every other role except Chair Person and
+Program Director is an Events User, who can create and edit events and create,
+edit, and delete tickets and vendor booths. So those roles can still change
+booths even where they're listed as read-only on Venue.
 
 ## HR, Projects, and Website
 

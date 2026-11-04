@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Volunteer Shifts",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Marketing/Events",
     "summary": "Break a volunteer role into timed shifts with check-in/out, "
                "hours tracking, recurring generation, swaps and a portal",

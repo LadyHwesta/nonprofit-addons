@@ -116,7 +116,7 @@
             <div class="oe-course-content">
                 <p>Each role gives full access to its own work and read-only
                 access to the areas around it.</p>
-                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Role</th><th>Manages</th><th>Can read</th></tr></thead><tbody><tr><td>General Volunteer/Staff</td><td>Nothing in the five areas</td><td>Venue, Logistics, Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Chair Person</td><td>All five areas, Events, Donation, Accounting, Projects, HR, Website design</td><td>Everything listed</td></tr><tr><td>Operating Officer</td><td>Logistics, Volunteers, HR</td><td>Venue, Parade, Entertainment, Donation, Accounting</td></tr><tr><td>Treasurer</td><td>Accounting, Donation</td><td>All five areas</td></tr><tr><td>Fundraising Manager</td><td>Donation</td><td>All five areas, Accounting</td></tr><tr><td>Program Director</td><td>All five areas, Events, Projects</td><td>Donation, Accounting</td></tr><tr><td>Marketing &amp; Communications Director</td><td>Website design; Donation at User level</td><td>All five areas</td></tr><tr><td>Volunteer Coordinator</td><td>Volunteers</td><td>Venue, Logistics, Parade, Entertainment, Donation</td></tr><tr><td>Logistics Coordinator</td><td>Logistics</td><td>Venue, Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Vendor Coordinator</td><td>Venue; Logistics at User level</td><td>Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Parade Coordinator</td><td>Parade</td><td>Venue, Logistics, Entertainment, Volunteers, Donation</td></tr></tbody></table></div>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Role</th><th>Manages</th><th>Can read</th></tr></thead><tbody><tr><td>General Volunteer/Staff</td><td>Nothing; can create and edit event registrations</td><td>Events, Venue, Logistics, Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Chair Person</td><td>All five areas, Events, Donation, Accounting, Projects, HR, Website design</td><td>Everything listed</td></tr><tr><td>Operating Officer</td><td>Logistics, Volunteers, HR</td><td>Venue, Parade, Entertainment, Donation, Accounting</td></tr><tr><td>Treasurer</td><td>Accounting, Donation</td><td>All five areas</td></tr><tr><td>Fundraising Manager</td><td>Donation</td><td>All five areas, Accounting</td></tr><tr><td>Program Director</td><td>All five areas, Events, Projects</td><td>Donation, Accounting</td></tr><tr><td>Marketing &amp; Communications Director</td><td>Website design; Donation at User level</td><td>All five areas</td></tr><tr><td>Volunteer Coordinator</td><td>Volunteers</td><td>Venue, Logistics, Parade, Entertainment, Donation</td></tr><tr><td>Logistics Coordinator</td><td>Logistics</td><td>Venue, Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Vendor Coordinator</td><td>Venue; Logistics at User level</td><td>Parade, Entertainment, Volunteers, Donation</td></tr><tr><td>Parade Coordinator</td><td>Parade</td><td>Venue, Logistics, Entertainment, Volunteers, Donation</td></tr></tbody></table></div>
                 <div class="oe-callout">
                     <span class="oe-callout-icon"><i class="fa fa-lock" /></span>
                     <div>
@@ -130,21 +130,29 @@
 
     <record id="lesson_core_events" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
-        <field name="name">The Events access that comes with every role</field>
+        <field name="name">The Events access that comes with each role</field>
         <field name="slide_category">article</field>
         <field name="sequence">23</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>Every role also includes access to Odoo's own <strong>Events</strong>
-                app. Chair Person and Program Director are Events
-                <strong>Administrators</strong>. Every other role, including
-                General Volunteer/Staff, is an Events <strong>User</strong>.</p>
-                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Record</th><th>Events User</th><th>Events Administrator</th></tr></thead><tbody><tr><td>Events</td><td>Create and edit</td><td>Also delete</td></tr><tr><td>Tickets</td><td>Create, edit, delete</td><td>Same</td></tr><tr><td>Registrations</td><td>Create and edit</td><td>Also delete</td></tr><tr><td>Vendor booths</td><td>Create, edit, delete</td><td>Same</td></tr><tr><td>Event types and pipeline stages</td><td>Read only</td><td>Create, edit, delete</td></tr></tbody></table></div>
+                <p>Each role also includes access to Odoo's own <strong>Events</strong>
+                app, at one of three levels. General Volunteer/Staff gets
+                <strong>Registration Desk</strong>. Chair Person and Program
+                Director get <strong>Administrator</strong>. Every other role gets
+                <strong>User</strong>.</p>
+                <div class="table-responsive"><table class="table table-sm table-bordered"><thead><tr><th>Record</th><th>Registration Desk</th><th>User</th><th>Administrator</th></tr></thead><tbody><tr><td>Events</td><td>Read</td><td>Create and edit</td><td>Also delete</td></tr><tr><td>Tickets</td><td>Read</td><td>Create, edit, delete</td><td>Same as User</td></tr><tr><td>Registrations</td><td>Create and edit</td><td>Same as Registration Desk</td><td>Also delete</td></tr><tr><td>Vendor booths</td><td>Read</td><td>Create, edit, delete</td><td>Same as User</td></tr><tr><td>Event types and pipeline stages</td><td>Read</td><td>Read</td><td>Create, edit, delete</td></tr></tbody></table></div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-ticket" /></span>
+                    <div>
+                        <span class="oe-callout-label">Volunteers can check people in</span>
+                        <p>General Volunteer/Staff can't change events, tickets, or vendor booths, but can create and edit registrations so they can work the door.</p>
+                    </div>
+                </div>
                 <div class="oe-callout">
                     <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
                     <div>
-                        <span class="oe-callout-label">Read-only has limits here</span>
-                        <p>A role listed as able to read Venue can still edit vendor booths, because Events User includes them. Only give an account to people you trust with event records.</p>
+                        <span class="oe-callout-label">Read-only has limits for other roles</span>
+                        <p>A role listed as able to read Venue, such as Treasurer, can still edit vendor booths, because Events User includes them. Only General Volunteer/Staff is limited to reading them.</p>
                     </div>
                 </div>
             </div>

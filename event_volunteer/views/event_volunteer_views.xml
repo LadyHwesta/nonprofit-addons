@@ -142,7 +142,7 @@
               parent="event.event_main_menu"
               action="event_volunteer_assignment_action"
               sequence="5"
-              groups="event.group_event_user" />
+              groups="event.group_event_user,event_volunteer.group_volunteer_viewer" />
     <menuitem id="menu_event_volunteer_roles"
               name="Volunteer Roles"
               parent="event.menu_event_configuration"

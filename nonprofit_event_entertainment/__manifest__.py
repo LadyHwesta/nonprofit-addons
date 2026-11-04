@@ -42,6 +42,7 @@ alongside vendor booths (``nonprofit_event_venue``), the parade
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
     "depends": ["event", "mail", "nonprofit_event_venue"],
     "data": [
+        "security/nonprofit_event_entertainment_security.xml",
         "security/ir.model.access.csv",
         "views/event_performer_views.xml",
         "report/run_of_show_report.xml",

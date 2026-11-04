@@ -30,8 +30,8 @@ Requires `event` and `website_event`. No extra Python packages.
     'website': 'https://github.com/LadyHwesta/odoo-addons',
     'depends': ['event', 'website_event'],
     'data': [
-        'security/ir.model.access.csv',
         'security/event_volunteer_security.xml',
+        'security/ir.model.access.csv',
         'data/mail_template_data.xml',
         'data/ir_cron.xml',
         'views/event_volunteer_views.xml',

@@ -29,6 +29,7 @@ Event Parade Lineup
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
     "depends": ["event", "mail", "website"],
     "data": [
+        "security/nonprofit_event_parade_security.xml",
         "security/ir.model.access.csv",
         "data/mail_template_data.xml",
         "wizard/parade_step_off_wizard_views.xml",

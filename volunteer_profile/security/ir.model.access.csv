@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_volunteer_skill_manager,volunteer.skill manager,model_volunteer_skill,event.group_event_manager,1,1,1,1
-access_volunteer_skill_user,volunteer.skill user,model_volunteer_skill,event.group_event_user,1,0,0,0
+access_volunteer_skill_manager,volunteer.skill manager,model_volunteer_skill,event_volunteer.group_volunteer_manager,1,1,1,1
+access_volunteer_skill_viewer,volunteer.skill viewer,model_volunteer_skill,event_volunteer.group_volunteer_viewer,1,0,0,0
 access_volunteer_skill_portal,volunteer.skill portal,model_volunteer_skill,base.group_portal,1,0,0,0
 access_volunteer_skill_public,volunteer.skill public,model_volunteer_skill,base.group_public,1,0,0,0

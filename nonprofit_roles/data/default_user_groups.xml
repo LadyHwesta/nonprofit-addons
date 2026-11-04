@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- Odoo 19 replaced the old template-user record with
+         base.default_user_group (res.groups) - res.users._default_groups()
+         grants every brand-new internal user base.group_user plus this
+         group's own implied_ids. Adding General Volunteer/Staff here is
+         literally "the default user role" the user asked for, replacing
+         the previous situation where a new account had no nonprofit-
+         specific access decided one way or the other. noupdate="1" so a
+         later -u doesn't re-stomp whatever the admin changes here by
+         hand afterward - this only ever needs to apply once. -->
+    <record id="base.default_user_group" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_role_general_volunteer'))]" />
+    </record>
+</odoo>

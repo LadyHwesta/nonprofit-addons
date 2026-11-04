@@ -1,6 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_event_parade_staging_area_desk,event.parade.staging.area.desk,model_event_parade_staging_area,event.group_event_registration_desk,1,0,0,0
-access_event_parade_staging_area_user,event.parade.staging.area.user,model_event_parade_staging_area,event.group_event_user,1,1,1,1
+access_event_parade_staging_area_viewer,event.parade.staging.area.viewer,model_event_parade_staging_area,group_parade_viewer,1,0,0,0
+access_event_parade_staging_area_user,event.parade.staging.area.user,model_event_parade_staging_area,group_parade_user,1,1,1,1
 access_event_parade_entry_desk,event.parade.entry.desk,model_event_parade_entry,event.group_event_registration_desk,1,0,0,0
-access_event_parade_entry_user,event.parade.entry.user,model_event_parade_entry,event.group_event_user,1,1,1,1
-access_parade_step_off_wizard,nonprofit.parade.step_off.wizard,model_nonprofit_parade_step_off_wizard,event.group_event_user,1,1,1,1
+access_event_parade_entry_viewer,event.parade.entry.viewer,model_event_parade_entry,group_parade_viewer,1,0,0,0
+access_event_parade_entry_user,event.parade.entry.user,model_event_parade_entry,group_parade_user,1,1,1,1
+access_parade_step_off_wizard,nonprofit.parade.step_off.wizard,model_nonprofit_parade_step_off_wizard,group_parade_user,1,1,1,1

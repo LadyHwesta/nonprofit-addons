@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- A dedicated Venue privilege/tier (also covers vendor/exhibitor
+         booths, event_booth's own model) - separate from the blanket
+         event.group_event_user/manager every event-domain module used
+         to share, so "manages the venue/vendor booths" can be granted
+         without also granting logistics/parade/entertainment/volunteer
+         management. Manager implies User implies Viewer. -->
+    <record id="res_groups_privilege_venue" model="res.groups.privilege">
+        <field name="name">Venue</field>
+        <field name="category_id" ref="base.module_category_marketing" />
+    </record>
+    <record id="group_venue_viewer" model="res.groups">
+        <field name="name">Venue Viewer</field>
+        <field name="privilege_id" ref="res_groups_privilege_venue" />
+    </record>
+    <record id="group_venue_user" model="res.groups">
+        <field name="name">Venue User</field>
+        <field name="privilege_id" ref="res_groups_privilege_venue" />
+        <field name="implied_ids" eval="[(4, ref('group_venue_viewer'))]" />
+    </record>
+    <record id="group_venue_manager" model="res.groups">
+        <field name="name">Venue Manager</field>
+        <field name="privilege_id" ref="res_groups_privilege_venue" />
+        <field name="implied_ids" eval="[(4, ref('group_venue_user'))]" />
+    </record>
+</odoo>

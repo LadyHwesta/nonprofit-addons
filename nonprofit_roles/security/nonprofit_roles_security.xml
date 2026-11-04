@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="module_category_nonprofit_roles" model="ir.module.category">
+        <field name="name">Nonprofit Org Roles</field>
+        <field name="description">
+            Real nonprofit job roles, each a bundle of the suite's own
+            per-domain permission tiers.
+        </field>
+        <field name="sequence">46</field>
+    </record>
+    <record id="res_groups_privilege_nonprofit_roles" model="res.groups.privilege">
+        <field name="name">Nonprofit Org Role</field>
+        <field name="category_id" ref="module_category_nonprofit_roles" />
+        <field name="sequence">46</field>
+    </record>
+
+    <!-- The new baseline - added to the default user template in
+         data/default_user_groups.xml so a brand-new internal user
+         starts here instead of with nothing nonprofit-specific
+         configured either way. Read-only everywhere, so it's safe to
+         hand to anyone without a real decision being made first. -->
+    <record id="group_role_general_volunteer" model="res.groups">
+        <field name="name">General Volunteer/Staff</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_logistics.group_logistics_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('donation.group_donation_viewer')),
+        ]" />
+    </record>
+
+    <!-- Everything below at Manager level (bar Settings/Technical) -
+         the one role meant to see the whole organization
+         operationally, including core Event scheduling itself. -->
+    <record id="group_role_chair_person" model="res.groups">
+        <field name="name">Chair Person</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_manager')),
+            (4, ref('event_volunteer.group_volunteer_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_manager')),
+            (4, ref('nonprofit_event_logistics.group_logistics_manager')),
+            (4, ref('nonprofit_event_parade.group_parade_manager')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_manager')),
+            (4, ref('donation.group_donation_manager')),
+            (4, ref('account.group_account_manager')),
+            (4, ref('account.group_account_user')),
+            (4, ref('project.group_project_manager')),
+            (4, ref('hr.group_hr_manager')),
+            (4, ref('website.group_website_designer')),
+        ]" />
+    </record>
+
+    <!-- Workflows, facilities, volunteers, HR - manages its own lane,
+         read-only on venue/parade/entertainment/donation/accounting. -->
+    <record id="group_role_operating_officer" model="res.groups">
+        <field name="name">Operating Officer</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('nonprofit_event_logistics.group_logistics_manager')),
+            (4, ref('event_volunteer.group_volunteer_manager')),
+            (4, ref('hr.group_hr_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('donation.group_donation_viewer')),
+            (4, ref('account.group_account_readonly')),
+        ]" />
+    </record>
+
+    <!-- All financial systems: Accounting, Fund Accounting (via the
+         same Accounting groups), Donation. Read-only on the event
+         program for budget awareness. -->
+    <record id="group_role_treasurer" model="res.groups">
+        <field name="name">Treasurer</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('account.group_account_manager')),
+            (4, ref('account.group_account_user')),
+            (4, ref('donation.group_donation_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_logistics.group_logistics_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+        ]" />
+    </record>
+
+    <!-- Donation campaigns, tax receipts, thank-you templates - this
+         suite's own fundraising apps. donation.group_donation_manager
+         already grants the related account.move/account.move.line
+         rows its own access CSV defines, so no separate Accounting
+         group is needed here. -->
+    <record id="group_role_fundraising_manager" model="res.groups">
+        <field name="name">Fundraising Manager</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('donation.group_donation_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_logistics.group_logistics_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+            (4, ref('account.group_account_readonly')),
+        ]" />
+    </record>
+
+    <!-- The whole event program end to end: venue + logistics + parade
+         + entertainment + volunteers, plus core Event scheduling and
+         the Projects app. Read-only on money matters. -->
+    <record id="group_role_program_director" model="res.groups">
+        <field name="name">Program Director</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_manager')),
+            (4, ref('nonprofit_event_logistics.group_logistics_manager')),
+            (4, ref('nonprofit_event_parade.group_parade_manager')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_manager')),
+            (4, ref('event_volunteer.group_volunteer_manager')),
+            (4, ref('project.group_project_manager')),
+            (4, ref('donation.group_donation_viewer')),
+            (4, ref('account.group_account_readonly')),
+        ]" />
+    </record>
+
+    <!-- Website/event public pages, donation campaign messaging
+         (donation.group_donation_user, not Manager - edits
+         campaigns/thank-you templates without full financial
+         control over donations themselves). -->
+    <record id="group_role_marketing_communications_director" model="res.groups">
+        <field name="name">Marketing &amp; Communications Director</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('website.group_website_designer')),
+            (4, ref('donation.group_donation_user')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_logistics.group_logistics_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+        ]" />
+    </record>
+
+    <record id="group_role_volunteer_coordinator" model="res.groups">
+        <field name="name">Volunteer Coordinator</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('event_volunteer.group_volunteer_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_logistics.group_logistics_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('donation.group_donation_viewer')),
+        ]" />
+    </record>
+
+    <record id="group_role_logistics_coordinator" model="res.groups">
+        <field name="name">Logistics Coordinator</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('nonprofit_event_logistics.group_logistics_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+            (4, ref('donation.group_donation_viewer')),
+        ]" />
+    </record>
+
+    <!-- Vendor booths live in the Venue domain (event.booth, extended
+         by nonprofit_event_venue); crew bookings live in Logistics -
+         User tier there, not Manager, since permits/staffing/
+         facilities aren't this role's job. -->
+    <record id="group_role_vendor_coordinator" model="res.groups">
+        <field name="name">Vendor Coordinator</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('nonprofit_event_venue.group_venue_manager')),
+            (4, ref('nonprofit_event_logistics.group_logistics_user')),
+            (4, ref('nonprofit_event_parade.group_parade_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+            (4, ref('donation.group_donation_viewer')),
+        ]" />
+    </record>
+
+    <record id="group_role_parade_coordinator" model="res.groups">
+        <field name="name">Parade Coordinator</field>
+        <field name="privilege_id" ref="res_groups_privilege_nonprofit_roles" />
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('event.group_event_user')),
+            (4, ref('nonprofit_event_parade.group_parade_manager')),
+            (4, ref('nonprofit_event_venue.group_venue_viewer')),
+            (4, ref('nonprofit_event_logistics.group_logistics_viewer')),
+            (4, ref('nonprofit_event_entertainment.group_entertainment_viewer')),
+            (4, ref('event_volunteer.group_volunteer_viewer')),
+            (4, ref('donation.group_donation_viewer')),
+        ]" />
+    </record>
+</odoo>

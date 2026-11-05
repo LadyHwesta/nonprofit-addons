@@ -43,7 +43,8 @@
                         </div>
                         <div class="oe-column">
                             <h4><i class="fa fa-clock-o" /> Run as Shifts</h4>
-                            <p class="mb-0">Tick <strong>Run as
+                            <p class="mb-0">Click <strong>View</strong> at the end
+                            of the role's row, tick <strong>Run as
                             Shifts</strong>, then add shifts - each a time
                             window and a slot count.</p>
                         </div>
@@ -238,7 +239,7 @@
                 volunteers can see. Tag
                 <strong>Skills</strong> (First Aid, Spanish, Licensed
                 Driver…) from the list under Events › Configuration
-                › Volunteer Skills.</p>
+                › Volunteers › Volunteer Skills.</p>
 
                 <div class="oe-columns">
                     <div class="oe-column">
@@ -294,7 +295,8 @@
         <field name="sequence">32</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>On the volunteer role, tick <strong>Requires Background
+                <p>Click <strong>View</strong> at the end of the role's row,
+                then tick <strong>Requires Background
                 Check</strong> and/or <strong>Requires Waiver</strong>, and
                 add any <strong>Required Skills</strong>.</p>
 

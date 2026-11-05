@@ -74,6 +74,9 @@
         <field name="sequence">12</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
+                <p>To move a permit along, click <strong>View</strong> at the
+                end of its row on the event's <strong>Logistics</strong> tab.
+                The Submit, Approve and Deny buttons are on the permit itself.</p>
                 <div class="oe-diagram">
                     <div class="oe-flow">
                         <div class="oe-flow-step">
@@ -129,7 +132,9 @@
             <div class="oe-course-content">
                 <p>A <strong>Staff Shift</strong> is a role (Security, Setup
                 Crew, Ushers…), a time window, and how many people you
-                need. Add workers to it as they're hired.</p>
+                need. On the event's <strong>Logistics</strong> tab, click
+                <strong>View</strong> at the end of a shift's row to open it
+                and add workers as they're hired.</p>
 
                 <div class="oe-diagram">
                     <div class="oe-flow">
@@ -175,8 +180,10 @@
         <field name="sequence">22</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>A <strong>Crew Booking</strong> records the vendor or
-                crew (stage, sound, security, sanitation, generator,
+                <p>Click <strong>View</strong> at the end of a booking's row on
+                the event's <strong>Logistics</strong> tab to confirm it or
+                add day-of contacts. A <strong>Crew Booking</strong> records
+                the vendor or crew (stage, sound, security, sanitation, generator,
                 tent…), load-in and load-out times, and - the part a
                 purchase order never captures -</p>
 

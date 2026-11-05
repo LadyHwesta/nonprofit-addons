@@ -12,6 +12,8 @@ answers), recording a vendor bill and releasing restricted funds, and
 board/IRS reporting (Statement of Activities/Financial Position, the 990
 functional-expense grid). A 4-question quiz at the end.
 
+Screenshots in `static/img/` come from a local test database with sample data.
+
 ## Access
 
 The course is gated (`visibility="members"`, `enroll="invite"`) rather

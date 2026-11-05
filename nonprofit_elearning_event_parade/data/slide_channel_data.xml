@@ -53,6 +53,13 @@
                         community groups. No login is required to apply.</p>
                     </div>
                 </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_parade/static/img/event_parade.png" alt="An event's Parade tab with entries accepted, a deadline, a coordinator, the public page address and print buttons" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Parade tab on a sample event.
+                    </p>
+                </div>
             </div>
         </field>
     </record>

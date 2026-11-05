@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Fund Accounting for Treasurers",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: funds, programs, functions, and board/IRS reporting",
     "description": """

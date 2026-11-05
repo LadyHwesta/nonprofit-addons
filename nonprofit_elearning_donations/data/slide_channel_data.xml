@@ -31,8 +31,7 @@
             <div class="oe-course-content">
                 <ol class="oe-steps">
                     <li>
-                        <p>Open <strong>Donations › Donations ›
-                        New</strong>.</p>
+                        <p>Open <strong>Donation › Donations › Donations › New</strong>.</p>
                     </li>
                     <li>
                         <p>Choose the donor, the date, and the payment
@@ -63,6 +62,13 @@
                         reports and year-end statements still pick it up as
                         long as the account carries its contribution tag.</p>
                     </div>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_donations/static/img/donation_form.png" alt="A draft donation with donor, date and one line of 250 dollars" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a draft donation before you click Validate.
+                    </p>
                 </div>
             </div>
         </field>
@@ -172,7 +178,7 @@
         <field name="sequence">31</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p><strong>Accounting › Reporting › Non-Profit
+                <p><strong>Invoicing › Reporting › Non-Profit
                 › Donor Analytics</strong> gives one row per donor:
                 lifetime giving, this year, last year, and first/last/largest
                 gift.</p>
@@ -204,7 +210,7 @@
             <div class="oe-course-content">
                 <ol class="oe-steps">
                     <li>
-                        <p>Open <strong>Accounting › Reporting ›
+                        <p>Open <strong>Invoicing › Reporting ›
                         Non-Profit › Year-End Contribution
                         Statements</strong>.</p>
                     </li>
@@ -229,6 +235,13 @@
                         total, with the IRS written-acknowledgement and
                         quid-pro-quo language already on it.</p>
                     </div>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_donations/static/img/yearend.png" alt="The Year-End Contribution Statements dialog with dates, donors and a 250 dollar minimum" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the dialog this lesson describes.
+                    </p>
                 </div>
             </div>
         </field>

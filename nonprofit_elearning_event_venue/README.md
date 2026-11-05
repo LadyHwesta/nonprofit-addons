@@ -10,6 +10,8 @@ addressing, calibrating the live Vendor Map from three real-world
 coordinates, reading the map day-to-day, and the Load-In Manifest /
 Vendor Requirements reports. A 4-question quiz at the end.
 
+Screenshots in `static/img/` come from a local test database with sample data.
+
 ## Access
 
 Gated (`visibility="members"`, `enroll="invite"`); everyone in

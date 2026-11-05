@@ -30,8 +30,7 @@
         <field name="html_content" type="html">
             <div class="oe-course-content">
                 <p>Add a category for each kind of vendor space (Food,
-                Retail, Nonprofit…) under the event's Booth Categories, then
-                add booths under the event's <strong>Booths</strong> tab - a
+                Retail, Nonprofit…) under <strong>Events › Configuration › Booth Categories</strong>, then add booths with the <strong>Booths</strong> button at the top of the event - a
                 name, a category, and the renter once you have one.</p>
 
                 <div class="oe-diagram">
@@ -65,6 +64,13 @@
                         and the load-in manifest both show the full range it
                         occupies - e.g. "5-6".</p>
                     </div>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_venue/static/img/event_booths.png" alt="The Booths screen with sample booths under Available" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        sample booths for an event.
+                    </p>
                 </div>
             </div>
         </field>
@@ -148,6 +154,13 @@
                         automatically from its row and spot number.</p>
                     </div>
                 </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_venue/static/img/event_map.png" alt="An event's Vendor Map tab with the Calibrate from two points button" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        where to start calibrating.
+                    </p>
+                </div>
             </div>
         </field>
     </record>
@@ -188,8 +201,7 @@
                     <div>
                         <span class="oe-callout-label">If Logistics is also installed</span>
                         <p>A <strong>Place Facilities</strong> toggle appears
-                        on the same map for dropping pins for portable
-                        toilets, hand-wash stations, and the like.</p>
+                        on the same map for dropping pins for portable toilets, hand-wash stations, and the like. With the entertainment module, <strong>Place Stages</strong> does the same for stages.</p>
                     </div>
                 </div>
             </div>

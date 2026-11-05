@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_event_entertainment" model="slide.channel">
+        <field name="name">Stage Manager</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Keeping a performer roster, setting up stages, building a Run of
+            Show, and printing the sheet you'll hold during the show.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('nonprofit_event_entertainment.group_entertainment_user')])]" />
+    </record>
+
+    <record id="section_roster" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">The performer roster</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_performers" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Adding performers</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>The roster lives under <strong>Events › Configuration › Performers</strong>, not on any one event. Add an act once, and it's ready for every event it plays.</p>
+                <ul>
+                    <li><strong>Contact</strong> links to the person or group you deal with. It's optional.</li>
+                    <li><strong>Genre</strong> and <strong>Default Set Length</strong> save typing later. The length fills in when you book the act.</li>
+                    <li><strong>Technical Rider</strong> holds what they need: power, mics, monitors, backline.</li>
+                </ul>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_entertainment/static/img/performer_form.png" alt="A performer form with contact, genre, default set length and tabs for the technical rider, notes and bookings" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a performer on the roster.
+                    </p>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-history" /></span>
+                    <div>
+                        <span class="oe-callout-label">Their history comes with them</span>
+                        <p>The <strong>Bookings</strong> tab shows every event an act has been booked for.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="section_stages" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Stages</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_stages" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Setting up stages</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Open the event and go to its <strong>Entertainment</strong> tab. Add a line for each stage, such as Main Stage or Acoustic Tent, with its <strong>Start Time</strong>. Each stage runs its own schedule, independent of the others.</p>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_entertainment/static/img/event_entertainment.png" alt="An event's Entertainment tab with a count of stages and a list showing Main Stage" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Entertainment tab on a sample event.
+                    </p>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-map-marker" /></span>
+                    <div>
+                        <span class="oe-callout-label">Putting a stage on the map</span>
+                        <p>If the event uses the Vendor Map, <strong>Place Stages</strong> on the map lets you click where a stage stands. You can also type its coordinates on the stage's form.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="section_show" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Building the show</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_run_of_show" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">The Run of Show</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Open a stage to build its <strong>Run of Show</strong>. Each line is one of two kinds:</p>
+                <ul>
+                    <li><strong>Performance</strong>: choose a performer. Their default set length fills in, and you can change it for this booking.</li>
+                    <li><strong>Announcement</strong>: a title and a duration, for a raffle drawing, sponsor thank-yous, or a set change.</li>
+                </ul>
+                <p>Drag lines into order. You don't type start times: each one follows from the stage's start time and the lengths before it, and they all update when you reorder.</p>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_entertainment/static/img/stage_form.png" alt="A stage's Run of Show with two performances and an announcement, with computed start times and booking status" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a Run of Show with times worked out.
+                    </p>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_hard_time" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Hard times and booking status</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">32</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Some things must happen at a set time, such as a headliner at 9:00 PM sharp. Enter that time under <strong>Hard Time</strong> on the line. It stays put, and everything after it follows from when it ends.</p>
+                <p><strong>Booking State</strong> shows where each act stands: Invited, Confirmed, Declined, or Cancelled.</p>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">A hard time doesn't move earlier acts</span>
+                        <p>Lines before it keep their calculated times, so check for a gap or an overlap just before a hard time.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="section_day" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">On the day</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="lesson_print" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Printing the Run of Show</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">41</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Click <strong>Print Run of Show</strong> on the stage. You get one large-type sheet for that stage, showing clock time, item, and duration, with announcements marked differently from performances.</p>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-print" /></span>
+                    <div>
+                        <span class="oe-callout-label">Print late, and print each stage</span>
+                        <p>Each stage has its own sheet. Print after your last change, because a reordered line changes every time below it.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="section_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Check your understanding</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">51</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">You drag a performance earlier in the Run of Show. What happens to the times?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">You retype each start time</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">Times update automatically from the new order</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">Nothing, until you print</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">4</field>
+        <field name="text_value">The stage's start time changes</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">The headliner must start at 9:00 PM exactly. What do you do?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">Set a Hard Time on that line</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">Add a separate stage</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">Change the stage's start time to 9:00 PM</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">4</field>
+        <field name="text_value">Lengthen every act before it</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">Where do you add a raffle drawing to the schedule?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">On the performer roster</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">As an Announcement line in the Run of Show</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">In the event's Notes</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">4</field>
+        <field name="text_value">It can't be scheduled</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">A band plays your festival every year. Where do you keep its technical needs?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Retype them on each event</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">In the event's description</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">On its performer record, under Technical Rider</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a4" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">4</field>
+        <field name="text_value">On the printed sheet</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

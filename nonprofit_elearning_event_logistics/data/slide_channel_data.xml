@@ -24,7 +24,7 @@
 
     <record id="lesson_checklist" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
-        <field name="name">Building a permit checklist from an event type</field>
+        <field name="name">Building a permit checklist from an event template</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
@@ -33,7 +33,7 @@
                     <div class="oe-flow">
                         <div class="oe-flow-step">
                             <span class="oe-flow-step-icon"><i class="fa fa-list" /></span>
-                            Permit Checklist on Event Type
+                            Permit Checklist on Event Template
                         </div>
                         <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
                         <div class="oe-flow-step">
@@ -49,7 +49,7 @@
                     <p class="oe-diagram-caption">
                         <span class="oe-diagram-caption-tag">Illustration</span>
                         for a recurring event (an annual festival), add a
-                        Permit Checklist to its Event Type once - a name,
+                        Permit Checklist to its Event Template once - a name,
                         permit type, and how many days before the event it
                         should be submitted by.
                     </p>
@@ -241,8 +241,7 @@
                         <p>Open the event's Vendor Map and click
                         <strong>Place Facilities</strong> to arm a facility,
                         then click the map where it actually sits - the same
-                        live map vendor booths use, just a second pin
-                        layer.</p>
+                        live map vendor booths use, just a second pin layer. If the entertainment module is installed, <strong>Place Stages</strong> does the same for stages.</p>
                     </div>
                 </div>
             </div>
@@ -303,6 +302,13 @@
                 <p class="text-muted">Plus a combined Crew &amp; Facilities
                 Day-Of Sheet - three printable reports that round out what
                 you can hand to your team.</p>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_event_logistics/static/img/event_logistics.png" alt="An event's Logistics tab with readiness counts, a permit list, and staff, crew and facility sections" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Logistics tab on a sample event.
+                    </p>
+                </div>
             </div>
         </field>
     </record>

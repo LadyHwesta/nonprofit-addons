@@ -87,7 +87,7 @@
         <field name="name">Stages</field>
         <field name="res_model">event.entertainment.stage</field>
         <field name="view_mode">list,form</field>
-        <field name="context">{'default_event_id': active_id}</field>
+        <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Add a stage</p>
             <p>Each stage gets its own independent, ordered run of show,

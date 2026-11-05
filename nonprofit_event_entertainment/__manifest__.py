@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Entertainment",
-    "version": "19.0.1.1.2",
+    "version": "19.0.1.1.3",
     "category": "Marketing/Events",
     "summary": "A reusable performer roster, per-stage scheduling, and a printable Run of Show",
     "description": """

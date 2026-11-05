@@ -34,9 +34,8 @@
                             </div>
                         </group>
                     </group>
-                    <button name="%(action_event_parade_staging_area)d" type="action"
-                            string="Staging Areas" class="btn-secondary"
-                            context="{'default_event_id': id}" />
+                    <button name="action_view_parade_staging_areas" type="object"
+                            string="Staging Areas" class="btn-secondary" />
                     <button name="%(action_parade_step_off_wizard)d"
                             type="action" string="Set Step-Off Times..."
                             class="btn-secondary" context="{'default_event_id': id}" />

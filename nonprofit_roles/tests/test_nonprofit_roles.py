@@ -194,3 +194,19 @@ class TestNonprofitRoles(TransactionCase):
         self.parade_entry.with_user(user).read(['name'])
         with self.assertRaises(AccessError):
             self.parade_entry.with_user(user).write({'name': 'Renamed'})
+
+    def test_no_menu_opens_an_action_that_needs_a_record(self):
+        """A menu has no active_id, and %(xmlid)d only works in button names.
+        Either one in a context or domain crashes the web client on click."""
+        menus = self.env['ir.ui.menu'].search([
+            ('action', '=like', 'ir.actions.act_window,%'),
+        ])
+        broken = [
+            menu.complete_name for menu in menus
+            if any(
+                token in '%s %s' % (menu.action.context, menu.action.domain)
+                for token in ('active_id', '%(')
+            )
+        ]
+        self.assertFalse(broken)
+

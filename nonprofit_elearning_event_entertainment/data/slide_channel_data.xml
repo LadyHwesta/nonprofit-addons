@@ -28,7 +28,7 @@
         <field name="sequence">11</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>The roster lives under <strong>Events › Configuration › Performers</strong>, not on any one event. Add an act once, and it's ready for every event it plays.</p>
+                <p>The roster lives under <strong>Events › Configuration › Entertainment › Performers</strong>, not on any one event. Add an act once, and it's ready for every event it plays.</p>
                 <ul>
                     <li><strong>Contact</strong> links to the person or group you deal with. It's optional.</li>
                     <li><strong>Genre</strong> and <strong>Default Set Length</strong> save typing later. The length fills in when you book the act.</li>
@@ -99,7 +99,7 @@
         <field name="sequence">31</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>Open a stage to build its <strong>Run of Show</strong>. Each line is one of two kinds:</p>
+                <p>On the event's <strong>Entertainment</strong> tab, click <strong>Run of Show</strong> on the stage's line. You can also go to <strong>Events › Configuration › Entertainment › Performance Stages</strong> and click the stage. Clicking the stage's name on the tab only renames it. Each line in the Run of Show is one of two kinds:</p>
                 <ul>
                     <li><strong>Performance</strong>: choose a performer. Their default set length fills in, and you can change it for this booking.</li>
                     <li><strong>Announcement</strong>: a title and a duration, for a raffle drawing, sponsor thank-yous, or a set change.</li>

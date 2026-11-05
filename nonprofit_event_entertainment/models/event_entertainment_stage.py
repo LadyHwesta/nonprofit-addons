@@ -35,6 +35,15 @@ class EventEntertainmentStage(models.Model):
         for stage in self:
             stage.line_count = len(stage.line_ids)
 
+    def _printable_lines(self):
+        """The running order for the printed sheet: acts that are off don't
+        go on it, though they keep their slot so later times don't move."""
+        self.ensure_one()
+        return self.line_ids.filtered(
+            lambda line: line.line_type != "performance"
+            or line.booking_state not in ("declined", "cancelled")
+        ).sorted("sequence")
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

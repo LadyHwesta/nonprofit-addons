@@ -123,6 +123,34 @@ class TestEventRunOfShowLine(EventEntertainmentCommon):
         with self.assertRaises(UserError):
             line.action_reinvite()  # already invited
 
+    def test_printed_run_of_show_leaves_out_acts_that_are_off(self):
+        def printed():
+            html, _type = self.env["ir.actions.report"]._render_qweb_html(
+                "nonprofit_event_entertainment.run_of_show", self.stage.ids)
+            return html.decode()
+
+        off_act = self._make_line(
+            sequence=10, duration_minutes=30, title="Declined Duo")
+        kept = self._make_line(
+            sequence=20, duration_minutes=45, title="Booked Band")
+        break_item = self.env["event.run_of_show.line"].create({
+            "stage_id": self.stage.id, "line_type": "announcement",
+            "title": "Raffle Drawing", "sequence": 30, "duration_minutes": 5,
+        })
+        self.assertIn("Declined Duo", printed())
+
+        off_act.action_decline()
+
+        self.assertNotIn("Declined Duo", printed())
+        self.assertIn("Booked Band", printed())
+        self.assertIn("Raffle Drawing", printed())
+        # Later acts keep their advertised time.
+        self.assertEqual(kept.computed_start, datetime(2027, 9, 25, 18, 30, 0))
+        self.assertTrue(break_item.computed_start)
+
+        kept.action_cancel()
+        self.assertNotIn("Booked Band", printed())
+
     def test_stage_form_offers_booking_buttons_to_entertainment_users(self):
         def buttons_for(*groups):
             user = new_test_user(

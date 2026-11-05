@@ -129,7 +129,7 @@
                     <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
                     <div>
                         <span class="oe-callout-label">A declined act keeps its time slot</span>
-                        <p>Declined and cancelled acts stay on the schedule and on the printed Run of Show, and later acts don't move up. To close the gap, delete the line or replace it with another act.</p>
+                        <p>Declined and cancelled acts stay on this screen and later acts don't move up, so times you've already announced stay right. They drop off the printed Run of Show, which leaves a gap there. To close it, delete the line or replace it with another act.</p>
                     </div>
                 </div>
                 <div class="oe-callout">
@@ -157,7 +157,7 @@
         <field name="sequence">41</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>Click <strong>Print Run of Show</strong> on the stage. You get one large-type sheet for that stage, showing clock time, item, and duration, with announcements marked differently from performances.</p>
+                <p>Click <strong>Print Run of Show</strong> on the stage. You get one large-type sheet for that stage, showing clock time, item, and duration, with announcements marked differently from performances. Declined and cancelled acts are left off.</p>
                 <div class="oe-callout">
                     <span class="oe-callout-icon"><i class="fa fa-print" /></span>
                     <div>

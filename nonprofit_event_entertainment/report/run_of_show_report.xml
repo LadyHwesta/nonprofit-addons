@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="o.line_ids.sorted('sequence')" t-as="line">
+                                <tr t-foreach="o._printable_lines()" t-as="line">
                                     <td>
                                         <strong><span t-field="line.computed_start" t-options="{'format': 'h:mm a'}" /></strong>
                                     </td>
@@ -50,7 +50,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p t-if="not o.line_ids" class="text-muted">
+                        <p t-if="not o._printable_lines()" class="text-muted">
                             No items added to this stage's run of show yet.
                         </p>
                     </div>

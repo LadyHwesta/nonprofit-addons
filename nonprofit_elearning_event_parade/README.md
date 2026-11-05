@@ -11,6 +11,8 @@ number, the Set Step-Off Times wizard, and the four parade-day
 printables (lineup sheet, two entry lists, entry signs). A 4-question
 quiz at the end.
 
+Screenshots in `static/img/` come from a local test database with sample data.
+
 ## Access
 
 Gated (`visibility="members"`, `enroll="invite"`); everyone in

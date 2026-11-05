@@ -10,6 +10,8 @@ fundraising-event income and the quid-pro-quo split; donor analytics with
 LYBUNT/SYBUNT filters and year-end contribution statements. A 4-question
 quiz at the end.
 
+Screenshots in `static/img/` come from a local test database with sample data.
+
 ## Access
 
 Gated (`visibility="members"`, `enroll="invite"`); everyone in

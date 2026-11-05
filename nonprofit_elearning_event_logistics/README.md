@@ -11,6 +11,8 @@ contacts, placing facilities on the vendor map, and the Logistics tab's
 readiness numbers plus its consolidated reminder. A 4-question quiz at
 the end.
 
+Screenshots in `static/img/` come from a local test database with sample data.
+
 ## Access
 
 Gated (`visibility="members"`, `enroll="invite"`); everyone in

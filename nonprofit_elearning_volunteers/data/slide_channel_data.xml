@@ -62,6 +62,13 @@
                         event shows every shift on a calendar.</p>
                     </div>
                 </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_volunteers/static/img/event_volunteers.png" alt="An event's Volunteers tab listing two roles, how many they need, and a coverage badge" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Volunteers tab on a sample event.
+                    </p>
+                </div>
             </div>
         </field>
     </record>
@@ -73,16 +80,16 @@
         <field name="sequence">12</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>On an <strong>Event Type</strong> (Events ›
-                Configuration › Event Types), add Recurring Volunteer
+                <p>On an <strong>Event Template</strong> (Events ›
+                Configuration › Event Templates), add Recurring Volunteer
                 Shift lines: role name, weekday, start time, length, slots.
-                Give your recurring event that type.</p>
+                Give your recurring event that template.</p>
 
                 <div class="oe-diagram">
                     <div class="oe-flow">
                         <div class="oe-flow-step">
                             <span class="oe-flow-step-icon"><i class="fa fa-list" /></span>
-                            Event Type shift lines
+                            Event Template shift lines
                         </div>
                         <span class="oe-flow-arrow"><i class="fa fa-long-arrow-right" /></span>
                         <div class="oe-flow-step">
@@ -268,6 +275,13 @@
                         automatically.</p>
                     </div>
                 </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_volunteers/static/img/volunteer_tab.png" alt="A contact's Volunteer tab with screening, waiver, details and skills sections" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the Volunteer tab on a contact.
+                    </p>
+                </div>
             </div>
         </field>
     </record>
@@ -432,7 +446,7 @@
     <record id="quiz_q3_a2" model="slide.answer">
         <field name="question_id" ref="quiz_q3" />
         <field name="sequence">2</field>
-        <field name="text_value">A nightly job builds them from Recurring Volunteer Shift lines on the event type</field>
+        <field name="text_value">A nightly job builds them from Recurring Volunteer Shift lines on the event template</field>
         <field name="is_correct" eval="True" />
     </record>
     <record id="quiz_q3_a3" model="slide.answer">

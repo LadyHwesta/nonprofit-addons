@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <menuitem id="menu_event_config_entertainment" name="Entertainment"
+              parent="event.menu_event_configuration" sequence="70" />
     <menuitem id="menu_event_performer" name="Performers"
               action="action_event_performer"
-              parent="event.menu_event_configuration" sequence="50" />
-    <menuitem id="menu_event_stage" name="Stages"
+              parent="menu_event_config_entertainment" sequence="10" />
+    <menuitem id="menu_event_stage" name="Performance Stages"
               action="action_event_stage"
-              parent="event.menu_event_configuration" sequence="51" />
+              parent="menu_event_config_entertainment" sequence="20" />
 
 </odoo>

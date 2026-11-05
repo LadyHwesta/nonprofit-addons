@@ -32,3 +32,20 @@ class TestEventStage(EventEntertainmentCommon):
         })
 
         self.assertEqual(self.stage.line_count, 1)
+
+    def test_every_stage_list_leads_to_the_run_of_show(self):
+        """The Run of Show lives on the stage's own form. An editable list
+        only edits the row, so each list needs a way through."""
+        menu_list = self.env.ref(
+            "nonprofit_event_entertainment.event_stage_view_list")
+        self.assertNotIn("editable", menu_list.arch)
+
+        event_tab = self.env.ref(
+            "nonprofit_event_entertainment.event_event_view_form_entertainment")
+        self.assertIn('name="action_open_run_of_show"', event_tab.arch)
+
+        action = self.stage.action_open_run_of_show()
+        self.assertEqual(action["res_model"], "event.entertainment.stage")
+        self.assertEqual(action["res_id"], self.stage.id)
+        self.assertEqual(action["views"], [(False, "form")])
+

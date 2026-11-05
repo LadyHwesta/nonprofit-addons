@@ -35,6 +35,17 @@ class EventEntertainmentStage(models.Model):
         for stage in self:
             stage.line_count = len(stage.line_ids)
 
+    def action_open_run_of_show(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": self.name,
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "views": [(False, "form")],
+        }
+
     def _printable_lines(self):
         """The running order for the printed sheet: acts that are off don't
         go on it, though they keep their slot so later times don't move."""

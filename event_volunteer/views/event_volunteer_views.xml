@@ -4,7 +4,7 @@
     <record id="event_volunteer_role_view_list" model="ir.ui.view">
         <field name="model">event.volunteer.role</field>
         <field name="arch" type="xml">
-            <list editable="bottom">
+            <list editable="bottom" open_form_view="True">
                 <field name="sequence" widget="handle" />
                 <field name="event_id" />
                 <field name="name" />
@@ -143,9 +143,13 @@
               action="event_volunteer_assignment_action"
               sequence="5"
               groups="event.group_event_user,event_volunteer.group_volunteer_viewer" />
+    <menuitem id="menu_event_config_volunteers"
+              name="Volunteers"
+              parent="event.menu_event_configuration"
+              sequence="50" />
     <menuitem id="menu_event_volunteer_roles"
               name="Volunteer Roles"
-              parent="event.menu_event_configuration"
+              parent="menu_event_config_volunteers"
               action="event_volunteer_role_action"
               sequence="20"
               groups="event.group_event_manager" />

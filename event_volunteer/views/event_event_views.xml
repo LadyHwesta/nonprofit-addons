@@ -22,7 +22,7 @@
                         Some volunteer roles still need people.
                     </div>
                     <field name="volunteer_role_ids">
-                        <list editable="bottom">
+                        <list editable="bottom" open_form_view="True">
                             <field name="sequence" widget="handle" />
                             <field name="name" />
                             <field name="slot_count" />

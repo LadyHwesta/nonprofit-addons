@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo.tests import tagged
+from odoo.tests import TransactionCase, tagged
 
 from .common import ReportsCommon
 
@@ -51,3 +51,34 @@ class TestMisReports(ReportsCommon):
         result = self._compute("mis_instance_sofp_current_year")
         self.assertTrue(result["body"])
         self.assertIsNotNone(self._row(result, "Total Net Assets"))
+
+
+@tagged("post_install", "-at_install")
+class TestFunctionalExpenseAction(TransactionCase):
+
+    def test_report_groups_expenses_by_function(self):
+        plan = self.env.ref("nonprofit_base.analytic_plan_function")
+        column = plan._column_name()
+        function = self.env["account.analytic.account"].create({
+            "name": "Program Services", "plan_id": plan.id,
+        })
+        expense = self.env["account.account"].create({
+            "name": "Supplies", "code": "699991",
+            "account_type": "expense",
+        })
+        self.env["account.analytic.line"].create({
+            "name": "Supplies for the clinic", "amount": -125.0,
+            "general_account_id": expense.id, column: function.id,
+        })
+
+        action = self.env.ref(
+            "nonprofit_reports.action_functional_expense_open").run()
+
+        self.assertEqual(action["context"]["pivot_column_groupby"], [column])
+        lines = self.env["account.analytic.line"].with_context(
+            action["context"])
+        groups = lines._read_group(
+            action["domain"],
+            groupby=["general_account_id", column],
+            aggregates=["amount:sum"])
+        self.assertIn((expense, function, -125.0), groups)

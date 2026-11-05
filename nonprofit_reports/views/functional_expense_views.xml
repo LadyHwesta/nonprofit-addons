@@ -8,7 +8,6 @@
         <field name="arch" type="xml">
             <pivot string="Functional Expenses (Form 990 Part IX)">
                 <field name="general_account_id" type="row" />
-                <field name="auto_account_id" type="col" />
                 <field name="amount" type="measure" />
             </pivot>
         </field>
@@ -20,13 +19,35 @@
         <field name="view_mode">pivot,list</field>
         <field name="view_id" ref="functional_expense_view_pivot" />
         <field name="domain">[
-            ('auto_account_id', '!=', False),
             ('general_account_id.account_type', 'in',
              ['expense', 'expense_depreciation', 'expense_direct_cost'])
         ]</field>
-        <field name="context">{
-            'analytic_plan_id': %(nonprofit_base.analytic_plan_function)d
-        }</field>
+        <field name="context"
+               eval="{'analytic_plan_id': ref('nonprofit_base.analytic_plan_function')}" />
+    </record>
+
+    <!-- A plan's column is named from its id, and the pivot can only group
+         by a stored column, so work it out when the report opens. The
+         auto_account_id shortcut can't do either: it isn't stored, and its
+         "is set" search requires an entry on every plan at once. -->
+    <record id="action_functional_expense_open" model="ir.actions.server">
+        <field name="name">Functional Expenses (990 Part IX)</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line" />
+        <field name="state">code</field>
+        <field name="code">
+plan = env.ref("nonprofit_base.analytic_plan_function")
+column = plan._column_name()
+action = env["ir.actions.act_window"]._for_xml_id("nonprofit_reports.action_functional_expense")
+action["domain"] = [
+    (column, "!=", False),
+    ("general_account_id.account_type", "in", ["expense", "expense_depreciation", "expense_direct_cost"]),
+]
+action["context"] = {
+    "analytic_plan_id": plan.id,
+    "pivot_row_groupby": ["general_account_id"],
+    "pivot_column_groupby": [column],
+}
+        </field>
     </record>
 
 </odoo>

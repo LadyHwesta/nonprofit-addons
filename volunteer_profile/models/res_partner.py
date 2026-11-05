@@ -6,9 +6,10 @@ from odoo import _, api, fields, models
 _ACTIVITY_PREFIX = "Background check expiring:"
 
 # Background checks, minors and emergency contacts stay with people who
-# work with volunteers. Odoo enforces this on read, write and search, and
-# hides tracked changes to these fields from the chatter and email.
-_VOLUNTEER_DATA_GROUPS = "event_volunteer.group_volunteer_viewer"
+# manage volunteers, not everyone who can see the volunteer program. Odoo
+# enforces this on read, write and search, and hides tracked changes to
+# these fields from the chatter and email.
+_VOLUNTEER_DATA_GROUPS = "event_volunteer.group_volunteer_user"
 
 
 class ResPartner(models.Model):

@@ -8,7 +8,7 @@
             <page name="internal_notes" position="after">
                 <page name="volunteer_profile" string="Volunteer"
                       invisible="is_company"
-                      groups="event_volunteer.group_volunteer_viewer">
+                      groups="event_volunteer.group_volunteer_user">
                     <group>
                         <group string="Screening" name="vp_screening">
                             <label for="background_check_state" />
@@ -77,13 +77,13 @@
             <filter name="type_company" position="after">
                 <separator />
                 <filter name="bgcheck_ok" string="Background Check OK"
-                        groups="event_volunteer.group_volunteer_viewer"
+                        groups="event_volunteer.group_volunteer_user"
                         domain="[('background_check_valid', '=', True)]" />
                 <filter name="bgcheck_expired" string="Background Check Expired"
-                        groups="event_volunteer.group_volunteer_viewer"
+                        groups="event_volunteer.group_volunteer_user"
                         domain="[('background_check_state', '=', 'expired')]" />
                 <filter name="waiver_current" string="Waiver Current"
-                        groups="event_volunteer.group_volunteer_viewer"
+                        groups="event_volunteer.group_volunteer_user"
                         domain="[('waiver_current', '=', True)]" />
             </filter>
         </field>

@@ -10,7 +10,7 @@
         <field name="print_report_name">'Volunteer Waiver - %s' % (object.name)</field>
         <field name="binding_model_id" ref="base.model_res_partner" />
         <field name="binding_type">report</field>
-        <field name="group_ids" eval="[(4, ref('event_volunteer.group_volunteer_viewer'))]" />
+        <field name="group_ids" eval="[(6, 0, [ref('event_volunteer.group_volunteer_user')])]" />
     </record>
 
     <template id="volunteer_waiver">

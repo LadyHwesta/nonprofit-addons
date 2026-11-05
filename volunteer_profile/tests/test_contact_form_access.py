@@ -24,6 +24,9 @@ class TestContactFormAccess(TransactionCase):
         cls.viewer_user = new_test_user(
             cls.env, login="vp_viewer_user",
             groups="base.group_user,event_volunteer.group_volunteer_viewer")
+        cls.volunteer_user = new_test_user(
+            cls.env, login="vp_volunteer_user",
+            groups="base.group_user,event_volunteer.group_volunteer_user")
 
     def _open_contact(self, user):
         """Load the form the way the web client does, return its fields."""
@@ -48,8 +51,13 @@ class TestContactFormAccess(TransactionCase):
         self.assertNotIn("volunteer_skill_ids", names)
         self.assertNotIn("background_check_state", names)
 
-    def test_volunteer_tier_still_sees_the_tab(self):
+    def test_contact_opens_for_a_volunteer_viewer_without_the_tab(self):
         names = self._open_contact(self.viewer_user)
+
+        self.assertNotIn("volunteer_skill_ids", names)
+
+    def test_volunteer_managers_still_see_the_tab(self):
+        names = self._open_contact(self.volunteer_user)
 
         self.assertIn("volunteer_skill_ids", names)
         self.assertIn("background_check_state", names)

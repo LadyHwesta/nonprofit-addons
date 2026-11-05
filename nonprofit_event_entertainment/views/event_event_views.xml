@@ -11,21 +11,24 @@
                     <div class="row text-center mb-3">
                         <div class="col">
                             <h3><field name="stage_count" class="oe_inline" /></h3>
-                            <span class="text-muted">Stages</span>
+                            <span class="text-muted">Performance Stages</span>
                         </div>
                     </div>
 
-                    <separator string="Stages" />
+                    <separator string="Performance Stages" />
                     <p class="text-muted">
                         Each stage runs its own independent run of show -
-                        open a stage to build/reorder its schedule and
-                        print it.
+                        click Run of Show on a stage's line to build,
+                        reorder and print its schedule.
                     </p>
                     <field name="stage_ids">
                         <list editable="bottom">
                             <field name="name" />
                             <field name="start_time" />
                             <field name="line_count" string="Items" />
+                            <button name="action_open_run_of_show" type="object"
+                                    string="Run of Show" icon="fa-list-ol"
+                                    class="btn-link" />
                         </list>
                     </field>
                 </page>

@@ -13,7 +13,7 @@
             <field name="description" position="after">
                 <field name="shift_ids" invisible="not use_shifts"
                        context="{'default_role_id': id}">
-                    <list editable="bottom">
+                    <list editable="bottom" open_form_view="True">
                         <field name="name" />
                         <field name="start" />
                         <field name="stop" />

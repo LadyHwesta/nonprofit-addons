@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Parade Lineup",
-    "version": "19.0.1.2.1",
+    "version": "19.0.1.2.2",
     "category": "Marketing/Events",
     "summary": "Public parade-entry applications, staging areas and a lineup sheet",
     "description": """

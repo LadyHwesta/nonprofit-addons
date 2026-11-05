@@ -210,3 +210,17 @@ class TestNonprofitRoles(TransactionCase):
         ]
         self.assertFalse(broken)
 
+    def test_our_configuration_menus_sit_in_their_own_sections(self):
+        stock = self.env.ref('event.menu_event_configuration')
+        for xmlid, section in (
+            ('nonprofit_event_entertainment.menu_event_stage', 'Entertainment'),
+            ('nonprofit_event_entertainment.menu_event_performer', 'Entertainment'),
+            ('nonprofit_event_logistics.menu_event_permit', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_facility', 'Logistics'),
+            ('event_volunteer.menu_event_volunteer_roles', 'Volunteers'),
+            ('volunteer_profile.menu_volunteer_skill', 'Volunteers'),
+        ):
+            parent = self.env.ref(xmlid).parent_id
+            self.assertEqual(parent.name, section, xmlid)
+            self.assertEqual(parent.parent_id, stock, xmlid)
+

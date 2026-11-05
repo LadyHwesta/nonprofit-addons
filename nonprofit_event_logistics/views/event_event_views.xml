@@ -40,7 +40,7 @@
                     <button name="%(action_report_permit_status)d" type="action"
                             string="Print Permit Status Report" class="btn-link" />
                     <field name="permit_ids">
-                        <list editable="bottom">
+                        <list editable="bottom" open_form_view="True">
                             <field name="name" />
                             <field name="permit_type" />
                             <field name="submit_by_date" />
@@ -53,7 +53,7 @@
                     <button name="%(action_report_staffing_roster)d" type="action"
                             string="Print Staffing Roster" class="btn-link" />
                     <field name="staff_shift_ids">
-                        <list editable="bottom">
+                        <list editable="bottom" open_form_view="True">
                             <field name="name" />
                             <field name="role_id" />
                             <field name="start" />
@@ -68,7 +68,7 @@
                             string="Print Crew &amp; Facilities Day-Of Sheet"
                             class="btn-link" />
                     <field name="crew_booking_ids">
-                        <list editable="bottom">
+                        <list editable="bottom" open_form_view="True">
                             <field name="partner_id" />
                             <field name="service_type" />
                             <field name="load_in" />
@@ -79,7 +79,7 @@
 
                     <separator string="Facilities" />
                     <field name="facility_ids">
-                        <list editable="bottom">
+                        <list editable="bottom" open_form_view="True">
                             <field name="name" />
                             <field name="facility_type" />
                             <field name="quantity" />

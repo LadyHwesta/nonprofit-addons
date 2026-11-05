@@ -15,6 +15,15 @@ who have every required skill, are cleared / waivered if the role needs
 it, and aren't already booked on an overlapping shift. Ships a starter
 skill list.
 
+### Who can see this data
+
+Skills, screening, waiver, minor and emergency contact fields can only be
+read, changed or searched by people with a Volunteer tier. Everyone else
+doesn't see the tab, the search filters or the waiver report, and tracked
+changes are hidden from them in the chatter and in email notifications.
+Sign-up checks still run for everyone. They report only which requirement
+is unmet. These fields aren't copied when a Contact is duplicated.
+
 ### Background checks
 
 On the contact's **Volunteer** tab: state (not started / requested /

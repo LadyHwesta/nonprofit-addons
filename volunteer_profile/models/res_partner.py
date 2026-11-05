@@ -5,6 +5,11 @@ from odoo import _, api, fields, models
 
 _ACTIVITY_PREFIX = "Background check expiring:"
 
+# Background checks, minors and emergency contacts stay with people who
+# work with volunteers. Odoo enforces this on read, write and search, and
+# hides tracked changes to these fields from the chatter and email.
+_VOLUNTEER_DATA_GROUPS = "event_volunteer.group_volunteer_viewer"
+
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
@@ -12,7 +17,8 @@ class ResPartner(models.Model):
     # --- Skills -------------------------------------------------------
     volunteer_skill_ids = fields.Many2many(
         "volunteer.skill", "volunteer_profile_partner_skill_rel",
-        "partner_id", "skill_id", string="Volunteer Skills")
+        "partner_id", "skill_id", string="Volunteer Skills",
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
 
     # --- Background check -------------------------------------------
     background_check_state = fields.Selection(
@@ -22,37 +28,59 @@ class ResPartner(models.Model):
             ("cleared", "Cleared"),
             ("expired", "Expired"),
         ],
-        default="none", string="Background Check", tracking=True)
-    background_check_date = fields.Date(string="Cleared On", tracking=True)
-    background_check_expiry = fields.Date(string="Re-check Due", tracking=True)
+        default="none", string="Background Check", tracking=True,
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    background_check_date = fields.Date(
+        string="Cleared On", tracking=True,
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    background_check_expiry = fields.Date(
+        string="Re-check Due", tracking=True,
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
     background_check_valid = fields.Boolean(
         compute="_compute_background_check_valid",
-        search="_search_background_check_valid", string="Background Check OK")
+        search="_search_background_check_valid", string="Background Check OK",
+        groups=_VOLUNTEER_DATA_GROUPS)
     background_check_expiring_soon = fields.Boolean(
-        compute="_compute_background_check_valid")
+        compute="_compute_background_check_valid",
+        groups=_VOLUNTEER_DATA_GROUPS)
 
     # --- Waiver ----------------------------------------------------
-    waiver_signed = fields.Boolean(string="Waiver Signed", tracking=True)
-    waiver_date = fields.Date(string="Waiver Date", tracking=True)
+    waiver_signed = fields.Boolean(
+        string="Waiver Signed", tracking=True,
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    waiver_date = fields.Date(
+        string="Waiver Date", tracking=True,
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
     waiver_current = fields.Boolean(
         compute="_compute_waiver_current", search="_search_waiver_current",
-        string="Waiver Current")
+        string="Waiver Current",
+        groups=_VOLUNTEER_DATA_GROUPS)
 
     # --- Minor / emergency / misc --------------------------------
-    is_minor = fields.Boolean(string="Under 18")
+    is_minor = fields.Boolean(
+        string="Under 18",
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
     guardian_id = fields.Many2one(
         "res.partner", string="Parent / Guardian",
-        domain="[('is_company', '=', False), ('id', '!=', id)]")
-    emergency_contact_name = fields.Char()
-    emergency_contact_phone = fields.Char()
+        domain="[('is_company', '=', False), ('id', '!=', id)]",
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    emergency_contact_name = fields.Char(
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    emergency_contact_phone = fields.Char(
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
     tshirt_size = fields.Selection(
         selection=[
             ("xs", "XS"), ("s", "S"), ("m", "M"), ("l", "L"),
             ("xl", "XL"), ("xxl", "2XL"), ("xxxl", "3XL"),
         ],
-        string="T-Shirt Size")
-    volunteer_orientation_done = fields.Boolean(string="Orientation Done")
-    volunteer_orientation_date = fields.Date(string="Orientation Date")
+        string="T-Shirt Size",
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    volunteer_orientation_done = fields.Boolean(
+        string="Orientation Done",
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
+    volunteer_orientation_date = fields.Date(
+        string="Orientation Date",
+        groups=_VOLUNTEER_DATA_GROUPS, copy=False)
 
     # ------------------------------------------------------------------
     @api.model
@@ -150,12 +178,15 @@ class ResPartner(models.Model):
         """Return a list of human-readable reasons ``self`` can't take
         ``role`` (or a shift of it). Empty list = eligible."""
         self.ensure_one()
+        # Volunteers signing themselves up can't read their own screening
+        # fields, and the check only ever returns which requirement is unmet.
+        partner = self.sudo()
         errors = []
-        if role.requires_background_check and not self.background_check_valid:
+        if role.requires_background_check and not partner.background_check_valid:
             errors.append(_("a current background check"))
-        if role.requires_waiver and not self.waiver_current:
+        if role.requires_waiver and not partner.waiver_current:
             errors.append(_("a signed liability waiver"))
-        missing_skills = role.required_skill_ids - self.volunteer_skill_ids
+        missing_skills = role.required_skill_ids - partner.volunteer_skill_ids
         if missing_skills:
             errors.append(_(
                 "these skills: %s", ", ".join(missing_skills.mapped("name"))))

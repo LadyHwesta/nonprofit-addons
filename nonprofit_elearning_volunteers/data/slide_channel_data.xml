@@ -234,7 +234,8 @@
         <field name="html_content" type="html">
             <div class="oe-course-content">
                 <p>All set up on the volunteer's own contact record, under
-                the <strong>Volunteer</strong> tab. Tag
+                the <strong>Volunteer</strong> tab, which only people with a
+                Volunteer role can see. Tag
                 <strong>Skills</strong> (First Aid, Spanish, Licensed
                 Driver…) from the list under Events › Configuration
                 › Volunteer Skills.</p>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Volunteer Profile & Screening",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "category": "Marketing/Events",
     "summary": "Volunteer skills, background-check tracking with expiry, "
                "liability waiver, minor/guardian, and role screening guards",

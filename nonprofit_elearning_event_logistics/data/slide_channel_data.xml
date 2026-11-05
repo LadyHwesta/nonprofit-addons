@@ -76,7 +76,7 @@
             <div class="oe-course-content">
                 <p>To move a permit along, click <strong>View</strong> at the
                 end of its row on the event's <strong>Logistics</strong> tab.
-                The Submit, Approve and Deny buttons are on the permit itself.</p>
+                The Mark Submitted, Approve and Deny buttons are on the permit itself.</p>
                 <div class="oe-diagram">
                     <div class="oe-flow">
                         <div class="oe-flow-step">

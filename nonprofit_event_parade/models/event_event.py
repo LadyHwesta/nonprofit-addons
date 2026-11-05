@@ -39,6 +39,14 @@ class EventEvent(models.Model):
         action["context"] = {"default_event_id": self.id}
         return action
 
+    def action_view_parade_staging_areas(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "nonprofit_event_parade.action_event_parade_staging_area")
+        action["domain"] = [("event_id", "=", self.id)]
+        action["context"] = {"default_event_id": self.id}
+        return action
+
     def action_auto_number_entries(self):
         self.ensure_one()
         entries = self.parade_entry_ids.filtered(

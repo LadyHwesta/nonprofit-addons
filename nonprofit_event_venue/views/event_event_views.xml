@@ -42,8 +42,8 @@
                     </group>
                     <p class="text-muted">
                         Give the venue its rows (the "Rows" button above),
-                        assign each booth a row and spot number on the
-                        Booths tab, then calibrate the map once - every
+                        assign each booth a row and spot number (the
+                        "Booths" button above), then calibrate the map once - every
                         booth's pin follows automatically from its row/spot.
                     </p>
                 </page>

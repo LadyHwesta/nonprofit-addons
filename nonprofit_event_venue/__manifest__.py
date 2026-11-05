@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Venue Map",
-    "version": "19.0.1.2.0",
+    "version": "19.0.1.2.1",
     "category": "Marketing/Events",
     "summary": "Row/spot vendor placement with a live OpenStreetMap vendor map",
     "description": """

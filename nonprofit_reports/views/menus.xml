@@ -14,7 +14,7 @@
     <menuitem id="menu_nonprofit_functional_expense"
               name="Functional Expenses (990 Part IX)"
               parent="menu_nonprofit_reports"
-              action="action_functional_expense"
+              action="action_functional_expense_open"
               sequence="20" />
 
     <menuitem id="menu_nonprofit_donor_statement"

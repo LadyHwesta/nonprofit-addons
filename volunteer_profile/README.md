@@ -18,7 +18,8 @@ skill list.
 ### Who can see this data
 
 Skills, screening, waiver, minor and emergency contact fields can only be
-read, changed or searched by people with a Volunteer tier. Everyone else
+read, changed or searched by people who manage volunteers (the Volunteer
+User and Manager tiers). Everyone else, including Volunteer Viewers,
 doesn't see the tab, the search filters or the waiver report, and tracked
 changes are hidden from them in the chatter and in email notifications.
 Sign-up checks still run for everyone. They report only which requirement

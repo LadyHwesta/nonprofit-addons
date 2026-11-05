@@ -32,6 +32,11 @@ module already uses), then composes the roles below from them.
 | **Vendor Coordinator** | Venue (incl. vendor/exhibitor booths) + edit-level on Logistics (crew booking) | Parade, Entertainment, Volunteers, Donation |
 | **Parade Coordinator** | Parade only | Venue, Logistics, Entertainment, Volunteers, Donation |
 
+Screening data on a Contact (background checks, waivers, minors, emergency
+contacts, skills) follows edit-level access: of these roles, only Chair Person,
+Operating Officer, Program Director and Volunteer Coordinator can see it.
+View-level Volunteers access doesn't include it.
+
 **General Volunteer/Staff** is added to Odoo's own default user template
 (Settings > Users > Default User Template) on install - every brand-new
 internal user starts here. Upgrade an existing user's role from Settings

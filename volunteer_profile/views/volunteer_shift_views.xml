@@ -8,7 +8,8 @@
             <xpath expr="//form/sheet" position="before">
                 <header>
                     <button name="action_suggest_volunteers" type="object"
-                            string="Suggest Volunteers" class="btn-secondary" />
+                            string="Suggest Volunteers" class="btn-secondary"
+                            groups="event_volunteer.group_volunteer_user" />
                 </header>
             </xpath>
             <field name="time_state" position="after">

@@ -27,6 +27,9 @@ class TestScreeningPrivacy(TransactionCase):
         cls.viewer = new_test_user(
             cls.env, login="sp_viewer",
             groups="base.group_user,event_volunteer.group_volunteer_viewer")
+        cls.manager = new_test_user(
+            cls.env, login="sp_manager",
+            groups="base.group_user,event_volunteer.group_volunteer_user")
         cls.portal = new_test_user(
             cls.env, login="sp_portal", groups="base.group_portal")
         cls.role = cls.env["event.volunteer.role"].create({
@@ -39,19 +42,21 @@ class TestScreeningPrivacy(TransactionCase):
             "requires_background_check": True,
         })
 
-    def test_every_field_refuses_a_user_without_a_tier(self):
-        contact = self.contact.with_user(self.plain)
-        for name in SCREENING_FIELDS:
-            with self.subTest(field=name), self.assertRaises(AccessError):
-                contact.read([name])
+    def test_every_field_refuses_anyone_who_does_not_manage_volunteers(self):
+        for user in (self.plain, self.viewer):
+            contact = self.contact.with_user(user)
+            for name in SCREENING_FIELDS:
+                with self.subTest(user=user.login, field=name), \
+                        self.assertRaises(AccessError):
+                    contact.read([name])
 
     def test_searching_on_screening_refuses_a_user_without_a_tier(self):
         partners = self.env["res.partner"].with_user(self.plain)
         with self.assertRaises(AccessError):
             partners.search([("background_check_state", "=", "cleared")])
 
-    def test_volunteer_tier_can_read(self):
-        values = self.contact.with_user(self.viewer).read(
+    def test_people_who_manage_volunteers_can_read(self):
+        values = self.contact.with_user(self.manager).read(
             list(SCREENING_FIELDS))[0]
         self.assertEqual(values["background_check_state"], "none")
 
@@ -64,8 +69,10 @@ class TestScreeningPrivacy(TransactionCase):
 
         self.assertFalse(trackings._filter_has_field_access(
             self.env(user=self.plain)))
-        self.assertTrue(trackings._filter_has_field_access(
+        self.assertFalse(trackings._filter_has_field_access(
             self.env(user=self.viewer)))
+        self.assertTrue(trackings._filter_has_field_access(
+            self.env(user=self.manager)))
         # Email notifications must leave them out too.
         self.assertFalse(trackings._filter_free_field_access())
 
@@ -115,7 +122,8 @@ class TestScreeningPrivacy(TransactionCase):
             return "bgcheck_ok" in search
 
         self.assertFalse(filters(self.plain))
-        self.assertTrue(filters(self.viewer))
+        self.assertFalse(filters(self.viewer))
+        self.assertTrue(filters(self.manager))
 
     def test_waiver_report_only_offered_with_a_tier(self):
         def offered(user):
@@ -125,4 +133,14 @@ class TestScreeningPrivacy(TransactionCase):
             return any(b["id"] == waiver.id for b in bindings)
 
         self.assertFalse(offered(self.plain))
-        self.assertTrue(offered(self.viewer))
+        self.assertFalse(offered(self.viewer))
+        self.assertTrue(offered(self.manager))
+
+    def test_viewer_gets_no_buttons_that_search_on_screening(self):
+        shift = self.env["volunteer.shift"].with_user(self.viewer).get_view(
+            view_type="form")["arch"]
+        skill = self.env["volunteer.skill"].with_user(self.viewer).get_view(
+            view_type="form")["arch"]
+
+        self.assertNotIn("action_suggest_volunteers", shift)
+        self.assertNotIn("action_view_volunteers", skill)

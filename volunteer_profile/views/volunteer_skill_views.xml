@@ -19,7 +19,8 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="action_view_volunteers" type="object"
-                                class="oe_stat_button" icon="fa-users">
+                                class="oe_stat_button" icon="fa-users"
+                                groups="event_volunteer.group_volunteer_user">
                             <field name="partner_count" widget="statinfo"
                                    string="Volunteers" />
                         </button>

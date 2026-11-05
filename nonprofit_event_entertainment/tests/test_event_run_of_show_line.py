@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
+from lxml import etree
+
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import tagged
+from odoo.tests import new_test_user, tagged
 
 from .common import EventEntertainmentCommon
 
@@ -110,3 +112,34 @@ class TestEventRunOfShowLine(EventEntertainmentCommon):
         line.action_cancel()
 
         self.assertEqual(line.booking_state, "cancelled")
+
+    def test_reinvite_reopens_a_declined_booking(self):
+        line = self._make_line()
+        line.action_decline()
+
+        line.action_reinvite()
+
+        self.assertEqual(line.booking_state, "invited")
+        with self.assertRaises(UserError):
+            line.action_reinvite()  # already invited
+
+    def test_stage_form_offers_booking_buttons_to_entertainment_users(self):
+        def buttons_for(*groups):
+            user = new_test_user(
+                self.env, login="ros_" + groups[-1].replace(".", "_"),
+                groups=",".join(groups))
+            form = self.env["event.entertainment.stage"].with_user(
+                user).get_view(view_type="form")
+            return set(etree.fromstring(form["arch"]).xpath(
+                "//field[@name='line_ids']//button/@name"))
+
+        self.assertEqual(
+            buttons_for(
+                "base.group_user",
+                "nonprofit_event_entertainment.group_entertainment_user"),
+            {"action_confirm", "action_decline", "action_cancel",
+             "action_reinvite"})
+        # Read-only roles could click these only to hit an Access Error.
+        self.assertFalse(buttons_for(
+            "base.group_user",
+            "nonprofit_event_entertainment.group_entertainment_viewer"))

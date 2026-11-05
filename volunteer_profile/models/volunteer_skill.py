@@ -26,7 +26,7 @@ class VolunteerSkill(models.Model):
         "unique(name)", "That skill already exists.")
 
     def _compute_partner_count(self):
-        data = self.env["res.partner"]._read_group(
+        data = self.env["res.partner"].sudo()._read_group(
             [("volunteer_skill_ids", "in", self.ids)],
             groupby=["volunteer_skill_ids"], aggregates=["__count"])
         counts = {skill.id: n for skill, n in data}

@@ -124,7 +124,14 @@
         <field name="html_content" type="html">
             <div class="oe-course-content">
                 <p>Some things must happen at a set time, such as a headliner at 9:00 PM sharp. Enter that time under <strong>Hard Time</strong> on the line. It stays put, and everything after it follows from when it ends.</p>
-                <p><strong>Booking State</strong> shows where each act stands: Invited, Confirmed, Declined, or Cancelled.</p>
+                <p><strong>Booking State</strong> shows where each act stands: Invited, Confirmed, Declined, or Cancelled. Change it with the buttons at the end of the act's line: <strong>Confirm</strong>, <strong>Decline</strong>, or <strong>Cancel</strong>. If plans change again, or you clicked the wrong one, <strong>Re-invite</strong> puts the act back to Invited.</p>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">A declined act keeps its time slot</span>
+                        <p>Declined and cancelled acts stay on the schedule and on the printed Run of Show, and later acts don't move up. To close the gap, delete the line or replace it with another act.</p>
+                    </div>
+                </div>
                 <div class="oe-callout">
                     <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
                     <div>

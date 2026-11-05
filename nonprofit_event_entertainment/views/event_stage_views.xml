@@ -55,6 +55,22 @@
                                            decoration-muted="booking_state == 'invited'"
                                            decoration-success="booking_state == 'confirmed'"
                                            decoration-danger="booking_state in ('declined', 'cancelled')" />
+                                    <button name="action_confirm" type="object"
+                                            string="Confirm" class="btn-link"
+                                            groups="nonprofit_event_entertainment.group_entertainment_user"
+                                            invisible="line_type != 'performance' or booking_state != 'invited'" />
+                                    <button name="action_decline" type="object"
+                                            string="Decline" class="btn-link"
+                                            groups="nonprofit_event_entertainment.group_entertainment_user"
+                                            invisible="line_type != 'performance' or booking_state not in ('invited', 'confirmed')" />
+                                    <button name="action_cancel" type="object"
+                                            string="Cancel" class="btn-link"
+                                            groups="nonprofit_event_entertainment.group_entertainment_user"
+                                            invisible="line_type != 'performance' or booking_state not in ('invited', 'confirmed')" />
+                                    <button name="action_reinvite" type="object"
+                                            string="Re-invite" class="btn-link"
+                                            groups="nonprofit_event_entertainment.group_entertainment_user"
+                                            invisible="line_type != 'performance' or booking_state not in ('declined', 'cancelled')" />
                                 </list>
                             </field>
                         </page>

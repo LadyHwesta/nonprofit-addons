@@ -142,3 +142,10 @@ class EventRunOfShowLine(models.Model):
 
     def action_cancel(self):
         self.write({"booking_state": "cancelled"})
+
+    def action_reinvite(self):
+        for line in self:
+            if line.booking_state not in ("declined", "cancelled"):
+                raise UserError(_(
+                    "Only a declined or cancelled booking can be re-invited."))
+        self.write({"booking_state": "invited"})

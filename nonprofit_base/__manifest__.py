@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Non-Profit Base",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Accounting",
     "summary": "Non-profit organisation and donor fields, fund/program/function/"
                "grant analytic plans, and an add-on US chart of accounts",

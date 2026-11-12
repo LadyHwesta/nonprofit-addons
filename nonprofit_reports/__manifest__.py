@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Non-Profit Reports",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.1.0",
     "category": "Accounting",
     "summary": "Donor analytics (LYBUNT/SYBUNT), Form 990 functional-expense "
                "pivot, year-end contribution statements, and MIS Builder "

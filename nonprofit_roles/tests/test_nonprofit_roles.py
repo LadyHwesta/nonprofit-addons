@@ -215,12 +215,28 @@ class TestNonprofitRoles(TransactionCase):
         for xmlid, section in (
             ('nonprofit_event_entertainment.menu_event_stage', 'Entertainment'),
             ('nonprofit_event_entertainment.menu_event_performer', 'Entertainment'),
-            ('nonprofit_event_logistics.menu_event_permit', 'Logistics'),
-            ('nonprofit_event_logistics.menu_event_facility', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_staff_role', 'Logistics'),
             ('event_volunteer.menu_event_volunteer_roles', 'Volunteers'),
             ('volunteer_profile.menu_volunteer_skill', 'Volunteers'),
         ):
             parent = self.env.ref(xmlid).parent_id
             self.assertEqual(parent.name, section, xmlid)
             self.assertEqual(parent.parent_id, stock, xmlid)
+
+    def test_day_to_day_work_sits_in_the_events_menu_bar(self):
+        """Permits, staff shifts, crew bookings and facilities are weekly work,
+        not settings (2026-11-12 review): Events > Logistics, and Events >
+        Parade, Events > Volunteers, next to the stock Events menus."""
+        bar = self.env.ref('event.event_main_menu')
+        for xmlid, section in (
+            ('nonprofit_event_logistics.menu_event_permit', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_staff_shift', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_facility', 'Logistics'),
+            ('nonprofit_event_parade.menu_event_parade_entry', 'Parade'),
+            ('volunteer_shift.menu_volunteer_shifts', 'Volunteers'),
+            ('volunteer_shift.menu_volunteer_shift_swaps', 'Volunteers'),
+        ):
+            parent = self.env.ref(xmlid).parent_id
+            self.assertEqual(parent.name, section, xmlid)
+            self.assertEqual(parent.parent_id, bar, xmlid)
 

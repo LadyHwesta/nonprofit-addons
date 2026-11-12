@@ -201,8 +201,8 @@
                     </div>
                     <p class="oe-diagram-caption">
                         <span class="oe-diagram-caption-tag">Illustration</span>
-                        approval, under <strong>Events › Shift
-                        Swaps</strong>, is what actually reassigns the
+                        approval, under <strong>Events › Volunteers ›
+                        Shift Swaps</strong>, is what actually reassigns the
                         shift.
                     </p>
                 </div>
@@ -359,8 +359,8 @@
                     <div>
                         <span class="oe-callout-label">Understaffed Shifts</span>
                         <p>Lists upcoming shifts still short of people, all
-                        under <strong>Events › Volunteer
-                        Reporting</strong>.</p>
+                        under <strong>Events › Volunteers ›
+                        Reports</strong>.</p>
                     </div>
                 </div>
             </div>

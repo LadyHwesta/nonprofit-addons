@@ -49,7 +49,7 @@
                         </list>
                     </field>
 
-                    <separator string="Staff Shifts" />
+                    <separator string="Paid Staff Shifts" />
                     <button name="%(action_report_staffing_roster)d" type="action"
                             string="Print Staffing Roster" class="btn-link" />
                     <field name="staff_shift_ids">

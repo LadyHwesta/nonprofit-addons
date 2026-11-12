@@ -283,7 +283,7 @@
 
                 <ol class="oe-steps">
                     <li>
-                        <p>Open <strong>Invoicing › Non-Profit ›
+                        <p>Open <strong>Invoicing › Non-Profit › Funds ›
                         Restriction Releases › New</strong>.</p>
                     </li>
                     <li>
@@ -336,7 +336,7 @@
                     <span class="oe-callout-icon"><i class="fa fa-line-chart" /></span>
                     <div>
                         <span class="oe-callout-label">Check your work any time</span>
-                        <p><strong>Invoicing › Non-Profit ›
+                        <p><strong>Invoicing › Non-Profit › Funds ›
                         Net-Asset Roll-Forward</strong> shows opening
                         balance, revenue, expense, releases in and out, and
                         closing balance, per fund, for any date range.</p>
@@ -404,7 +404,7 @@
         <field name="sequence">42</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p><strong>Invoicing › Reporting › Non-Profit
+                <p><strong>Invoicing › Non-Profit › Reports
                 › Functional Expenses (990 Part IX)</strong> gives your 990 preparer a
                 grid of every natural expense account against the three
                 Function columns - built straight from the Function you set

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Processing Donations",
-    "version": "19.0.1.2.0",
+    "version": "19.0.1.3.0",
     "category": "Website/eLearning",
     "summary": "eLearning course: recording gifts, receipts, and donor reporting",
     "description": """

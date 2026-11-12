@@ -20,7 +20,7 @@ class EventEvent(models.Model):
     permit_approved_count = fields.Integer(compute="_compute_logistics_counts")
 
     staff_shift_ids = fields.One2many(
-        "event.staff.shift", "event_id", string="Staff Shifts")
+        "event.staff.shift", "event_id", string="Paid Staff Shifts")
     staff_shift_count = fields.Integer(compute="_compute_logistics_counts")
     staffing_fill_pct = fields.Float(compute="_compute_logistics_counts")
 

@@ -178,7 +178,7 @@
         <field name="sequence">31</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p><strong>Invoicing › Reporting › Non-Profit
+                <p><strong>Invoicing › Non-Profit › Reports
                 › Donor Analytics</strong> gives one row per donor:
                 lifetime giving, this year, last year, and first/last/largest
                 gift.</p>

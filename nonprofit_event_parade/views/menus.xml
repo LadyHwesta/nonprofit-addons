@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Until 2026-11-12 parade entries were only reachable from inside an
+         event or the website; this gives a list to work from. -->
+    <menuitem id="menu_event_parade" name="Parade"
+              parent="event.event_main_menu" sequence="9"
+              groups="event.group_event_user,nonprofit_event_parade.group_parade_viewer" />
+    <menuitem id="menu_event_parade_entry" name="Entries"
+              action="action_event_parade_entry"
+              parent="menu_event_parade" sequence="10" />
+    <menuitem id="menu_event_parade_staging_area" name="Staging Areas"
+              action="action_event_parade_staging_area"
+              parent="menu_event_parade" sequence="20" />
+
+</odoo>

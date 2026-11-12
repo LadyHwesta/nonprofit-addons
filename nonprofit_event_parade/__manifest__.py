@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Parade Lineup",
-    "version": "19.0.1.2.2",
+    "version": "19.0.1.3.0",
     "category": "Marketing/Events",
     "summary": "Public parade-entry applications, staging areas and a lineup sheet",
     "description": """
@@ -40,6 +40,7 @@ Event Parade Lineup
         "views/event_parade_entry_views.xml",
         "views/portal_templates.xml",
         "views/event_event_views.xml",
+        "views/menus.xml",
     ],
     "assets": {
         "web.report_assets_common": [

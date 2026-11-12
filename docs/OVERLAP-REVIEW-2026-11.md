@@ -106,10 +106,13 @@ Not done:
   than moving to the Donations app: it reads accounting entries, so it
   works without the Donations app, and moving it would make Non-Profit
   Reports require Donations.
-- **8 renaming the OCA "Donation" app** needs a module that depends on
-  Donations; it fits naturally in the roles split below.
-- **9 roles split**: plan below, for a decision, because live databases
-  (TFL) may already have roles installed.
+- **8 and 9: done (commit 5145636), differently from the plan below.**
+  Roles keep their IDs in `nonprofit_roles`, which now needs only
+  `nonprofit_base`; each role's rights per area are in
+  `models/res_groups.py` (ROLE_RIGHTS) and applied to whatever is
+  installed, at install and on every registry load. No add-on modules, no
+  moving records. The Donation app shows as "Donations" via
+  `nonprofit_base`. The add-on plan below is kept only for the record.
 - Pre-existing, not ours: OCA `donation`'s own test fails on a database
   without demo data (it uses a demo product). Harmless in real use.
 

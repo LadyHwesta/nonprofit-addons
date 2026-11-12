@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Non-Profit Organization Roles",
-    "version": "19.0.1.1.0",
+    "version": "19.0.2.0.0",
     "category": "Human Resources",
     "summary": "Real nonprofit-org job roles (Chair, Treasurer, Program "
                "Director, coordinators...) as installable permission sets",
@@ -30,27 +30,26 @@ a pile of technical-sounding checkboxes per person.
 * **Chair Person** gets everything below at Manager level, including
   core Event scheduling itself, short of Settings/Technical - the one
   role meant to see the whole organization operationally.
-* Pulls in ``project``, ``hr``, and ``website`` as real dependencies -
-  **Program Director** needs the Projects app, **Operating Officer**
-  needs HR, **Marketing & Communications Director** needs Website - none
-  of those had a place to live in this suite before.
+* Needs only ``nonprofit_base``. Each role's rights in Donations,
+  Volunteers, Venue, Logistics, Parade, Entertainment, Projects, HR and
+  Website are added for whichever of those are installed, now or later
+  (models/res_groups.py), so a donations-only organization can use the
+  roles without installing the event modules.
 
 See README.md for the full role-to-permission table.
 """,
     "author": "Tiesa",
     "license": "LGPL-3",
     "website": "https://github.com/LadyHwesta/nonprofit-addons",
-    "depends": [
-        "donation", "event_volunteer", "volunteer_shift", "volunteer_profile",
-        "nonprofit_event_venue", "nonprofit_event_logistics",
-        "nonprofit_event_parade", "nonprofit_event_entertainment",
-        "project", "hr", "website",
-    ],
+    # Only the base: each role's rights in donations, volunteers, events,
+    # projects, HR and website are added when those are installed (see
+    # models/res_groups.py), so installing roles doesn't install the suite.
+    "depends": ["nonprofit_base"],
     "data": [
         "security/nonprofit_roles_security.xml",
         "data/default_user_groups.xml",
     ],
-    "pre_init_hook": "check_domain_modules_upgraded",
+    "post_init_hook": "post_init_hook",
     "installable": True,
     "application": False,
 }

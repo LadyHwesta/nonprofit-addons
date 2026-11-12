@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+from odoo import SUPERUSER_ID, api
+from odoo.tools import convert_file
+
+
+def migrate(cr, version):
+    """The course data is noupdate, so a normal upgrade won't touch lessons that
+    already exist. Reload it so the new menu paths (2026-11-12 menu clean-up
+    and the accounting app named Accounting, as on our hosting) reach
+    installed courses. This replaces any hand edits made to these lessons.
+    """
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    convert_file(
+        env, "nonprofit_elearning_donations", "data/slide_channel_data.xml", {},
+        mode="init", noupdate=True)

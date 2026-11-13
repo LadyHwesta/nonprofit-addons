@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_grants" model="ir.ui.view">
+        <field name="name">res.partner.form.grants</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_grants" type="object" class="oe_stat_button"
+                        icon="fa-university" invisible="not is_funder and not grant_count"
+                        groups="nonprofit_grant.group_grant_viewer">
+                    <field name="grant_count" widget="statinfo" string="Grants" />
+                </button>
+            </div>
+            <field name="category_id" position="after">
+                <field name="is_funder" groups="nonprofit_grant.group_grant_viewer" />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_grant_funders" model="ir.actions.act_window">
+        <field name="name">Funders</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('is_funder', '=', True)]</field>
+        <field name="context">{'default_is_funder': True, 'default_is_company': True}</field>
+    </record>
+</odoo>

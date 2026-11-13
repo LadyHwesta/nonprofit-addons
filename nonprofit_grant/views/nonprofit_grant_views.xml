@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_nonprofit_grant_form" model="ir.ui.view">
+        <field name="name">nonprofit.grant.form</field>
+        <field name="model">nonprofit.grant</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_release_restriction" type="object"
+                            string="Release from Restriction"
+                            invisible="not fund_id or amount_spent &lt;= amount_released or restriction == 'unrestricted'"
+                            groups="account.group_account_user" />
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_reports" type="object" class="oe_stat_button"
+                                icon="fa-file-text-o">
+                            <field name="report_count" widget="statinfo" string="Reports" />
+                        </button>
+                        <button name="action_view_spending" type="object" class="oe_stat_button"
+                                icon="fa-money" invisible="not fund_id">
+                            <field name="amount_spent" widget="statinfo" string="Spent" />
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Declined" bg_color="text-bg-danger" invisible="not is_declined" />
+                    <widget name="web_ribbon" title="Awarded" bg_color="text-bg-success" invisible="not is_awarded" />
+                    <div class="oe_title">
+                        <field name="reference" class="text-muted" readonly="1" />
+                        <h1><field name="name" placeholder="e.g. Youth Arts 2027" /></h1>
+                    </div>
+                    <group>
+                        <group string="Funder">
+                            <field name="funder_id" context="{'default_is_funder': True, 'default_is_company': True}" />
+                            <field name="contact_id" context="{'default_parent_id': funder_id}" />
+                            <field name="user_id" widget="many2one_avatar_user" />
+                        </group>
+                        <group string="Dates">
+                            <field name="deadline_date" />
+                            <field name="submitted_date" />
+                            <field name="decision_date" />
+                            <label for="period_start" string="Grant Period" />
+                            <div class="o_row">
+                                <field name="period_start" /> <span>to</span> <field name="period_end" />
+                            </div>
+                        </group>
+                        <group string="Money">
+                            <field name="currency_id" invisible="1" />
+                            <field name="amount_requested" />
+                            <field name="amount_awarded" />
+                            <field name="restriction" />
+                        </group>
+                        <group string="Fund" invisible="not is_awarded and not fund_id">
+                            <field name="fund_id" readonly="1" />
+                            <field name="program_id" options="{'no_create': true}" />
+                            <field name="amount_received" />
+                            <field name="amount_spent" />
+                            <field name="amount_left" />
+                            <field name="spent_percent" widget="progressbar" />
+                            <field name="amount_released" invisible="restriction == 'unrestricted'" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Purpose" name="purpose">
+                            <field name="purpose" placeholder="What the grant pays for, in the funder's words." />
+                        </page>
+                        <page string="Reports" name="reports">
+                            <field name="report_ids" context="{'default_grant_id': id}">
+                                <list editable="bottom" decoration-danger="is_overdue" decoration-muted="state == 'submitted'">
+                                    <field name="is_overdue" column_invisible="1" />
+                                    <field name="name" />
+                                    <field name="report_type" />
+                                    <field name="due_date" />
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'submitted'" decoration-warning="state == 'todo'" />
+                                    <field name="submitted_date" optional="show" />
+                                    <button name="action_mark_submitted" type="object" string="Mark Submitted"
+                                            icon="fa-check" invisible="state != 'todo'" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Payments" name="payments">
+                            <field name="payment_ids" context="{'default_grant_id': id}">
+                                <list editable="bottom">
+                                    <field name="currency_id" column_invisible="1" />
+                                    <field name="name" />
+                                    <field name="expected_date" />
+                                    <field name="amount" sum="Total" />
+                                    <field name="state" widget="badge"
+                                           decoration-success="state == 'paid'" decoration-info="state == 'invoiced'" />
+                                    <field name="amount_paid" sum="Received" />
+                                    <field name="move_id" optional="show" />
+                                    <button name="action_create_invoice" type="object" string="Invoice Funder"
+                                            icon="fa-file-o" invisible="state != 'expected'"
+                                            groups="account.group_account_invoice" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_kanban" model="ir.ui.view">
+        <field name="name">nonprofit.grant.kanban</field>
+        <field name="model">nonprofit.grant</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column" quick_create="false">
+                <field name="color" />
+                <field name="currency_id" />
+                <field name="is_awarded" />
+                <progressbar field="activity_state"
+                             colors='{"planned": "success", "today": "warning", "overdue": "danger"}' />
+                <templates>
+                    <t t-name="card">
+                        <field name="name" class="fw-bold" />
+                        <field name="funder_id" class="text-muted" />
+                        <div class="d-flex justify-content-between mt-1">
+                            <span t-if="record.is_awarded.raw_value">
+                                <field name="amount_awarded" widget="monetary" />
+                            </span>
+                            <span t-else="">
+                                <field name="amount_requested" widget="monetary" />
+                            </span>
+                            <span t-if="record.next_deadline.raw_value" class="text-muted">
+                                <i class="fa fa-clock-o" title="Next deadline" /> <field name="next_deadline" />
+                            </span>
+                        </div>
+                        <footer>
+                            <field name="activity_ids" widget="kanban_activity" />
+                            <field name="user_id" widget="many2one_avatar_user" class="ms-auto" />
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_list" model="ir.ui.view">
+        <field name="name">nonprofit.grant.list</field>
+        <field name="model">nonprofit.grant</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="currency_id" column_invisible="1" />
+                <field name="reference" optional="show" />
+                <field name="name" />
+                <field name="funder_id" />
+                <field name="stage_id" />
+                <field name="amount_requested" sum="Requested" optional="show" />
+                <field name="amount_awarded" sum="Awarded" />
+                <field name="amount_spent" optional="show" />
+                <field name="amount_left" optional="hide" />
+                <field name="next_deadline" />
+                <field name="user_id" widget="many2one_avatar_user" optional="show" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_calendar" model="ir.ui.view">
+        <field name="name">nonprofit.grant.calendar</field>
+        <field name="model">nonprofit.grant</field>
+        <field name="arch" type="xml">
+            <calendar date_start="deadline_date" color="user_id" mode="month" quick_create="0">
+                <field name="funder_id" />
+                <field name="amount_requested" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_search" model="ir.ui.view">
+        <field name="name">nonprofit.grant.search</field>
+        <field name="model">nonprofit.grant</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="funder_id" />
+                <field name="user_id" />
+                <filter name="mine" string="My Grants" domain="[('user_id', '=', uid)]" />
+                <filter name="open" string="In Progress"
+                        domain="[('stage_id.is_awarded', '=', False), ('stage_id.is_declined', '=', False)]" />
+                <filter name="awarded" string="Awarded"
+                        domain="[('stage_id.is_awarded', '=', True), ('stage_id.is_closed', '=', False)]" />
+                <filter name="declined" string="Declined" domain="[('stage_id.is_declined', '=', True)]" />
+                <separator />
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]" />
+                <group>
+                    <filter name="group_stage" string="Stage" context="{'group_by': 'stage_id'}" />
+                    <filter name="group_funder" string="Funder" context="{'group_by': 'funder_id'}" />
+                    <filter name="group_owner" string="Owner" context="{'group_by': 'user_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_grant" model="ir.actions.act_window">
+        <field name="name">Grants</field>
+        <field name="res_model">nonprofit.grant</field>
+        <field name="view_mode">kanban,list,calendar,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add your first grant</p>
+            <p>Track each grant from prospect to close-out: deadlines, the award, the
+            funder's payments and the reports they need.</p>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_grant_awarded" model="ir.actions.act_window">
+        <field name="name">Awarded Grants</field>
+        <field name="res_model">nonprofit.grant</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_awarded': 1}</field>
+    </record>
+
+</odoo>

@@ -26,6 +26,7 @@ VIEW_ALL = [
     'nonprofit_event_entertainment.group_entertainment_viewer',
     'event_volunteer.group_volunteer_viewer',
     'donation.group_donation_viewer',
+    'nonprofit_grant.group_grant_viewer',
 ]
 
 
@@ -48,7 +49,7 @@ ROLE_RIGHTS = {
         'nonprofit_event_logistics.group_logistics_manager',
         'nonprofit_event_parade.group_parade_manager',
         'nonprofit_event_entertainment.group_entertainment_manager',
-        'donation.group_donation_manager',
+        'donation.group_donation_manager', 'nonprofit_grant.group_grant_manager',
         'account.group_account_manager', 'account.group_account_user',
         'project.group_project_manager', 'hr.group_hr_manager',
         'website.group_website_designer',
@@ -60,11 +61,13 @@ ROLE_RIGHTS = {
         viewer_except=('nonprofit_event_logistics', 'event_volunteer')),
     'group_role_treasurer': _with(
         ['event.group_event_user', 'account.group_account_manager',
-         'account.group_account_user', 'donation.group_donation_manager'],
-        viewer_except=('donation',)),
+         'account.group_account_user', 'donation.group_donation_manager',
+         'nonprofit_grant.group_grant_manager'],
+        viewer_except=('donation', 'nonprofit_grant')),
     'group_role_fundraising_manager': _with(
-        ['event.group_event_user', 'donation.group_donation_manager'],
-        ['account.group_account_readonly'], viewer_except=('donation',)),
+        ['event.group_event_user', 'donation.group_donation_manager',
+         'nonprofit_grant.group_grant_manager'],
+        ['account.group_account_readonly'], viewer_except=('donation', 'nonprofit_grant')),
     'group_role_program_director': [
         'base.group_user', 'event.group_event_manager',
         'nonprofit_event_venue.group_venue_manager',
@@ -72,7 +75,7 @@ ROLE_RIGHTS = {
         'nonprofit_event_parade.group_parade_manager',
         'nonprofit_event_entertainment.group_entertainment_manager',
         'event_volunteer.group_volunteer_manager',
-        'project.group_project_manager',
+        'project.group_project_manager', 'nonprofit_grant.group_grant_user',
         'donation.group_donation_viewer', 'account.group_account_readonly',
     ],
     'group_role_marketing_communications_director': _with(

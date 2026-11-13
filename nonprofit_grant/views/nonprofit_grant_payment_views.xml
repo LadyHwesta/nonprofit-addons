@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_nonprofit_grant_payment_list" model="ir.ui.view">
+        <field name="name">nonprofit.grant.payment.list</field>
+        <field name="model">nonprofit.grant.payment</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="currency_id" column_invisible="1" />
+                <field name="grant_id" />
+                <field name="name" />
+                <field name="expected_date" />
+                <field name="amount" sum="Expected" />
+                <field name="state" widget="badge"
+                       decoration-success="state == 'paid'" decoration-info="state == 'invoiced'" />
+                <field name="amount_paid" sum="Received" />
+                <field name="move_id" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_grant_payment" model="ir.actions.act_window">
+        <field name="name">Expected Payments</field>
+        <field name="res_model">nonprofit.grant.payment</field>
+        <field name="view_mode">list</field>
+        <field name="domain">[('state', '!=', 'paid')]</field>
+    </record>
+</odoo>

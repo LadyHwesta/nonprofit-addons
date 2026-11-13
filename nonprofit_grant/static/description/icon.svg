@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
+  <!-- Grants: a document with a seal, in two shades of teal (Odoo 19 style) -->
+  <path d="M8 6 h22 l10 10 v26 a2 2 0 0 1 -2 2 h-30 a2 2 0 0 1 -2 -2 v-34 a2 2 0 0 1 2 -2 z" fill="#1F9E8F"/>
+  <path d="M30 6 v8 a2 2 0 0 0 2 2 h8 z" fill="#14695F"/>
+  <circle cx="34" cy="36" r="10" fill="#14695F"/>
+  <rect x="13" y="17" width="14" height="3" rx="1.5" fill="#FFFFFF"/>
+  <rect x="13" y="24" width="10" height="3" rx="1.5" fill="#FFFFFF"/>
+  <circle cx="34" cy="36" r="5.5" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+  <path d="M31 41 l-1.5 6 l4.5 -2.5 l4.5 2.5 l-1.5 -6" fill="#FFFFFF"/>
+</svg>

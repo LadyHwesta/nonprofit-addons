@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_grant_viewer,grant.viewer,model_nonprofit_grant,group_grant_viewer,1,0,0,0
+access_grant_user,grant.user,model_nonprofit_grant,group_grant_user,1,1,1,0
+access_grant_manager,grant.manager,model_nonprofit_grant,group_grant_manager,1,1,1,1
+access_grant_stage_viewer,grant.stage.viewer,model_nonprofit_grant_stage,group_grant_viewer,1,0,0,0
+access_grant_stage_manager,grant.stage.manager,model_nonprofit_grant_stage,group_grant_manager,1,1,1,1
+access_grant_report_viewer,grant.report.viewer,model_nonprofit_grant_report,group_grant_viewer,1,0,0,0
+access_grant_report_user,grant.report.user,model_nonprofit_grant_report,group_grant_user,1,1,1,1
+access_grant_payment_viewer,grant.payment.viewer,model_nonprofit_grant_payment,group_grant_viewer,1,0,0,0
+access_grant_payment_user,grant.payment.user,model_nonprofit_grant_payment,group_grant_user,1,1,1,1

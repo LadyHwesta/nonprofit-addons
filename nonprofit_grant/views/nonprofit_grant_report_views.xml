@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_nonprofit_grant_report_list" model="ir.ui.view">
+        <field name="name">nonprofit.grant.report.list</field>
+        <field name="model">nonprofit.grant.report</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="is_overdue" decoration-muted="state == 'submitted'">
+                <field name="is_overdue" column_invisible="1" />
+                <field name="grant_id" />
+                <field name="funder_id" optional="show" />
+                <field name="name" />
+                <field name="report_type" />
+                <field name="due_date" />
+                <field name="state" widget="badge"
+                       decoration-success="state == 'submitted'" decoration-warning="state == 'todo'" />
+                <field name="user_id" widget="many2one_avatar_user" optional="show" />
+                <button name="action_mark_submitted" type="object" string="Mark Submitted"
+                        icon="fa-check" invisible="state != 'todo'" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_report_form" model="ir.ui.view">
+        <field name="name">nonprofit.grant.report.form</field>
+        <field name="model">nonprofit.grant.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_mark_submitted" type="object" string="Mark Submitted"
+                            class="btn-primary" invisible="state != 'todo'" />
+                    <button name="action_reopen" type="object" string="Reopen" invisible="state != 'submitted'" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" /></h1></div>
+                    <group>
+                        <group>
+                            <field name="grant_id" />
+                            <field name="funder_id" />
+                            <field name="report_type" />
+                        </group>
+                        <group>
+                            <field name="due_date" />
+                            <field name="submitted_date" />
+                            <field name="user_id" widget="many2one_avatar_user" />
+                        </group>
+                    </group>
+                    <field name="attachment_ids" widget="many2many_binary" string="Submitted report" />
+                    <field name="note" placeholder="What the funder asked for, word limits, where to submit..." />
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_report_calendar" model="ir.ui.view">
+        <field name="name">nonprofit.grant.report.calendar</field>
+        <field name="model">nonprofit.grant.report</field>
+        <field name="arch" type="xml">
+            <calendar date_start="due_date" color="grant_id" mode="month" quick_create="0">
+                <field name="grant_id" />
+                <field name="state" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_nonprofit_grant_report_search" model="ir.ui.view">
+        <field name="name">nonprofit.grant.report.search</field>
+        <field name="model">nonprofit.grant.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="grant_id" />
+                <field name="funder_id" />
+                <filter name="todo" string="To Do" domain="[('state', '=', 'todo')]" />
+                <filter name="mine" string="My Grants" domain="[('user_id', '=', uid)]" />
+                <group>
+                    <filter name="group_grant" string="Grant" context="{'group_by': 'grant_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_grant_report" model="ir.actions.act_window">
+        <field name="name">Grant Reports</field>
+        <field name="res_model">nonprofit.grant.report</field>
+        <field name="view_mode">list,calendar,form</field>
+        <field name="context">{'search_default_todo': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No reports due</p>
+            <p>Add the reports a funder requires on the grant's Reports tab.</p>
+        </field>
+    </record>
+</odoo>

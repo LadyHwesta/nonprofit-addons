@@ -286,3 +286,20 @@ class TestRoleRightsSync(TransactionCase):
         if not menu:
             self.skipTest("Donations isn't installed")
         self.assertEqual(menu.with_context(lang='en_US').name, 'Donations')
+
+    def test_grants_rights_when_grants_is_installed(self):
+        manager = self.env.ref('nonprofit_grant.group_grant_manager', raise_if_not_found=False)
+        if not manager:
+            self.skipTest("Grants isn't installed")
+        user = self.env.ref('nonprofit_grant.group_grant_user')
+        viewer = self.env.ref('nonprofit_grant.group_grant_viewer')
+
+        def implied(role):
+            return self.env.ref(f'nonprofit_roles.{role}').all_implied_ids
+
+        for role in ('group_role_chair_person', 'group_role_treasurer', 'group_role_fundraising_manager'):
+            self.assertIn(manager, implied(role), role)
+        self.assertIn(user, implied('group_role_program_director'))
+        self.assertNotIn(manager, implied('group_role_program_director'))
+        self.assertIn(viewer, implied('group_role_general_volunteer'))
+        self.assertNotIn(user, implied('group_role_general_volunteer'))

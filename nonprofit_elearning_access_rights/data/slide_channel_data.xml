@@ -17,6 +17,7 @@
     <!-- ================= How access works ================= -->
     <record id="section_how" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">How access works</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -24,6 +25,7 @@
 
     <record id="lesson_layers" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Roles, tiers, and the Administrator setting</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -53,6 +55,7 @@
 
     <record id="lesson_admin" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">What Administrator does and doesn't include</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
@@ -81,6 +84,7 @@
     <!-- ================= What each level allows ================= -->
     <record id="section_levels" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">What each level allows</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -88,6 +92,7 @@
 
     <record id="lesson_tiers" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Viewer, User, and Manager in each area</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -109,6 +114,7 @@
 
     <record id="lesson_roles" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">What each nonprofit role provides</field>
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
@@ -130,6 +136,7 @@
 
     <record id="lesson_core_events" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">The Events access that comes with each role</field>
         <field name="slide_category">article</field>
         <field name="sequence">23</field>
@@ -163,6 +170,7 @@
     <!-- ================= Setting access ================= -->
     <record id="section_setting" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Setting access</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -170,6 +178,7 @@
 
     <record id="lesson_assign" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Giving someone a role</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
@@ -219,6 +228,7 @@
 
     <record id="lesson_defaults" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">New users, and existing users after an upgrade</field>
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
@@ -247,6 +257,7 @@
 
     <record id="lesson_verify" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Checking that it worked</field>
         <field name="slide_category">article</field>
         <field name="sequence">33</field>
@@ -273,12 +284,14 @@
     <!-- ================= Quiz ================= -->
     <record id="section_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="is_category" eval="True" />
         <field name="sequence">40</field>
     </record>
     <record id="slide_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_access_rights" />
+        <field name="is_published" eval="True" />
         <field name="name">Access rights quiz</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">41</field>

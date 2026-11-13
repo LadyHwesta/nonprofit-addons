@@ -16,6 +16,7 @@
 
     <record id="section_roster" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">The performer roster</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -23,6 +24,7 @@
 
     <record id="lesson_performers" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Adding performers</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -54,6 +56,7 @@
 
     <record id="section_stages" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Stages</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -61,6 +64,7 @@
 
     <record id="lesson_stages" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Setting up stages</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -87,6 +91,7 @@
 
     <record id="section_show" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Building the show</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -94,6 +99,7 @@
 
     <record id="lesson_run_of_show" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">The Run of Show</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
@@ -118,6 +124,7 @@
 
     <record id="lesson_hard_time" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Hard times and booking status</field>
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
@@ -145,6 +152,7 @@
 
     <record id="section_day" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">On the day</field>
         <field name="is_category" eval="True" />
         <field name="sequence">40</field>
@@ -152,6 +160,7 @@
 
     <record id="lesson_print" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Printing the Run of Show</field>
         <field name="slide_category">article</field>
         <field name="sequence">41</field>
@@ -171,6 +180,7 @@
 
     <record id="section_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="is_category" eval="True" />
         <field name="sequence">50</field>
@@ -178,6 +188,7 @@
 
     <record id="slide_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_event_entertainment" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">51</field>

@@ -17,6 +17,7 @@
     <!-- =================== Section 1: Recording a gift =================== -->
     <record id="section_recording" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">Recording a gift</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -24,6 +25,7 @@
 
     <record id="lesson_cash_gift" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">A cash or check donation</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -76,6 +78,7 @@
 
     <record id="lesson_restricted_inkind" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">A restricted gift, and an in-kind gift</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
@@ -110,6 +113,7 @@
     <!-- ============ Section 2: Receipts and fundraising events ============ -->
     <record id="section_events" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">Receipts and fundraising events</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -117,6 +121,7 @@
 
     <record id="lesson_fundraising_event" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">A fundraising event</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -166,6 +171,7 @@
     <!-- ==================== Section 3: Donor reporting ==================== -->
     <record id="section_reporting" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">Donor reporting</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -173,6 +179,7 @@
 
     <record id="lesson_donor_analytics" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">Donor analytics, LYBUNT &amp; SYBUNT</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
@@ -203,6 +210,7 @@
 
     <record id="lesson_year_end" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">Year-end contribution statements</field>
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
@@ -250,6 +258,7 @@
     <!-- ========================= Quiz ========================= -->
     <record id="slide_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">90</field>

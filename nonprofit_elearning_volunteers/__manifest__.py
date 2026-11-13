@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Volunteer Coordination",
-    "version": "19.0.1.3.0",
+    "version": "19.0.1.3.1",
     "category": "Website/eLearning",
     "summary": "eLearning course: roles, shifts, screening, and volunteer hours",
     "description": """

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Run of Show: a fee per performance, its payment state, and billing. -->
+    <record id="event_stage_view_form_payout" model="ir.ui.view">
+        <field name="name">event.entertainment.stage.form.payout</field>
+        <field name="model">event.entertainment.stage</field>
+        <field name="inherit_id" ref="nonprofit_event_entertainment.event_stage_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='line_ids']/list/field[@name='booking_state']" position="after">
+                <field name="currency_id" column_invisible="1" />
+                <field name="fee" invisible="line_type != 'performance'" optional="show" />
+                <field name="pay_state" widget="badge" optional="show"
+                       invisible="line_type != 'performance' or pay_state == 'none'"
+                       decoration-warning="pay_state == 'to_bill'"
+                       decoration-info="pay_state == 'billed'"
+                       decoration-success="pay_state == 'paid'" />
+                <field name="bill_id" optional="hide" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Staff shifts: what each worker is owed. -->
+    <record id="event_staff_shift_view_form_payout" model="ir.ui.view">
+        <field name="name">event.staff.shift.form.payout</field>
+        <field name="model">event.staff.shift</field>
+        <field name="inherit_id" ref="nonprofit_event_logistics.event_staff_shift_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='assignment_ids']/list/field[@name='hours']" position="after">
+                <field name="currency_id" column_invisible="1" />
+                <field name="amount" sum="Pay" optional="show" />
+                <field name="pay_state" widget="badge" optional="show" invisible="pay_state == 'none'"
+                       decoration-warning="pay_state == 'to_bill'"
+                       decoration-info="pay_state == 'billed'"
+                       decoration-success="pay_state == 'paid'" />
+                <field name="bill_id" optional="hide" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- The event: what's owed and billed, and one button to bill it all. -->
+    <record id="event_event_view_form_payout" model="ir.ui.view">
+        <field name="name">event.event.form.payout</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="nonprofit_event_entertainment.event_event_view_form_entertainment" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='entertainment']/div[hasclass('row')]" position="inside">
+                <div class="col">
+                    <field name="payout_currency_id" invisible="1" />
+                    <h3><field name="payout_to_bill" class="oe_inline" /></h3>
+                    <span class="text-muted">Owed, not billed</span>
+                </div>
+                <div class="col">
+                    <h3><field name="payout_billed" class="oe_inline" /></h3>
+                    <span class="text-muted">Billed</span>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='entertainment']/div[hasclass('row')]" position="after">
+                <button name="action_bill_performers_and_staff" type="object" groups="account.group_account_invoice"
+                        string="Bill Performers &amp; Staff" class="btn-primary mb-3"
+                        help="Draft vendor bills for confirmed performances with a fee and checked-out staff, one per person." />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

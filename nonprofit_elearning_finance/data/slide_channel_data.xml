@@ -18,6 +18,7 @@
     <!-- ================= Section 1: Getting set up ================= -->
     <record id="section_setup" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Getting set up</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -25,20 +26,21 @@
 
     <record id="lesson_setup_coa" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Adding the non-profit chart of accounts</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>On Community Edition, the accounting app is called <strong>Invoicing</strong>, so that's the name you'll see in these menus.</p>
+                <p>These lessons call the accounting app <strong>Accounting</strong>, its name once full accounting is switched on. On a plain Community install it's called <strong>Invoicing</strong> instead; the menus inside are the same.</p>
                 <p>Before anything else, turn on <strong>Analytic
-                Accounting</strong> under Settings › Invoicing - this is
+                Accounting</strong> under Settings › Accounting - this is
                 what lets you tag a transaction with a fund, and everything
                 below depends on it.</p>
 
                 <ol class="oe-steps">
                     <li>
-                        <p>Open <strong>Invoicing › Configuration ›
+                        <p>Open <strong>Accounting › Configuration ›
                         Add Non-Profit Accounts</strong>.</p>
                     </li>
                     <li>
@@ -102,12 +104,13 @@
 
     <record id="lesson_setup_options" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Setting the fund-accounting options</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>Go to <strong>Settings › Invoicing › Fund
+                <p>Go to <strong>Settings › Accounting › Fund
                 Accounting (Non-Profit)</strong>.</p>
 
                 <ol class="oe-steps">
@@ -152,6 +155,7 @@
     <!-- ========== Section 2: Funds, programs & functions ========== -->
     <record id="section_funds" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Funds, programs &amp; functions</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -159,6 +163,7 @@
 
     <record id="lesson_funds_questions" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">The three questions every transaction answers</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -227,6 +232,7 @@
     <!-- ============ Section 3: Recording and releasing ============ -->
     <record id="section_recording" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Recording and releasing</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -234,12 +240,13 @@
 
     <record id="lesson_vendor_bill" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">A vendor bill</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p>Enter the bill as normal under <strong>Invoicing ›
+                <p>Enter the bill as normal under <strong>Accounting ›
                 Vendors › Bills</strong>. On each expense line, set
                 <strong>Analytic Distribution</strong>: the Fund it's paid
                 from, the Program it serves, and the Function.</p>
@@ -271,6 +278,7 @@
 
     <record id="lesson_release" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Releasing restricted funds</field>
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
@@ -283,7 +291,7 @@
 
                 <ol class="oe-steps">
                     <li>
-                        <p>Open <strong>Invoicing › Non-Profit ›
+                        <p>Open <strong>Accounting › Non-Profit › Funds ›
                         Restriction Releases › New</strong>.</p>
                     </li>
                     <li>
@@ -336,7 +344,7 @@
                     <span class="oe-callout-icon"><i class="fa fa-line-chart" /></span>
                     <div>
                         <span class="oe-callout-label">Check your work any time</span>
-                        <p><strong>Invoicing › Non-Profit ›
+                        <p><strong>Accounting › Non-Profit › Funds ›
                         Net-Asset Roll-Forward</strong> shows opening
                         balance, revenue, expense, releases in and out, and
                         closing balance, per fund, for any date range.</p>
@@ -356,6 +364,7 @@
     <!-- ============= Section 4: Board & IRS reporting ============= -->
     <record id="section_reporting" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Board &amp; IRS reporting</field>
         <field name="is_category" eval="True" />
         <field name="sequence">40</field>
@@ -363,6 +372,7 @@
 
     <record id="lesson_board_reports" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Statement of Activities &amp; Financial Position</field>
         <field name="slide_category">article</field>
         <field name="sequence">41</field>
@@ -370,7 +380,7 @@
             <div class="oe-course-content">
                 <p>Because every transaction already carries its fund,
                 program, and function, the board reports come out without
-                extra bookkeeping. Find them under <strong>Invoicing › Reporting › MIS Reporting › MIS Reports</strong>.</p>
+                extra bookkeeping. Find them under <strong>Accounting › Reporting › MIS Reporting › MIS Reports</strong>.</p>
 
                 <div class="oe-columns">
                     <div class="oe-column">
@@ -399,12 +409,13 @@
 
     <record id="lesson_990" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">The Form 990 functional-expense grid</field>
         <field name="slide_category">article</field>
         <field name="sequence">42</field>
         <field name="html_content" type="html">
             <div class="oe-course-content">
-                <p><strong>Invoicing › Reporting › Non-Profit
+                <p><strong>Accounting › Non-Profit › Reports
                 › Functional Expenses (990 Part IX)</strong> gives your 990 preparer a
                 grid of every natural expense account against the three
                 Function columns - built straight from the Function you set
@@ -438,6 +449,7 @@
     <!-- ========================= Quiz ========================= -->
     <record id="slide_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_finance" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">90</field>

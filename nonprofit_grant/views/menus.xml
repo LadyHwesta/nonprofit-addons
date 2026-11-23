@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="menu_grant_root" name="Grants" sequence="46"
+              web_icon="nonprofit_grant,static/description/icon.png"
+              groups="group_grant_viewer" action="action_nonprofit_grant" />
+
+    <menuitem id="menu_grant_grants" name="Grants" parent="menu_grant_root" sequence="10" />
+    <menuitem id="menu_grant_pipeline" name="Pipeline" parent="menu_grant_grants"
+              action="action_nonprofit_grant" sequence="10" />
+    <menuitem id="menu_grant_awarded" name="Awarded" parent="menu_grant_grants"
+              action="action_nonprofit_grant_awarded" sequence="20" />
+    <menuitem id="menu_grant_reports" name="Reports Due" parent="menu_grant_grants"
+              action="action_nonprofit_grant_report" sequence="30" />
+    <menuitem id="menu_grant_payments" name="Expected Payments" parent="menu_grant_grants"
+              action="action_nonprofit_grant_payment" sequence="40" />
+
+    <menuitem id="menu_grant_funders" name="Funders" parent="menu_grant_root"
+              action="action_grant_funders" sequence="20" />
+
+    <menuitem id="menu_grant_config" name="Configuration" parent="menu_grant_root"
+              sequence="90" groups="group_grant_manager" />
+    <menuitem id="menu_grant_stages" name="Stages" parent="menu_grant_config"
+              action="action_nonprofit_grant_stage" sequence="10" />
+</odoo>

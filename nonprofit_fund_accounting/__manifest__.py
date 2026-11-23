@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Non-Profit Fund Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Accounting",
     "summary": "Enforce a Fund analytic account on income/expense postings, "
                "release donor restrictions with a balanced entry, and roll "

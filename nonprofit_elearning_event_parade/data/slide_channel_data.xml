@@ -17,6 +17,7 @@
     <!-- ================ Section 1: Taking applications ================ -->
     <record id="section_applications" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Taking applications</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -24,6 +25,7 @@
 
     <record id="lesson_turn_on" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Turning on public applications</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -66,6 +68,7 @@
 
     <record id="lesson_review" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Reviewing, approving, and rejecting entries</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
@@ -115,6 +118,7 @@
     <!-- ================ Section 2: Building the lineup ================ -->
     <record id="section_lineup" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Building the lineup</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -122,6 +126,7 @@
 
     <record id="lesson_staging" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Staging areas, lineup order, and entry number</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -163,6 +168,7 @@
 
     <record id="lesson_stepoff" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">The Set Step-Off Times wizard</field>
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
@@ -200,6 +206,7 @@
     <!-- =================== Section 3: Parade day =================== -->
     <record id="section_day" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Parade day</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -207,6 +214,7 @@
 
     <record id="lesson_printing" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Printing the lineup sheet, entry lists, and signs</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
@@ -252,6 +260,7 @@
     <!-- ========================= Quiz ========================= -->
     <record id="slide_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_event_parade" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">90</field>

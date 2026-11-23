@@ -2,22 +2,22 @@
 <odoo>
 
     <menuitem id="menu_volunteer_shifts"
-              name="Volunteer Shifts"
-              parent="event.event_main_menu"
+              name="Shifts"
+              parent="event_volunteer.menu_event_volunteer_section"
               action="action_volunteer_shift"
               sequence="6"
               groups="event.group_event_user,event_volunteer.group_volunteer_viewer" />
 
     <menuitem id="menu_volunteer_shift_swaps"
               name="Shift Swaps"
-              parent="event.event_main_menu"
+              parent="event_volunteer.menu_event_volunteer_section"
               action="action_volunteer_shift_swap"
               sequence="7"
               groups="event_volunteer.group_volunteer_user" />
 
     <menuitem id="menu_volunteer_shift_reporting"
-              name="Volunteer Reporting"
-              parent="event.event_main_menu"
+              name="Reports"
+              parent="event_volunteer.menu_event_volunteer_section"
               sequence="20"
               groups="event.group_event_user,event_volunteer.group_volunteer_viewer" />
 

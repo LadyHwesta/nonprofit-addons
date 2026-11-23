@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+
+    <record id="channel_grants" model="slide.channel">
+        <field name="name">Managing Grants</field>
+        <field name="channel_type">training</field>
+        <field name="description" type="html">
+            <p>Tracking grants from the first idea to the final report: deadlines,
+            the award and its fund, the funder's payments, spending, and reporting.</p>
+        </field>
+        <field name="visibility">members</field>
+        <field name="enroll">invite</field>
+        <field name="is_published" eval="True" />
+        <field name="enroll_group_ids" eval="[(6, 0, [ref('nonprofit_grant.group_grant_user')])]" />
+    </record>
+
+    <!-- =================== Section 1: The pipeline =================== -->
+    <record id="section_pipeline" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">From prospect to award</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="lesson_new_grant" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Adding a grant and its funder</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">11</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Every grant you're considering, writing, or have received lives in
+                the <strong>Grants</strong> app, on a board with one column per stage.</p>
+                <ol class="oe-steps">
+                    <li>
+                        <p>Open <strong>Grants › Grants › Pipeline</strong> and click
+                        <strong>New</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Give it a name the funder would recognize, such as their
+                        program's name and the year, and choose the <strong>Funder</strong>.
+                        A new funder can be created right there; it's marked as a
+                        funder automatically.</p>
+                    </li>
+                    <li>
+                        <p>Add the <strong>Program Officer</strong> (your contact at the
+                        funder), the <strong>Owner</strong> (who's writing it) and the
+                        <strong>Amount Requested</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Enter the <strong>Application Deadline</strong>. The owner
+                        gets a to-do due that day, in their Activities. Change the
+                        deadline and the to-do moves with it.</p>
+                    </li>
+                    <li>
+                        <p>As the work goes on, drag the card from <em>Prospect</em> to
+                        <em>Letter of Inquiry</em>, <em>Writing</em> and
+                        <em>Submitted</em>. When you send it in, fill in the
+                        <strong>Submitted Date</strong>: the deadline to-do goes away.</p>
+                    </li>
+                </ol>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_grants/static/img/pipeline.png" alt="The grants board with columns Prospect, Letter of Inquiry, Writing, Submitted and Awarded, each with a grant card showing its funder, amount and next deadline" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        the pipeline: each card shows the amount and the next thing due.
+                    </p>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">All of a funder's grants</span>
+                        <p>Open the funder under <strong>Grants › Funders</strong> and
+                        click the <strong>Grants</strong> button: everything you've ever
+                        asked them for, won or not.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_award" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Awarding a grant, and its fund</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">12</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Good news arrives. Here's what to do.</p>
+                <ol class="oe-steps">
+                    <li>
+                        <p>Enter the <strong>Amount Awarded</strong> (it can be less than
+                        you asked for), the <strong>Decision Date</strong> and the
+                        <strong>Grant Period</strong>.</p>
+                    </li>
+                    <li>
+                        <p>Check <strong>Restriction</strong>: most grants are
+                        <em>Restricted to a purpose</em>; some are for a time period, and
+                        a few are unrestricted.</p>
+                    </li>
+                    <li>
+                        <p>Move the grant to <strong>Awarded</strong>. Odoo won't let you
+                        without an amount awarded.</p>
+                    </li>
+                </ol>
+                <p>Awarding creates the grant's own <strong>Fund</strong>, under
+                <em>Fund › Grants</em>. From then on, every expense coded to that fund
+                counts as spent from the grant, and the <strong>Fund</strong> panel
+                shows what's been received, spent and left to spend. Pick the
+                <strong>Program</strong> the grant supports, too, if there is one.</p>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_grants/static/img/grant_awarded.png" alt="An awarded grant with its funder, dates, amounts requested and awarded, and the Fund panel showing 6,500 spent, 13,500 left and 33 percent spent" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        an awarded grant: its fund, and how much of it has been spent.
+                    </p>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-lightbulb-o" /></span>
+                    <div>
+                        <span class="oe-callout-label">Declined?</span>
+                        <p>Move it to <strong>Declined</strong> and note what the funder
+                        said in the chatter. It's still there next year, when you try
+                        again.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- =================== Section 2: Money =================== -->
+    <record id="section_money" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Money in and out</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="lesson_payments" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">The funder's payments</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">21</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Funders often pay in installments. List them on the grant's
+                <strong>Payments</strong> tab so you can see what's coming.</p>
+                <ol class="oe-steps">
+                    <li>
+                        <p>On the <strong>Payments</strong> tab, click <strong>Add a
+                        line</strong> for each installment: a name, the date you expect
+                        it, and the amount.</p>
+                    </li>
+                    <li>
+                        <p>When it's time to ask for the money, click <strong>Invoice
+                        Funder</strong> on that line. Odoo makes a draft invoice to the
+                        funder on the <em>Government and Foundation Grants</em> income
+                        account, coded to the grant's fund and program, with no tax.</p>
+                    </li>
+                    <li>
+                        <p>Check it, confirm it, and send it if the funder wants one.
+                        When their payment arrives, register it on the invoice as
+                        usual.</p>
+                    </li>
+                </ol>
+                <p>Each installment shows <em>Expected</em>, <em>Invoiced</em> or
+                <em>Received</em>, and the grant's <strong>Amount Received</strong>
+                adds them up. <strong>Grants › Grants › Expected Payments</strong>
+                lists everything still to come, across every grant.</p>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_grants/static/img/payments.png" alt="The Payments tab with a first installment invoiced and a second one expected, each 10,000 dollars, and an Invoice Funder button on the second" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        two installments: one invoiced, one still expected.
+                    </p>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Don't see Invoice Funder?</span>
+                        <p>It needs invoicing rights in Accounting. Ask your treasurer, who
+                        can invoice it for you.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <record id="lesson_spending" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Spending the grant, and releasing it</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">22</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Spending from a grant means coding the expense to the grant's
+                fund.</p>
+                <ol class="oe-steps">
+                    <li>
+                        <p>On a vendor bill or expense for something the grant pays for,
+                        set the line's <strong>Analytic Distribution</strong> to the
+                        grant's fund (it's named <em>Grant: </em> and the grant's name).</p>
+                    </li>
+                    <li>
+                        <p>Once it's confirmed, the grant's <strong>Amount Spent</strong>,
+                        <strong>Left to Spend</strong> and <strong>% Spent</strong> update.
+                        The <strong>Spent</strong> button at the top lists every expense
+                        counted.</p>
+                    </li>
+                    <li>
+                        <p>Restricted money stays restricted until it's been used for its
+                        purpose. When it has, click <strong>Release from
+                        Restriction</strong>: the release form opens filled in with what's
+                        been spent and not yet released. Check it and post it.</p>
+                    </li>
+                </ol>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Where it shows up</span>
+                        <p>Grant funds are Funds, so they appear in the
+                        <strong>Net-Asset Roll-Forward</strong> (Accounting › Non-Profit ›
+                        Funds › Net-Asset Roll-Forward) like any other fund.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- =================== Section 3: Reporting =================== -->
+    <record id="section_reporting" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Reporting to the funder</field>
+        <field name="is_category" eval="True" />
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="lesson_reports" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Reports and closing out</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">31</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>Most funders want an interim and a final report. Missing one can
+                cost you the next grant, so put them in as soon as the award letter
+                arrives.</p>
+                <ol class="oe-steps">
+                    <li>
+                        <p>On the grant's <strong>Reports</strong> tab, add each report the
+                        award letter asks for: its name, whether it's narrative,
+                        financial or both, and its due date. The grant's owner gets a
+                        to-do for each one.</p>
+                    </li>
+                    <li>
+                        <p>When you've sent one in, open it, attach the file you sent, and
+                        click <strong>Mark Submitted</strong>. The to-do closes and the
+                        grant's chatter records it.</p>
+                    </li>
+                    <li>
+                        <p><strong>Grants › Grants › Reports Due</strong> lists every report
+                        still to do across all grants, overdue ones in red, with a
+                        calendar view too.</p>
+                    </li>
+                    <li>
+                        <p>When the money's spent, the final report is in and the funder
+                        is happy, move the grant to <strong>Closed</strong>.</p>
+                    </li>
+                </ol>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_grants/static/img/reports_tab.png" alt="The Reports tab with an interim narrative report and a final report, both To do, each with a Mark Submitted button" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        a grant's required reports.
+                    </p>
+                </div>
+                <div class="oe-diagram">
+                    <img src="/nonprofit_elearning_grants/static/img/reports_due.png" alt="The Grant Reports list filtered to To Do, showing each report's grant, funder, due date and owner" class="img-fluid" />
+                    <p class="oe-diagram-caption">
+                        <span class="oe-diagram-caption-tag">Screenshot</span>
+                        every report still to do, across all grants.
+                    </p>
+                </div>
+            </div>
+        </field>
+    </record>
+
+    <!-- ========================= Quiz ========================= -->
+    <record id="slide_quiz" model="slide.slide">
+        <field name="channel_id" ref="channel_grants" />
+        <field name="is_published" eval="True" />
+        <field name="name">Check your understanding</field>
+        <field name="slide_category">quiz</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="quiz_q1" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">1</field>
+        <field name="question">You've just sent in an application. What should you fill in so the deadline reminder stops?</field>
+    </record>
+    <record id="quiz_q1_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">1</field>
+        <field name="text_value">The Submitted Date</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q1_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">2</field>
+        <field name="text_value">The Amount Awarded</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q1_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q1" />
+        <field name="sequence">3</field>
+        <field name="text_value">The Program</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q2" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">2</field>
+        <field name="question">What does Odoo create when a grant is moved to Awarded?</field>
+    </record>
+    <record id="quiz_q2_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">1</field>
+        <field name="text_value">An invoice for the whole amount</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q2_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">2</field>
+        <field name="text_value">The grant's own fund, under Fund › Grants</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q2_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q2" />
+        <field name="sequence">3</field>
+        <field name="text_value">A new bank account</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q3" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">3</field>
+        <field name="question">How does an expense count as spent from a grant?</field>
+    </record>
+    <record id="quiz_q3_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">1</field>
+        <field name="text_value">Mention the grant in the bill's reference</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q3_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">2</field>
+        <field name="text_value">Code its line to the grant's fund in Analytic Distribution</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q3_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q3" />
+        <field name="sequence">3</field>
+        <field name="text_value">Attach the bill to the grant's chatter</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+    <record id="quiz_q4" model="slide.question">
+        <field name="slide_id" ref="slide_quiz" />
+        <field name="sequence">4</field>
+        <field name="question">Where do you see every grant report still to do, across all grants?</field>
+    </record>
+    <record id="quiz_q4_a1" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">1</field>
+        <field name="text_value">Grants › Grants › Reports Due</field>
+        <field name="is_correct" eval="True" />
+    </record>
+    <record id="quiz_q4_a2" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">2</field>
+        <field name="text_value">Accounting › Reporting</field>
+        <field name="is_correct" eval="False" />
+    </record>
+    <record id="quiz_q4_a3" model="slide.answer">
+        <field name="question_id" ref="quiz_q4" />
+        <field name="sequence">3</field>
+        <field name="text_value">Each funder's contact form</field>
+        <field name="is_correct" eval="False" />
+    </record>
+
+</odoo>

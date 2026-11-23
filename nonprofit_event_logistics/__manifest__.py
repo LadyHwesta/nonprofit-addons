@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Event Logistics",
-    "version": "19.0.1.2.2",
+    "version": "19.0.1.3.0",
     "category": "Marketing/Events",
     "summary": "Permits, temp staff shifts, crew bookings and facility placement",
     "description": """

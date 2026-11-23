@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_nonprofit_grant_stage_list" model="ir.ui.view">
+        <field name="name">nonprofit.grant.stage.list</field>
+        <field name="model">nonprofit.grant.stage</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="is_awarded" />
+                <field name="is_declined" />
+                <field name="is_closed" />
+                <field name="fold" />
+            </list>
+        </field>
+    </record>
+
+    <record id="action_nonprofit_grant_stage" model="ir.actions.act_window">
+        <field name="name">Grant Stages</field>
+        <field name="res_model">nonprofit.grant.stage</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

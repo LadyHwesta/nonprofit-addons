@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <menuitem id="menu_event_config_logistics" name="Logistics"
-              parent="event.menu_event_configuration" sequence="60" />
+    <!-- Day-to-day logistics sit in the Events menu bar; only the list of
+         staff roles is set-up, so only that stays under Configuration. -->
+    <menuitem id="menu_event_logistics" name="Logistics"
+              parent="event.event_main_menu" sequence="8"
+              groups="event.group_event_user,nonprofit_event_logistics.group_logistics_viewer" />
     <menuitem id="menu_event_permit" name="Permits"
               action="action_event_permit"
-              parent="menu_event_config_logistics" sequence="40" />
-    <menuitem id="menu_event_staff_shift" name="Staff Shifts"
+              parent="menu_event_logistics" sequence="10" />
+    <menuitem id="menu_event_staff_shift" name="Paid Staff Shifts"
               action="action_event_staff_shift"
-              parent="menu_event_config_logistics" sequence="41" />
+              parent="menu_event_logistics" sequence="20" />
+    <menuitem id="menu_event_crew_booking" name="Crew Bookings"
+              action="action_event_crew_booking"
+              parent="menu_event_logistics" sequence="30" />
+    <menuitem id="menu_event_facility" name="Facilities"
+              action="action_event_facility"
+              parent="menu_event_logistics" sequence="40" />
+
+    <menuitem id="menu_event_config_logistics" name="Logistics"
+              parent="event.menu_event_configuration" sequence="60" />
     <menuitem id="menu_event_staff_role" name="Staff Roles"
               action="action_event_staff_role"
               parent="menu_event_config_logistics" sequence="42" />
-    <menuitem id="menu_event_crew_booking" name="Crew Bookings"
-              action="action_event_crew_booking"
-              parent="menu_event_config_logistics" sequence="43" />
-    <menuitem id="menu_event_facility" name="Facilities"
-              action="action_event_facility"
-              parent="menu_event_config_logistics" sequence="44" />
 
 </odoo>

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import unittest
 from datetime import datetime, timedelta
+from unittest.mock import patch
 
 from odoo.exceptions import AccessError
 from odoo.tests.common import TransactionCase, tagged
@@ -11,6 +13,12 @@ class TestNonprofitRoles(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # These check the roles across the whole suite; roles no longer
+        # require it (see TestRoleRightsSync for a partial install).
+        needed = ('event.parade.entry', 'event.crew.booking', 'event.venue.row',
+                  'volunteer.shift', 'donation.donation', 'project.project', 'hr.employee')
+        if any(model not in cls.env for model in needed):
+            raise unittest.SkipTest("needs the whole non-profit suite installed")
         cls.event = cls.env['event.event'].create({
             'name': 'Test Gala',
             'date_begin': datetime.now() + timedelta(days=30),
@@ -215,8 +223,7 @@ class TestNonprofitRoles(TransactionCase):
         for xmlid, section in (
             ('nonprofit_event_entertainment.menu_event_stage', 'Entertainment'),
             ('nonprofit_event_entertainment.menu_event_performer', 'Entertainment'),
-            ('nonprofit_event_logistics.menu_event_permit', 'Logistics'),
-            ('nonprofit_event_logistics.menu_event_facility', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_staff_role', 'Logistics'),
             ('event_volunteer.menu_event_volunteer_roles', 'Volunteers'),
             ('volunteer_profile.menu_volunteer_skill', 'Volunteers'),
         ):
@@ -224,3 +231,75 @@ class TestNonprofitRoles(TransactionCase):
             self.assertEqual(parent.name, section, xmlid)
             self.assertEqual(parent.parent_id, stock, xmlid)
 
+    def test_day_to_day_work_sits_in_the_events_menu_bar(self):
+        """Permits, staff shifts, crew bookings and facilities are weekly work,
+        not settings (2026-11-12 review): Events > Logistics, and Events >
+        Parade, Events > Volunteers, next to the stock Events menus."""
+        bar = self.env.ref('event.event_main_menu')
+        for xmlid, section in (
+            ('nonprofit_event_logistics.menu_event_permit', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_staff_shift', 'Logistics'),
+            ('nonprofit_event_logistics.menu_event_facility', 'Logistics'),
+            ('nonprofit_event_parade.menu_event_parade_entry', 'Parade'),
+            ('volunteer_shift.menu_volunteer_shifts', 'Volunteers'),
+            ('volunteer_shift.menu_volunteer_shift_swaps', 'Volunteers'),
+        ):
+            parent = self.env.ref(xmlid).parent_id
+            self.assertEqual(parent.name, section, xmlid)
+            self.assertEqual(parent.parent_id, bar, xmlid)
+
+
+
+@tagged('post_install', '-at_install')
+class TestRoleRightsSync(TransactionCase):
+    """Roles take the rights of whatever is installed, and only those."""
+
+    def _sync_with(self, rights):
+        from odoo.addons.nonprofit_roles.models import res_groups
+        with patch.dict(res_groups.ROLE_RIGHTS, rights, clear=True):
+            return self.env['res.groups']._nonprofit_sync_role_rights()
+
+    def test_installed_rights_are_added_and_missing_areas_skipped(self):
+        role = self.env.ref('nonprofit_roles.group_role_treasurer')
+        role.implied_ids = [(5, 0, 0), (4, self.env.ref('base.group_user').id)]
+        changed = self._sync_with({'group_role_treasurer': [
+            'base.group_user', 'account.group_account_manager',
+            'not_installed_module.group_whatever']})
+        self.assertEqual(changed, 1)
+        self.assertIn(self.env.ref('account.group_account_manager'), role.implied_ids)
+        self.assertEqual(self._sync_with({'group_role_treasurer': [
+            'base.group_user', 'account.group_account_manager']}), 0, "nothing to do twice")
+
+    def test_a_minus_right_is_taken_away(self):
+        role = self.env.ref('nonprofit_roles.group_role_general_volunteer')
+        readonly = self.env.ref('account.group_account_readonly')
+        role.implied_ids = [(4, readonly.id)]
+        self._sync_with({'group_role_general_volunteer': ['-account.group_account_readonly']})
+        self.assertNotIn(readonly, role.implied_ids)
+
+    def test_roles_only_need_the_base(self):
+        manifest = self.env['ir.module.module']._get('nonprofit_roles')
+        self.assertEqual(manifest.dependencies_id.mapped('name'), ['nonprofit_base'])
+
+    def test_the_donation_app_is_called_donations(self):
+        menu = self.env.ref('donation.donation_top_menu', raise_if_not_found=False)
+        if not menu:
+            self.skipTest("Donations isn't installed")
+        self.assertEqual(menu.with_context(lang='en_US').name, 'Donations')
+
+    def test_grants_rights_when_grants_is_installed(self):
+        manager = self.env.ref('nonprofit_grant.group_grant_manager', raise_if_not_found=False)
+        if not manager:
+            self.skipTest("Grants isn't installed")
+        user = self.env.ref('nonprofit_grant.group_grant_user')
+        viewer = self.env.ref('nonprofit_grant.group_grant_viewer')
+
+        def implied(role):
+            return self.env.ref(f'nonprofit_roles.{role}').all_implied_ids
+
+        for role in ('group_role_chair_person', 'group_role_treasurer', 'group_role_fundraising_manager'):
+            self.assertIn(manager, implied(role), role)
+        self.assertIn(user, implied('group_role_program_director'))
+        self.assertNotIn(manager, implied('group_role_program_director'))
+        self.assertIn(viewer, implied('group_role_general_volunteer'))
+        self.assertNotIn(user, implied('group_role_general_volunteer'))

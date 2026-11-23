@@ -22,6 +22,15 @@ layers onto an existing localization.
   *Restriction Releases* workflow that posts the balanced net-assets-released
   entry between two clearing accounts; and a per-fund net-asset roll-forward
   report.
+- [`nonprofit_grant/`](nonprofit_grant/) — the **Grants** app: grants from
+  prospect to close-out on a kanban pipeline (funder, program officer,
+  requested/awarded, application deadline as a to-do for the owner). An
+  award gets its own restricted fund under Fund › Grants, so spending is
+  tracked against it (awarded, received, spent, left) and can be released
+  from restriction from the grant. The funder's expected payments become
+  invoices on the grants revenue account; required reports have due dates,
+  reminders and the submitted file. Viewer/User/Manager levels, wired into
+  the roles.
 - [`nonprofit_reports/`](nonprofit_reports/) — donor analytics
   (`report.nonprofit.donor` with LYBUNT / SYBUNT filters), a Form 990
   functional-expense pivot, a year-end contribution-statement wizard + QWeb PDF,
@@ -109,6 +118,8 @@ principle as the modules themselves):
   Accounting for Treasurers*.
 - [`nonprofit_elearning_donations/`](nonprofit_elearning_donations/) -
   *Processing Donations*.
+- [`nonprofit_elearning_grants/`](nonprofit_elearning_grants/) -
+  *Managing Grants*.
 - [`nonprofit_elearning_volunteers/`](nonprofit_elearning_volunteers/) -
   *Volunteer Coordination*.
 - [`nonprofit_elearning_event_venue/`](nonprofit_elearning_event_venue/) -

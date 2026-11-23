@@ -137,12 +137,18 @@
     </record>
 
     <!-- ============ Menus ============ -->
-    <menuitem id="menu_event_volunteers"
+    <!-- One Volunteers menu in the Events menu bar; volunteer_shift adds
+         Shifts, Swaps and Reports to it. -->
+    <menuitem id="menu_event_volunteer_section"
               name="Volunteers"
               parent="event.event_main_menu"
-              action="event_volunteer_assignment_action"
               sequence="5"
               groups="event.group_event_user,event_volunteer.group_volunteer_viewer" />
+    <menuitem id="menu_event_volunteers"
+              name="Volunteers"
+              parent="menu_event_volunteer_section"
+              action="event_volunteer_assignment_action"
+              sequence="1" />
     <menuitem id="menu_event_config_volunteers"
               name="Volunteers"
               parent="event.menu_event_configuration"

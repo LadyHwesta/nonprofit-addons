@@ -21,5 +21,6 @@
         <field name="name">Logistics Manager</field>
         <field name="privilege_id" ref="res_groups_privilege_logistics" />
         <field name="implied_ids" eval="[(4, ref('group_logistics_user'))]" />
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
     </record>
 </odoo>

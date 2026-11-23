@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- One yearly receipt for donors: with the Donations app installed, its
+         numbered tax receipts (printed with the IRS wording below) are the
+         receipt, so the separate statement menu is hidden. -->
+    <record id="nonprofit_reports.menu_nonprofit_donor_statement" model="ir.ui.menu">
+        <field name="active" eval="False" />
+    </record>
+
+</odoo>

@@ -17,6 +17,7 @@
     <!-- ===================== Section 1: Permits ===================== -->
     <record id="section_permits" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Permits</field>
         <field name="is_category" eval="True" />
         <field name="sequence">10</field>
@@ -24,6 +25,7 @@
 
     <record id="lesson_checklist" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Building a permit checklist from an event template</field>
         <field name="slide_category">article</field>
         <field name="sequence">11</field>
@@ -69,6 +71,7 @@
 
     <record id="lesson_permit_deadlines" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Submit-by and expiry reminders</field>
         <field name="slide_category">article</field>
         <field name="sequence">12</field>
@@ -118,6 +121,7 @@
     <!-- ============= Section 2: Temporary staff & crews ============= -->
     <record id="section_staff" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Temporary staff &amp; crews</field>
         <field name="is_category" eval="True" />
         <field name="sequence">20</field>
@@ -125,6 +129,7 @@
 
     <record id="lesson_staff_shifts" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Staff shifts and check-in/out</field>
         <field name="slide_category">article</field>
         <field name="sequence">21</field>
@@ -175,6 +180,7 @@
 
     <record id="lesson_crew_bookings" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Crew bookings and day-of contacts</field>
         <field name="slide_category">article</field>
         <field name="sequence">22</field>
@@ -224,6 +230,7 @@
     <!-- ============ Section 3: Facilities & readiness ============ -->
     <record id="section_facilities" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Facilities &amp; readiness</field>
         <field name="is_category" eval="True" />
         <field name="sequence">30</field>
@@ -231,6 +238,7 @@
 
     <record id="lesson_facilities" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Placing facilities on the vendor map</field>
         <field name="slide_category">article</field>
         <field name="sequence">31</field>
@@ -257,6 +265,7 @@
 
     <record id="lesson_readiness" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">The Logistics tab and the readiness reminder</field>
         <field name="slide_category">article</field>
         <field name="sequence">32</field>
@@ -323,6 +332,7 @@
     <!-- ========================= Quiz ========================= -->
     <record id="slide_quiz" model="slide.slide">
         <field name="channel_id" ref="channel_event_logistics" />
+        <field name="is_published" eval="True" />
         <field name="name">Check your understanding</field>
         <field name="slide_category">quiz</field>
         <field name="sequence">90</field>

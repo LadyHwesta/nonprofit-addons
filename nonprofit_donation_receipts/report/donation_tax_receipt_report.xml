@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- OCA's receipt is deliberately bare ("customize the style and layout
+         in a custom module"); this is the layout a US donor needs. -->
+    <template id="report_donationtaxreceipt_document_us"
+              inherit_id="donation_base.report_donationtaxreceipt_document">
+        <xpath expr="//t[@t-call='web.internal_layout']" position="replace">
+            <t t-set="company" t-value="o.company_id" />
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Donation Receipt <span t-field="o.number" /></h2>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <strong>Donor</strong>
+                            <div t-field="o.partner_id"
+                                 t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}' />
+                        </div>
+                        <div class="col-6 text-end">
+                            <strong>Issued by</strong><br />
+                            <span t-field="company.name" />
+                            <span t-if="company.vat"><br />EIN <span t-field="company.vat" /></span><br />
+                            <strong>Date issued</strong>
+                            <span t-field="o.date" />
+                        </div>
+                    </div>
+
+                    <table class="table table-sm mt-4">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Gift</th>
+                                <th class="text-end">Deductible amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.donation_ids.sorted('donation_date')" t-as="gift">
+                                <td><span t-field="gift.donation_date" /></td>
+                                <td>
+                                    <span t-esc="gift.number or gift.payment_ref or ''" />
+                                    <t t-if="gift.amount_total &gt; gift.tax_receipt_total">
+                                        <br />
+                                        <small>
+                                            Value of goods or services you received:
+                                            <span t-esc="gift.amount_total - gift.tax_receipt_total"
+                                                  t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                        </small>
+                                    </t>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="gift.tax_receipt_total"
+                                          t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" />
+                                </td>
+                            </tr>
+                            <tr t-if="not o.donation_ids">
+                                <td><span t-field="o.donation_date" /></td>
+                                <td>Donation</td>
+                                <td class="text-end"><span t-field="o.amount" /></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" class="text-end">Total deductible contributions</th>
+                                <th class="text-end"><span t-field="o.amount" /></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <p class="mt-4" style="font-size: 10px;">
+                        <t t-if="any(g.amount_total &gt; g.tax_receipt_total for g in o.donation_ids)">
+                            Goods or services were provided only where shown above, in
+                            exchange for part of that gift; the deductible amount is the
+                            gift minus their value.
+                        </t>
+                        <t t-else="">
+                            No goods or services were provided in exchange for the
+                            contributions listed above.
+                        </t>
+                        This receipt is your written acknowledgement for tax purposes
+                        under Internal Revenue Code section 170(f)(8) for any single
+                        contribution of $250 or more. Please keep it with your tax records.
+                        <span t-field="company.name" /> is a tax-exempt organization;
+                        contributions are deductible to the extent allowed by law.
+                    </p>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

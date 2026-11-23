@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+    <!-- The one Non-Profit menu in Accounting: fund accounting adds its
+         Funds section, nonprofit_reports its Reports section. -->
+    <menuitem id="menu_nonprofit_root" name="Non-Profit"
+              parent="account.menu_finance" sequence="90"
+              groups="account.group_account_readonly" />
+
     <menuitem id="menu_nonprofit_coa_import"
               name="Add Non-Profit Accounts"
               parent="account.menu_finance_configuration"

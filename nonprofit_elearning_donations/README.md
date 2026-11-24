@@ -5,7 +5,8 @@ A pure-data module: installing it drops a ready-built course,
 
 ## What's in the course
 
-Recording a cash/check gift, a restricted gift, and an in-kind gift;
+Recording a cash/check gift, a restricted gift, an in-kind gift, and a gift
+made on the website (with or without the donor covering the fees);
 fundraising-event income and the quid-pro-quo split; donor analytics with
 LYBUNT/SYBUNT filters and year-end contribution statements. A 4-question
 quiz at the end.

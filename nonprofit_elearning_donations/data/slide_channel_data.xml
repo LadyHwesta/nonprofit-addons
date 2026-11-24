@@ -111,6 +111,69 @@
     </record>
 
     <!-- ============ Section 2: Receipts and fundraising events ============ -->
+    <record id="lesson_online_gift" model="slide.slide">
+        <field name="channel_id" ref="channel_donations" />
+        <field name="is_published" eval="True" />
+        <field name="name">A gift made on your website</field>
+        <field name="slide_category">article</field>
+        <field name="sequence">13</field>
+        <field name="html_content" type="html">
+            <div class="oe-course-content">
+                <p>When your website takes donations (the <strong>Donation</strong>
+                block, with card payments switched on), you don't type online gifts
+                in yourself. Once a donor's payment goes through:</p>
+                <ol class="oe-steps">
+                    <li>
+                        <p>The donor is matched to an existing contact by email,
+                        or added as a new contact with the name, email and country
+                        they typed.</p>
+                    </li>
+                    <li>
+                        <p>A donation is created and validated for them in
+                        <strong>Donation › Donations › Donations</strong>, and
+                        their tax receipt is produced like any other gift.</p>
+                    </li>
+                    <li>
+                        <p>The money is booked once: the donation is matched to the
+                        card payment, so nothing needs reconciling by hand.</p>
+                    </li>
+                </ol>
+
+                <h3>When the donor covers the fees</h3>
+                <p>The donation form can offer <em>"I'll cover the processing
+                fees"</em>, unticked unless the donor ticks it. A donor who ticks
+                it pays a little more, so the full gift arrives after the card
+                fees. Their donation then has two lines:
+                <strong>Online donation</strong> (the gift they chose) and
+                <strong>Processing fees covered by donor</strong>. Both appear on
+                the receipt, so the donor sees exactly what they paid and why.</p>
+
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-info-circle" /></span>
+                    <div>
+                        <span class="oe-callout-label">Where to change it</span>
+                        <p>The fee box, and the card rates it uses, are under
+                        <strong>Website › Configuration › Settings › Donors Can
+                        Cover the Fees</strong>. To leave covered fees off receipts,
+                        untick <strong>Is Eligible for a Tax Receipt</strong> on the
+                        <em>Processing fees covered by donor</em> product, but ask
+                        your accountant first.</p>
+                    </div>
+                </div>
+                <div class="oe-callout">
+                    <span class="oe-callout-icon"><i class="fa fa-exclamation-triangle" /></span>
+                    <div>
+                        <span class="oe-callout-label">If an online gift is missing</span>
+                        <p>If a donation couldn't be created (for example a missing
+                        account), the payment still goes through, and a note on the
+                        payment in <strong>Accounting</strong> says what went wrong.
+                        Record that gift by hand as in the first lesson.</p>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
     <record id="section_events" model="slide.slide">
         <field name="channel_id" ref="channel_donations" />
         <field name="is_published" eval="True" />

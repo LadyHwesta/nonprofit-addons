@@ -24,7 +24,7 @@ class TestElearningDonations(TransactionCase):
         self.assertEqual(len(sections), 3)
         lessons = self.channel.slide_content_ids.filtered(
             lambda s: s.slide_category == "article")
-        self.assertEqual(len(lessons), 5)
+        self.assertEqual(len(lessons), 6)
         for lesson in lessons:
             self.assertTrue(lesson.category_id, "%s has no section" % lesson.name)
 

@@ -3,6 +3,7 @@
 
     <record id="channel_donations" model="slide.channel">
         <field name="name">Processing Donations</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_donations/static/img/cover_donations.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Recording gifts of every kind, generating receipts, and

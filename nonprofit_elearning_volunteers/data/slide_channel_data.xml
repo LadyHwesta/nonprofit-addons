@@ -3,6 +3,7 @@
 
     <record id="channel_volunteers" model="slide.channel">
         <field name="name">Volunteer Coordination</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_volunteers/static/img/cover_volunteers.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Setting up roles and shifts, running the day, screening

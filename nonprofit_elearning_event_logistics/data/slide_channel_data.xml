@@ -3,6 +3,7 @@
 
     <record id="channel_event_logistics" model="slide.channel">
         <field name="name">Logistics Lead</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_event_logistics/static/img/cover_event_logistics.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Permits, temporary staff, crew bookings, facilities, and

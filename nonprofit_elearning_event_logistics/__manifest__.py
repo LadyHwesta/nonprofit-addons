@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Logistics Lead",
-    "version": "19.0.1.2.2",
+    "version": "19.0.1.2.3",
     "category": "Website/eLearning",
     "summary": "eLearning course: permits, temp staff, crews, and facilities",
     "description": """

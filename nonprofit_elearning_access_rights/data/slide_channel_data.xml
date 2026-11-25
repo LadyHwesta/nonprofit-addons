@@ -3,6 +3,7 @@
 
     <record id="channel_access_rights" model="slide.channel">
         <field name="name">Access Rights and Roles</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_access_rights/static/img/cover_access_rights.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Choosing the right role for each person, what each role and

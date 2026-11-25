@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "eLearning: Managing Grants",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "category": "Website/eLearning",
     "summary": "eLearning course: the Grants app, from prospect to final report",
     "description": """

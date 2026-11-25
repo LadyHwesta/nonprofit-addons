@@ -3,6 +3,7 @@
 
     <record id="channel_grants" model="slide.channel">
         <field name="name">Managing Grants</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_grants/static/img/cover_grants.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Tracking grants from the first idea to the final report: deadlines,

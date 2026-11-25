@@ -3,6 +3,7 @@
 
     <record id="channel_event_venue" model="slide.channel">
         <field name="name">Vendor Coordinator</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_event_venue/static/img/cover_event_venue.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Setting up booths, calibrating the live vendor map, and

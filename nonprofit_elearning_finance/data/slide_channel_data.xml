@@ -3,6 +3,7 @@
 
     <record id="channel_finance" model="slide.channel">
         <field name="name">Fund Accounting for Treasurers</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_finance/static/img/cover_finance.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>How to record money against the right fund, program, and

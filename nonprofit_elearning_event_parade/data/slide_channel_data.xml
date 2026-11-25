@@ -3,6 +3,7 @@
 
     <record id="channel_event_parade" model="slide.channel">
         <field name="name">Parade Coordinator</field>
+        <field name="image_1920" type="base64" file="nonprofit_elearning_event_parade/static/img/cover_event_parade.png" />
         <field name="channel_type">training</field>
         <field name="description" type="html">
             <p>Taking public applications, building the lineup, and
